@@ -3,6 +3,14 @@ Week 1 — First call to Claude API from Python.
 Goal: verify SDK works + understand response structure.
 """
 import os
+from anthropic import Anthropic
+from dotenv import load_dotenv
+
+# Load .env (ANTHROPIC_API_KEY available in os.environ after this)
+load_dotenv()
+
+# Anthropic() auto-reads ANTHROPIC_API_KEY from env — no need to pass it
+client = Anthropic()
 
 # Pricing per million tokens (USD) — verify ปัจจุบันที่ https://docs.claude.com/en/docs/about-claude/pricing
 PRICING = {
@@ -20,15 +28,6 @@ def calculate_cost(model: str, input_tokens: int, output_tokens: int) -> float:
     cost = (input_tokens / 1_000_000) * rates["input"] + \
            (output_tokens / 1_000_000) * rates["output"]
     return cost
-
-from anthropic import Anthropic
-from dotenv import load_dotenv
-
-# Load .env (ANTHROPIC_API_KEY available in os.environ after this)
-load_dotenv()
-
-# Anthropic() auto-reads ANTHROPIC_API_KEY from env — no need to pass it
-client = Anthropic()
 
 response = client.messages.create(
     model="claude-opus-4-7",
