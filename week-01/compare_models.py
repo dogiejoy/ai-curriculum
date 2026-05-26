@@ -11,10 +11,11 @@ client = Anthropic()
 
 PRICING = {
     "claude-opus-4-7":           {"input": 5.00, "output": 25.00},
+    "claude-sonnet-4-6":         {"input":  3.00, "output": 15.00},
     "claude-haiku-4-5-20251001": {"input":  1.00, "output":  5.00},
 }
 
-MODELS = ["claude-opus-4-7", "claude-haiku-4-5-20251001"]
+MODELS = ["claude-opus-4-7", "claude-sonnet-4-6", "claude-haiku-4-5-20251001"]
 
 # Test prompts — เลือกให้เห็นความต่าง: factual, technical, reasoning, ภาษาไทย
 TEST_PROMPTS = [
@@ -53,6 +54,7 @@ def call_model(model: str, prompt: str) -> dict:
 def main():
     total_opus_cost = 0.0
     total_haiku_cost = 0.0
+    total_sonnet_cost = 0.0
 
     for i, prompt in enumerate(TEST_PROMPTS, 1):
         print(f"\n{'=' * 75}")
@@ -61,7 +63,7 @@ def main():
 
         results = []
         for model in MODELS:
-            short_name = "Opus" if "opus" in model else "Haiku"
+            short_name = "Opus" if "opus" in model else ("Sonnet" if "sonnet" in model else "Haiku")
             print(f"\n→ {short_name} ({model})")
             try:
                 r = call_model(model, prompt)
@@ -75,23 +77,27 @@ def main():
                 print(f"  ERROR: {e}")
 
         # Side-by-side comparison
-        if len(results) == 2:
-            opus, haiku = results
-            cost_ratio = opus["cost_usd"] / haiku["cost_usd"] if haiku["cost_usd"] > 0 else 0
-            speed_ratio = opus["latency_s"] / haiku["latency_s"] if haiku["latency_s"] > 0 else 0
-            print(f"\n  → Opus is {cost_ratio:.1f}x more expensive, {speed_ratio:.1f}x slower")
+        if len(results) == 3:
+            opus, sonnet, haiku = results
+            #cost_ratio = opus["cost_usd"] / haiku["cost_usd"] if haiku["cost_usd"] > 0 else 0
+            #speed_ratio = opus["latency_s"] / haiku["latency_s"] if haiku["latency_s"] > 0 else 0
+            #print(f"\n  → Opus is {cost_ratio:.1f}x more expensive, {speed_ratio:.1f}x slower")
             total_opus_cost += opus["cost_usd"]
             total_haiku_cost += haiku["cost_usd"]
+            total_sonnet_cost += sonnet["cost_usd"]
+
 
     # Summary
     print(f"\n{'=' * 75}")
     print("TOTAL COST FOR THIS RUN")
     print('=' * 75)
     print(f"  Opus 4.7:  ${total_opus_cost:.5f}")
+    print(f"  Sonnet 4.6: ${total_sonnet_cost:.5f}")
     print(f"  Haiku 4.5: ${total_haiku_cost:.5f}")
-    print(f"  Difference: {total_opus_cost / total_haiku_cost:.1f}x")
+    #print(f"  Difference: {total_opus_cost / total_haiku_cost:.1f}x")
     print(f"\n  ถ้ารัน 1,000 ครั้งต่อวัน:")
     print(f"    Opus  → ${total_opus_cost * 1000:.2f}/วัน = ${total_opus_cost * 30000:.2f}/เดือน")
+    print(f"    Sonnet → ${total_sonnet_cost * 1000:.2f}/วัน = ${total_sonnet_cost * 30000:.2f}/เดือน")
     print(f"    Haiku → ${total_haiku_cost * 1000:.2f}/วัน = ${total_haiku_cost * 30000:.2f}/เดือน")
 
 
