@@ -1,4 +1,4 @@
-## Day 1
+# Day 1
 # When to use which model (first draft)
 
 ## Use Haiku 4.5 (cheap, fast) for:
