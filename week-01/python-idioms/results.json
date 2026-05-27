@@ -1,0 +1,13 @@
+[{
+  "model": "claude-opus-4-7",
+  "prompt": "แนะนำตัว 2 ประโยค",
+  "response_text": "สวัสดีครับ ผมคือ Claude...",
+  "usage": {
+    "input_tokens": 38,
+    "output_tokens": 117
+  },
+  "latency_seconds": 2.34,
+  "cost_usd": 0.009345,
+  "model_provider": "anthropic",
+  "called_at": "2026-05-27T15:24:51.150498"
+}]

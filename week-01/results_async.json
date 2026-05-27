@@ -1,0 +1,146 @@
+[
+{
+  "model": "claude-opus-4-7",
+  "prompt": "เมืองหลวงของประเทศไทยคืออะไร? ตอบสั้นๆ",
+  "response_text": "กรุงเทพมหานคร",
+  "usage": {
+    "input_tokens": 45,
+    "output_tokens": 16
+  },
+  "latency_seconds": 2.223278045654297,
+  "cost_usd": 0.000625,
+  "called_at": "2026-05-27T15:39:06.763627"
+},
+{
+  "model": "claude-sonnet-4-6",
+  "prompt": "เมืองหลวงของประเทศไทยคืออะไร? ตอบสั้นๆ",
+  "response_text": "กรุงเทพมหานคร",
+  "usage": {
+    "input_tokens": 41,
+    "output_tokens": 15
+  },
+  "latency_seconds": 1.8580169677734375,
+  "cost_usd": 0.000348,
+  "called_at": "2026-05-27T15:39:06.402459"
+},
+{
+  "model": "claude-haiku-4-5-20251001",
+  "prompt": "เมืองหลวงของประเทศไทยคืออะไร? ตอบสั้นๆ",
+  "response_text": "เมืองหลวงของประเทศไทยคือ **กรุงเทพมหานคร** (Bangkok)",
+  "usage": {
+    "input_tokens": 41,
+    "output_tokens": 39
+  },
+  "latency_seconds": 1.2438721656799316,
+  "cost_usd": 0.000236,
+  "called_at": "2026-05-27T15:39:05.788428"
+},
+{
+  "model": "claude-opus-4-7",
+  "prompt": "อธิบาย event loop ใน JavaScript ใน 3 ประโยคภาษาไทย",
+  "response_text": "Event Loop คือกลไกใน JavaScript ที่ทำหน้าที่จัดการการทำงานแบบ asynchronous โดยคอยตรวจสอบว่า Call Stack ว่างหรือไม่ แล้วจึงนำงานจาก Queue มาประมวลผลต่อ\n\nเมื่อมีงาน asynchronous เช่น setTimeout, Promise หรือ event ต่างๆ งานเหล่านั้นจะถูกส่งไปรอใน Callback Queue (Macrotask) หรือ Microtask Queue ก่อน แทนที่จะรันทันทีบน Call Stack\n\nEvent Loop จะให้ความสำคัญกับ Microtask Queue (เช่น Promise.then) ก่อน Macrotask Queue (เช่น setTimeout) เสมอ ทำให้ JavaScript ซึ่งเป็น single-threaded สามารถทำงานหลายอย่างพร้อมกันได้โดยไม่บล็อกการทำงานหลัก",
+  "usage": {
+    "input_tokens": 46,
+    "output_tokens": 364
+  },
+  "latency_seconds": 9.86718201637268,
+  "cost_usd": 0.00933,
+  "called_at": "2026-05-27T15:39:16.631013"
+},
+{
+  "model": "claude-sonnet-4-6",
+  "prompt": "อธิบาย event loop ใน JavaScript ใน 3 ประโยคภาษาไทย",
+  "response_text": "**Event Loop** คือกลไกที่ JavaScript ใช้จัดการการทำงานแบบ Asynchronous แม้ว่า JavaScript จะเป็นภาษา Single-threaded (ทำงานได้ทีละอย่าง)\n\nเมื่อมีคำสั่ง Async เช่น `setTimeout` หรือ `fetch` ระบบจะโยนงานนั้นไปให้ Web APIs จัดการก่อน แล้วนำ Callback กลับมาเข้าคิวใน **Callback Queue** เมื่องานเสร็จแล้ว\n\nEvent Loop จะคอยตรวจสอบตลอดเวลาว่า **Call Stack** ว่างอยู่หรือไม่ ถ้าว่างก็จะดึงงานจาก Queue เข้ามาทำงานต่อ ทำให้โปรแกรมไม่ติดขัด (Non-blocking) นั่นเอง",
+  "usage": {
+    "input_tokens": 37,
+    "output_tokens": 296
+  },
+  "latency_seconds": 7.511653900146484,
+  "cost_usd": 0.0045509999999999995,
+  "called_at": "2026-05-27T15:39:14.276092"
+},
+{
+  "model": "claude-haiku-4-5-20251001",
+  "prompt": "อธิบาย event loop ใน JavaScript ใน 3 ประโยคภาษาไทย",
+  "response_text": "# Event Loop ใน JavaScript\n\n**Event Loop** คือกลไกที่ทำให้ JavaScript สามารถจัดการ asynchronous code ได้ โดยจะเช็คว่า Call Stack ว่างหรือไม่ ถ้าว่างแล้วจึงนำ callback จาก Callback Queue มาเข้า Call Stack เพื่อให้ execute\n\nEvent Loop ทำงานแบบวนซ้ำไปเรื่อย ๆ โดยตรวจสอบ Call Stack และ Microtask Queue ก่อน แล้วจึงไปที่ Macrotask Queue เพื่อให้แน่ใจว่า code ที่สำคัญถูก execute ก่อน\n\nกล่าวคือ Event Loop คือเหตุผลว่าทำไม JavaScript ถึงทำได้หลายอย่างพร้อม ๆ กัน (Concurrency) แม้ว่าตัว JavaScript engine นั้นเป็น single-threaded",
+  "usage": {
+    "input_tokens": 37,
+    "output_tokens": 303
+  },
+  "latency_seconds": 4.544309854507446,
+  "cost_usd": 0.0015519999999999998,
+  "called_at": "2026-05-27T15:39:11.309162"
+},
+{
+  "model": "claude-opus-4-7",
+  "prompt": "Laravel migration สำหรับ table 'orders' มี columns: id, user_id (FK), total (decimal 10,2), status (enum pending/paid/cancelled). เขียน code",
+  "response_text": "# Laravel Migration สำหรับ Table `orders`\n\n## Migration File\n\nสร้าง migration ด้วยคำสั่ง:\n\n```bash\nphp artisan make:migration create_orders_table\n```\n\nจากนั้นเขียน code ดังนี้:\n\n```php\n<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration\n{\n    /**\n     * Run the migrations.\n     */\n    public function up(): void\n    {\n        Schema::create('orders', function (Blueprint $table) {\n            $table->id();\n            $table->foreignId('user_id')\n                  ->constrained('users')\n                  ->onUpdate('cascade')\n                  ->onDelete('cascade');\n            $table->decimal('total', 10, 2)->default(0.00);\n            $table->enum('status', ['pending', 'paid', 'cancelled'])\n                  ->default('pending');\n            $table->timestamps();\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     */\n    public function down(): void\n    {\n        Schema::dropIfExists('orders');\n    }\n};\n```\n\n## คำอธิบาย Columns\n\n| Column | Type | รายละเอียด |\n|--------|------|-----------|\n| `id` | BIGINT UNSIGNED | Primary Key (Auto Increment) |\n| `user_id` | BIGINT UNSIGNED | Foreign Key อ้างอิงตาราง `users` |\n| `total` | DECIMAL(10,2) | ยอดรวม สูงสุด 99,999,999.99 |\n| `status` | ENUM | ค่าได้แก่ pending, paid, cancelled |\n| `created_at` | TIMESTAMP | วันที่สร้าง |\n| `updated_at` | TIMESTAMP | วันที่อัปเดตล่าสุด |\n\n## รัน Migration\n\n```bash\nphp artisan migrate\n```\n\n## Tips เพิ่มเติม\n\n### 1. ถ้าต้องการเพิ่ม Index เพื่อ Performance\n\n```php\n$table->index('status');\n$table->index(['user_id', 'status']);\n```\n\n### 2. ถ้าต้องการใช้ String แทน Enum (แนะนำสำหรับความยืดหยุ่น)\n\n```php\n$table->string('status')->default('pending');\n// แล้วใช้ validation หรือ cast ใน Model แทน\n```\n\n### 3. Model `Order.php` (ตัวอย่างประกอบ)\n\n```php\n<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;\n\nclass Order extends Model\n{\n    use HasFactory;\n\n    protected $fillable = [\n        'user_id',\n        'total',\n        'status',\n    ];\n\n    protected $casts = [",
+  "usage": {
+    "input_tokens": 73,
+    "output_tokens": 1024
+  },
+  "latency_seconds": 16.018505096435547,
+  "cost_usd": 0.025965,
+  "called_at": "2026-05-27T15:39:32.649987"
+},
+{
+  "model": "claude-sonnet-4-6",
+  "prompt": "Laravel migration สำหรับ table 'orders' มี columns: id, user_id (FK), total (decimal 10,2), status (enum pending/paid/cancelled). เขียน code",
+  "response_text": "## Laravel Migration สำหรับ Table Orders\n\n```php\n<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration\n{\n    /**\n     * Run the migrations.\n     */\n    public function up(): void\n    {\n        Schema::create('orders', function (Blueprint $table) {\n            $table->id();\n            \n            $table->foreignId('user_id')\n                  ->constrained('users')\n                  ->onUpdate('cascade')\n                  ->onDelete('cascade');\n            \n            $table->decimal('total', 10, 2)->default(0.00);\n            \n            $table->enum('status', ['pending', 'paid', 'cancelled'])\n                  ->default('pending');\n            \n            $table->timestamps();\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     */\n    public function down(): void\n    {\n        Schema::dropIfExists('orders');\n    }\n};\n```\n\n## รันคำสั่ง\n\n```bash\n# สร้างไฟล์ migration\nphp artisan make:migration create_orders_table\n\n# รัน migration\nphp artisan migrate\n\n# ย้อนกลับ (rollback)\nphp artisan migrate:rollback\n```\n\n## อธิบาย Code แต่ละส่วน\n\n| Column | Method | คำอธิบาย |\n|--------|--------|----------|\n| `id` | `$table->id()` | Primary Key (Auto Increment BIGINT) |\n| `user_id` | `foreignId()->constrained()` | FK อ้างอิง `users.id` |\n| `total` | `decimal(10, 2)` | ตัวเลข 10 หลัก ทศนิยม 2 ตำแหน่ง |\n| `status` | `enum([...])` | รับค่าได้เฉพาะที่กำหนด |\n| `timestamps` | `timestamps()` | สร้าง `created_at` และ `updated_at` |\n\n## Foreign Key Options\n\n```php\n// ตัวเลือก onDelete / onUpdate\n->onDelete('cascade')   // ลบ order เมื่อ user ถูกลบ\n->onDelete('restrict')  // ห้ามลบ user ถ้ายังมี order\n->onDelete('set null')  // set user_id = NULL (ต้อง nullable())\n->onDelete('no action') // ไม่ทำอะไร\n```\n\n## Model ที่เกี่ยวข้อง (แนะนำ)\n\n```php\n<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;\n\nclass Order extends Model\n{\n    protected $fillable = [\n        'user_id',\n        'total',\n        'status',\n    ];\n\n    protected $casts = [\n        'total'  => 'decimal:2',\n        'status' => 'string',\n    ];\n\n    // Constants สำหรับ status\n    const STATUS_PENDING   = 'pending';\n    const STATUS_PAID      = 'paid';\n    const STATUS_CANCELLED = 'cancelled';\n\n    /**\n     * Relationship กับ User\n     */\n    public function user(): BelongsTo\n    {\n        return $this->belongsTo(User::class);\n    }\n}\n```\n\n> **หมายเหตุ:** ต้องมี `users` table อยู่ก่อน ไม่เช่นนั้น Foreign Key จะ error ตอน migrate",
+  "usage": {
+    "input_tokens": 54,
+    "output_tokens": 959
+  },
+  "latency_seconds": 13.918071031570435,
+  "cost_usd": 0.014547000000000001,
+  "called_at": "2026-05-27T15:39:30.550863"
+},
+{
+  "model": "claude-haiku-4-5-20251001",
+  "prompt": "Laravel migration สำหรับ table 'orders' มี columns: id, user_id (FK), total (decimal 10,2), status (enum pending/paid/cancelled). เขียน code",
+  "response_text": "# Laravel Migration สำหรับ Table Orders\n\n## สร้าง Migration File\n\n```bash\nphp artisan make:migration create_orders_table\n```\n\n## เขียน Migration Code\n\n**File: `database/migrations/YYYY_MM_DD_HHMMSS_create_orders_table.php`**\n\n```php\n<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration\n{\n    /**\n     * Run the migrations.\n     */\n    public function up(): void\n    {\n        Schema::create('orders', function (Blueprint $table) {\n            $table->id();\n            $table->unsignedBigInteger('user_id');\n            $table->decimal('total', 10, 2);\n            $table->enum('status', ['pending', 'paid', 'cancelled'])->default('pending');\n            $table->timestamps();\n            \n            // Foreign Key\n            $table->foreign('user_id')\n                  ->references('id')\n                  ->on('users')\n                  ->onDelete('cascade');\n        });\n    }\n\n    /**\n     * Reverse the migrations.\n     */\n    public function down(): void\n    {\n        Schema::dropIfExists('orders');\n    }\n};\n```\n\n## วิธีใช้\n\n### 1. รัน Migration\n```bash\nphp artisan migrate\n```\n\n### 2. Rollback (ถ้าต้องการ)\n```bash\nphp artisan migrate:rollback\n```\n\n### 3. Refresh (รีเซ็ตทั้งหมด)\n```bash\nphp artisan migrate:refresh\n```\n\n---\n\n## Model สำหรับ Orders\n\n**File: `app/Models/Order.php`**\n\n```php\n<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Model;\n\nclass Order extends Model\n{\n    protected $fillable = ['user_id', 'total', 'status'];\n\n    protected $casts = [\n        'total' => 'decimal:2',\n        'status' => 'string',\n    };\n\n    // Relationship\n    public function user()\n    {\n        return $this->belongsTo(User::class);\n    }\n}\n```\n\n---\n\n## ตัวอย่างการใช้งาน\n\n### สร้าง Order\n```php\nOrder::create([\n    'user_id' => 1,\n    'total' => 150.50,\n    'status' => 'pending'\n]);\n```\n\n### ค้นหาตาม Status\n```php\n$pendingOrders = Order::where('status', 'pending')->get();\n$paidOrders = Order::where('status', 'paid')->get();\n```\n\n### Update Status\n```php\n$order = Order::find(1);\n$order->update(['status' => 'paid']);\n```\n\n---\n\n## หมายเหตุสำคัญ\n\n✅ **id** - Primary Key อัตโนมัติ  \n✅ **user_id** - Foreign Key ชี้ไป users table  \n✅ **total** - Decimal (10 digits, 2 decimal places)  \n✅ **status** - Enum ที่มีค่า default เป็น 'pending'  \n✅ **timestamps** - created_at, updated_at อัตโนมัติ  \n✅ **onDelete('cascade')** - ลบ users จะลบ orders ที่เกี่ยวข้องด้วย",
+  "usage": {
+    "input_tokens": 54,
+    "output_tokens": 901
+  },
+  "latency_seconds": 6.244023084640503,
+  "cost_usd": 0.0045590000000000006,
+  "called_at": "2026-05-27T15:39:22.877743"
+},
+{
+  "model": "claude-opus-4-7",
+  "prompt": "ถ้า x=3, y=x*2+1, z=y-x และ w=z*z แล้ว w=? โชว์ขั้นตอน",
+  "response_text": "# การคำนวณทีละขั้นตอน\n\n**กำหนดให้:** x = 3\n\n## ขั้นตอนที่ 1: หาค่า y\n$$y = x \\times 2 + 1$$\n$$y = 3 \\times 2 + 1$$\n$$y = 6 + 1 = 7$$\n\n## ขั้นตอนที่ 2: หาค่า z\n$$z = y - x$$\n$$z = 7 - 3 = 4$$\n\n## ขั้นตอนที่ 3: หาค่า w\n$$w = z \\times z$$\n$$w = 4 \\times 4 = 16$$\n\n## ✅ คำตอบ\n$$\\boxed{w = 16}$$\n\n| ตัวแปร | ค่า |\n|--------|-----|\n| x | 3 |\n| y | 7 |\n| z | 4 |\n| **w** | **16** |",
+  "usage": {
+    "input_tokens": 60,
+    "output_tokens": 293
+  },
+  "latency_seconds": 6.350965976715088,
+  "cost_usd": 0.007625000000000001,
+  "called_at": "2026-05-27T15:39:39.001406"
+},
+{
+  "model": "claude-sonnet-4-6",
+  "prompt": "ถ้า x=3, y=x*2+1, z=y-x และ w=z*z แล้ว w=? โชว์ขั้นตอน",
+  "response_text": "# การคำนวณทีละขั้นตอน\n\n## กำหนดให้ x = 3\n\n---\n\n## ขั้นตอนที่ 1: หาค่า y\n$$y = x \\times 2 + 1$$\n$$y = 3 \\times 2 + 1$$\n$$y = 6 + 1$$\n$$\\boxed{y = 7}$$\n\n---\n\n## ขั้นตอนที่ 2: หาค่า z\n$$z = y - x$$\n$$z = 7 - 3$$\n$$\\boxed{z = 4}$$\n\n---\n\n## ขั้นตอนที่ 3: หาค่า w\n$$w = z \\times z$$\n$$w = 4 \\times 4$$\n$$\\boxed{w = 16}$$\n\n---\n\n## ✅ คำตอบ: **w = 16**",
+  "usage": {
+    "input_tokens": 56,
+    "output_tokens": 244
+  },
+  "latency_seconds": 4.014819145202637,
+  "cost_usd": 0.0038280000000000002,
+  "called_at": "2026-05-27T15:39:36.667070"
+},
+{
+  "model": "claude-haiku-4-5-20251001",
+  "prompt": "ถ้า x=3, y=x*2+1, z=y-x และ w=z*z แล้ว w=? โชว์ขั้นตอน",
+  "response_text": "# แสดงขั้นตอนการหา w\n\n**ขั้นตอนที่ 1: หา y**\n- x = 3\n- y = x × 2 + 1\n- y = 3 × 2 + 1\n- y = 6 + 1\n- **y = 7**\n\n**ขั้นตอนที่ 2: หา z**\n- z = y - x\n- z = 7 - 3\n- **z = 4**\n\n**ขั้นตอนที่ 3: หา w**\n- w = z × z\n- w = 4 × 4\n- **w = 16**\n\n## คำตอบ: **w = 16**",
+  "usage": {
+    "input_tokens": 56,
+    "output_tokens": 194
+  },
+  "latency_seconds": 1.952467918395996,
+  "cost_usd": 0.001026,
+  "called_at": "2026-05-27T15:39:34.605395"
+}
+]

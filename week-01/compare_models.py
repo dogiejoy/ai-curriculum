@@ -11,8 +11,8 @@ client = Anthropic()
 
 PRICING = {
     "claude-opus-4-7":           {"input": 5.00, "output": 25.00},
-    "claude-sonnet-4-6":         {"input":  3.00, "output": 15.00},
-    "claude-haiku-4-5-20251001": {"input":  1.00, "output":  5.00},
+    "claude-sonnet-4-6":         {"input": 3.00, "output": 15.00},
+    "claude-haiku-4-5-20251001": {"input": 1.00, "output": 5.00},
 }
 
 MODELS = ["claude-opus-4-7", "claude-sonnet-4-6", "claude-haiku-4-5-20251001"]
