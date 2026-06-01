@@ -94,11 +94,13 @@ def main():
     print(f"  Opus 4.7:  ${total_opus_cost:.5f}")
     print(f"  Sonnet 4.6: ${total_sonnet_cost:.5f}")
     print(f"  Haiku 4.5: ${total_haiku_cost:.5f}")
-    #print(f"  Difference: {total_opus_cost / total_haiku_cost:.1f}x")
     print(f"\n  ถ้ารัน 1,000 ครั้งต่อวัน:")
     print(f"    Opus  → ${total_opus_cost * 1000:.2f}/วัน = ${total_opus_cost * 30000:.2f}/เดือน")
     print(f"    Sonnet → ${total_sonnet_cost * 1000:.2f}/วัน = ${total_sonnet_cost * 30000:.2f}/เดือน")
     print(f"    Haiku → ${total_haiku_cost * 1000:.2f}/วัน = ${total_haiku_cost * 30000:.2f}/เดือน")
+    print(f"  Difference opus / haiku : {total_opus_cost / total_haiku_cost:.1f}x")
+    print(f"  Difference sonnet / haiku: {total_sonnet_cost / total_haiku_cost:.1f}x")
+
 
 
 if __name__ == "__main__":

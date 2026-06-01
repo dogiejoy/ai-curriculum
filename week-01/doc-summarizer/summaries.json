@@ -1,0 +1,182 @@
+[
+{
+  "filename": "01-rest-api.md",
+  "file_size_chars": 1161,
+  "model": "claude-opus-4-7",
+  "bullets": [
+    "REST เป็นสถาปัตยกรรมที่ใช้ HTTP methods ทำ CRUD บน resources ที่ระบุด้วย URL โดยแต่ละ request ต้องเป็น stateless",
+    "หลักสำคัญคือ statelessness, resource-based URLs, ใช้ HTTP methods และ status codes ให้ถูกต้อง รวมถึง HATEOAS สำหรับ discoverability",
+    "ควรหลีกเลี่ยงการ nest URL ลึกเกินไป ให้ใช้โครงสร้างแบนราบและ query parameters แทนเพื่อให้ API ใช้งานง่าย"
+  ],
+  "input_tokens": 600,
+  "output_tokens": 244,
+  "cost_usd": 0.009099999999999999,
+  "latency_seconds": 7.8046698570251465,
+  "summarized_at": "2026-06-01T15:47:37.281535"
+},
+{
+  "filename": "02-laravel-eloquent.md",
+  "file_size_chars": 1121,
+  "model": "claude-opus-4-7",
+  "bullets": [
+    "Eloquent คือ ORM ของ Laravel แบบ active record โดยแต่ละ model เชื่อมกับตารางในฐานข้อมูล (พหูพจน์ snake_case)",
+    "รองรับ relationships เช่น hasOne, hasMany, belongsTo และ scopes สำหรับ reuse query logic ผ่าน method ใน model",
+    "ควรใช้ eager loading ด้วย with() เพื่อแก้ปัญหา N+1 และหลีกเลี่ยง Eloquent เมื่อ insert ข้อมูลจำนวนมหาศาล"
+  ],
+  "input_tokens": 601,
+  "output_tokens": 222,
+  "cost_usd": 0.008555,
+  "latency_seconds": 7.379181146621704,
+  "summarized_at": "2026-06-01T15:47:36.858317"
+},
+{
+  "filename": "03-docker-basics.md",
+  "file_size_chars": 1268,
+  "model": "claude-opus-4-7",
+  "bullets": [
+    "Docker Compose ใช้ไฟล์ YAML เดียวกำหนด services, networks, volumes สำหรับแอปแบบหลาย container พร้อมตั้งค่า image, ports, env, volumes",
+    "Named volumes เก็บข้อมูลถาวร bind mounts เหมาะกับ dev, services คุยกันผ่านชื่อ service เป็น hostname บน network เริ่มต้น",
+    "คำสั่งหลัก: up -d, down (-v ลบ volume), logs -f, exec; ใช้ healthcheck กับ depends_on เพื่อรอ service พร้อม"
+  ],
+  "input_tokens": 616,
+  "output_tokens": 228,
+  "cost_usd": 0.00878,
+  "latency_seconds": 9.563369989395142,
+  "summarized_at": "2026-06-01T15:47:39.044079"
+},
+{
+  "filename": "04-bangkok-cafe.md",
+  "file_size_chars": 858,
+  "model": "claude-opus-4-7",
+  "bullets": [
+    "เกณฑ์เลือกคาเฟ่ทำงาน: Wi-Fi เร็วเสถียร (ทดสอบช่วงคนเยอะ), ปลั๊กไฟเพียงพอเข้าถึงง่าย, และบรรยากาศเสียงรบกวนที่เหมาะกับสไตล์การทำงาน",
+    "ย่านแนะนำ: ทองหล่อ-เอกมัยหลากหลายแต่แพง, อารีย์มีคอมมูนิตี้ remote worker, บางซื่อ-วงศ์สว่างเริ่มมีตัวเลือกดีและไม่แออัด",
+    "แนะนำสลับคาเฟ่ 2-3 ที่ต่อสัปดาห์ เพื่อป้องกันความเบื่อและขยายเครือข่ายผู้คนใหม่ๆ"
+  ],
+  "input_tokens": 961,
+  "output_tokens": 321,
+  "cost_usd": 0.01283,
+  "latency_seconds": 7.288887023925781,
+  "summarized_at": "2026-06-01T15:47:36.771433"
+},
+{
+  "filename": "01-rest-api.md",
+  "file_size_chars": 1161,
+  "model": "claude-sonnet-4-6",
+  "bullets": [
+    "REST API ใช้ HTTP methods (GET/POST/PUT/DELETE) จัดการ resources ผ่าน URL โดยยึดหลัก Statelessness",
+    "ควรใช้ HTTP status codes ให้ถูกต้อง และรวม HATEOAS links เพื่อให้ค้นหา resources ที่เกี่ยวข้องได้",
+    "หลีกเลี่ยง URL ซ้อนกันลึกเกินไป ควรใช้โครงสร้าง URL แบบแบนราบพร้อม query parameters แทน"
+  ],
+  "input_tokens": 461,
+  "output_tokens": 178,
+  "cost_usd": 0.004052999999999999,
+  "latency_seconds": 4.603554964065552,
+  "summarized_at": "2026-06-01T15:47:43.648943"
+},
+{
+  "filename": "02-laravel-eloquent.md",
+  "file_size_chars": 1121,
+  "model": "claude-sonnet-4-6",
+  "bullets": [
+    "Eloquent ORM ของ Laravel ใช้ Active Record โดย Model แต่ละตัวแมปกับตารางในฐานข้อมูลอัตโนมัติ",
+    "รองรับความสัมพันธ์หลายแบบ และแก้ปัญหา N+1 ด้วย eager loading ผ่าน with()",
+    "หลีกเลี่ยง Eloquent เมื่อ insert ข้อมูลจำนวนมาก ควรใช้ Query Builder หรือ Raw SQL แทน"
+  ],
+  "input_tokens": 459,
+  "output_tokens": 171,
+  "cost_usd": 0.003942,
+  "latency_seconds": 4.577732086181641,
+  "summarized_at": "2026-06-01T15:47:43.624370"
+},
+{
+  "filename": "03-docker-basics.md",
+  "file_size_chars": 1268,
+  "model": "claude-sonnet-4-6",
+  "bullets": [
+    "Docker Compose ใช้ไฟล์ YAML กำหนด services, networks, volumes ของแอปที่มีหลาย container ในที่เดียว",
+    "Services สื่อสารกันผ่าน hostname ชื่อ service โดยอัตโนมัติ และใช้ healthcheck กับ depends_on รอให้พร้อมก่อนเริ่ม",
+    "คำสั่งหลัก: up -d เริ่มงาน, down หยุด, down -v ลบ volumes ด้วย (ระวังข้อมูลหาย), logs -f ดู logs"
+  ],
+  "input_tokens": 477,
+  "output_tokens": 191,
+  "cost_usd": 0.0042959999999999995,
+  "latency_seconds": 5.24345588684082,
+  "summarized_at": "2026-06-01T15:47:44.290900"
+},
+{
+  "filename": "04-bangkok-cafe.md",
+  "file_size_chars": 858,
+  "model": "claude-sonnet-4-6",
+  "bullets": [
+    "Wi-Fi เสถียร ปลั๊กไฟเพียงพอ และเสียงรบกวนน้อย คือเกณฑ์หลักในการเลือกคาเฟ่ทำงาน",
+    "อารีย์เหมาะสำหรับ remote worker ชัดเจน ส่วนบางซื่อยังไม่แออัด ทองหล่อราคาสูงแต่มีตัวเลือกหลากหลาย",
+    "สลับคาเฟ่ 2-3 แห่งต่อสัปดาห์ ช่วยลดความเบื่อและเปิดโอกาสสร้าง network ใหม่"
+  ],
+  "input_tokens": 925,
+  "output_tokens": 225,
+  "cost_usd": 0.00615,
+  "latency_seconds": 5.189516067504883,
+  "summarized_at": "2026-06-01T15:47:44.237784"
+},
+{
+  "filename": "01-rest-api.md",
+  "file_size_chars": 1161,
+  "model": "claude-haiku-4-5-20251001",
+  "bullets": [
+    "REST API ใช้ HTTP methods เพื่อดำเนิน CRUD operations บน resources ที่ระบุด้วย URLs",
+    "หลักการสำคัญ: statelessness, resource-based, HTTP semantics, status codes, และ HATEOAS สำหรับการค้นพบ",
+    "หลีกเลี่ยง URL nesting ที่มากเกินไป ใช้โครงสร้างแบน flat กับ query parameters แทน"
+  ],
+  "input_tokens": 461,
+  "output_tokens": 147,
+  "cost_usd": 0.001196,
+  "latency_seconds": 2.2116448879241943,
+  "summarized_at": "2026-06-01T15:47:46.503665"
+},
+{
+  "filename": "02-laravel-eloquent.md",
+  "file_size_chars": 1121,
+  "model": "claude-haiku-4-5-20251001",
+  "bullets": [
+    "Eloquent เป็น ORM ของ Laravel ที่แมปตารางฐานข้อมูลกับโมเดล โดยใช้ Active Record pattern",
+    "รองรับความสัมพันธ์แบบต่างๆ (hasOne, hasMany, belongsTo) และใช้ eager loading ด้วย with() เพื่อแก้ปัญหา N+1",
+    "สำหรับการ insert จำนวนมาก (10,000+ แถว) ควรใช้ Query Builder หรือ raw SQL แทน Eloquent"
+  ],
+  "input_tokens": 459,
+  "output_tokens": 176,
+  "cost_usd": 0.001339,
+  "latency_seconds": 2.5037612915039062,
+  "summarized_at": "2026-06-01T15:47:46.797398"
+},
+{
+  "filename": "03-docker-basics.md",
+  "file_size_chars": 1268,
+  "model": "claude-haiku-4-5-20251001",
+  "bullets": [
+    "Docker Compose ใช้ไฟล์ YAML กำหนดแอปพลิเคชันหลายคอนเทนเนอร์ พร้อมกำหนด services, networks, และ volumes",
+    "Named volumes เก็บข้อมูลถาวร ส่วน bind mounts เหมาะสำหรับพัฒนา เพราะเปลี่ยนแปลง host ส่งผ่านไปยังคอนเทนเนอร์ทันที",
+    "Compose สร้างเครือข่ายให้ servicesเชื่อมต่อกันด้วยชื่อ service และรองรับ healthchecks เพื่อให้ services รอซึ่งกันและกัน"
+  ],
+  "input_tokens": 477,
+  "output_tokens": 235,
+  "cost_usd": 0.001652,
+  "latency_seconds": 3.0967319011688232,
+  "summarized_at": "2026-06-01T15:47:47.391237"
+},
+{
+  "filename": "04-bangkok-cafe.md",
+  "file_size_chars": 858,
+  "model": "claude-haiku-4-5-20251001",
+  "bullets": [
+    "Wi-Fi เร็วเสถียรเป็นปัจจัยหลัก ทดสอบในช่วงเวลาอัดแน่นเพื่อตรวจสอบคุณภาพจริง",
+    "ปลั๊กไฟเพียงพอและวิดีโอคอลต้องคาเฟ่เงียบหรือเสียงต่ำเพื่อคุณภาพสื่อสาร",
+    "อารีย์ดีที่สุดสำหรับ remote worker สลับร้าน 2-3 ที่ต่อสัปดาห์หลีกเลี่ยงความเบื่อ"
+  ],
+  "input_tokens": 925,
+  "output_tokens": 221,
+  "cost_usd": 0.00203,
+  "latency_seconds": 3.1974081993103027,
+  "summarized_at": "2026-06-01T15:47:47.493459"
+}
+]
