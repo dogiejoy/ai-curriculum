@@ -110,3 +110,46 @@ Production best practice (จะเข้าใจชัดเจน Week 12):
 
 Dev/test → alias OK ลื่นไหล
 Production → dated version pin ไว้ + plan upgrade path เป็น sprint งาน
+
+# Day 5
+# Summary Week 1
+## Skills acquired (Week 1):
+
+Python idioms:
+- f-string formatting + {x=} debug shortcut
+- list/dict/set comprehension (map + filter + transform)
+- pathlib for cross-platform file ops
+- type hints + Literal for value restriction
+
+LLM API foundation:
+- Anthropic SDK (sync Anthropic + async AsyncAnthropic clients)
+- Response object structure: content blocks, stop_reason, usage
+- Token counting + cost calculation per model
+- Multi-model comparison framework
+
+Pydantic:
+- BaseModel + Field constraints (gt, ge, min_length, max_length)
+- field_validator decorator for custom validation
+- model_dump_json for serialization
+- Nested models with recursive validation
+
+Async patterns:
+- asyncio.gather for parallel API calls (3x speedup verified)
+- return_exceptions=True for resilient batch processing
+- await client.messages.create with async SDK
+
+Production engineering:
+- Smart routing pattern (cheap-first + fallback on validation fail)
+- Cost engineering: 83% saving vs default Opus (verified empirically)
+- Char-based validator for language-agnostic checks
+
+Empirical insights:
+- Thai = ~4x tokens of English (no whitespace word boundaries)
+- Opus 4.7 new tokenizer = +35% tokens for same content
+- Pricing ratio Opus:Sonnet:Haiku = 5:3:1 (base)
+- Prompt caching: write +25%, read -90%, break-even after 2 calls
+
+Habits formed:
+- Verify everything against official docs (caught Claude wrong 4 times)
+- Cross-check empirical data vs claimed numbers
+- Pin dated model versions for production reproducibility
