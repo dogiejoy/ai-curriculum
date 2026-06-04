@@ -1,0 +1,100 @@
+# Week 2 — Prompt Engineering Notes
+
+## Block 1: Be clear and direct
+
+Top 3 takeaways:
+1. Specific > vague — "100 words about X with goal Y" > "Write something"
+2. Positive > negative — "Use formal tone" > "Don't be casual"
+3. Golden rule — show prompt to colleague: ทำตามได้ไหมโดยไม่ต้องถาม
+
+Pattern ที่จะเอาไปใช้ใน week-01 code:
+- doc_summarizer SUMMARIZE_PROMPT มี clear principles (specific bullet count, exact JSON format) ครบแล้ว
+- compare_models prompts ที่ใช้ทดสอบ — สามารถ refactor ใส่ context + format ชัดเจนขึ้นได้
+
+Workbench experiment finding:
+- Experiment 1 :
+Vague prompt → generic English boilerplate
+Clear prompt with goals + format + audience → Thai 2-paragraph copy ตรงตาม spec
+- Experiment 2 :
+Negative: Claude อาจจะ "ลืม" บาง constraint (negative instructions ยากกว่า)
+Positive: ตอบ 3 ประโยคพอดี ภาษา friendly
+
+## Block 2: Multishot prompting
+
+ให้ Claude ดู examples ก่อนทำ task จริง → accuracy + consistency เพิ่ม โดยเฉพาะงาน classification + structured output
+
+Top 3 takeaways:
+- 3-5 examples , XML tags wrap examples
+- Examples ต้อง diverse , Bad examples = bad output
+- Format teaching — examples บอก "ตอบยังไง" ดีกว่า explanation, Order matters — examples ที่ใกล้ task มากสุดวางท้ายสุด
+
+Key principles:
+- 3-5 examples ปกติพอ
+- Wrap ด้วย <example>...</example> tags
+- Examples ต้อง diverse covering edge cases ของแต่ละ category
+- Order: closest to task = last
+
+Pattern แม่บท XML structure:
+\```
+<examples>
+<example>
+<input>...</input>
+<output>...</output>
+</example>
+</examples>
+\```
+
+Surprising finding:
+- v1 few-shot: 4/5 (ผิด appointment booking → order)
+- v2 few-shot (+appointment example): 5/5 ✓
+- Few-shot ไม่ใช่ silver bullet — examples quality = output quality
+
+Failure mode caught: spurious pattern matching
+- "สั่ง...ได้ไหม" → "ขอนัด...ได้ไหม" ถูก infer เป็น order pattern เดียวกัน
+- Fix: เพิ่ม appointment booking ที่ inquiry category ให้ explicit
+
+Lessons:
+1. Few-shot is not silver bullet — has failure modes
+2. Examples must cover edge cases of EACH category
+3. Category schema itself may need redesign (appointment ≠ order)
+4. Eval framework essential — would catch this regression (Week 9)
+
+Production workflow ที่ทำจริง:
+1. Hypothesis → implement → measure → root-cause → fix → verify
+2. Examples = production code → version control + eval
+
+Business application:
+- Week 4 message classifier — ใช้ pattern นี้แน่ๆ
+- Receipt extractor (Day 5) — few-shot examples ของ vendor + amount format
+- Doc summarizer — few-shot ให้ bullets follow style เดียวกัน
+
+Cost note:
+- 4 examples × 50 tokens = +200 input tokens ต่อ call
+- Trade-off: ถ้าใช้ prompt caching → cost เพิ่มน้อย (10% rate)
+- ROI: accuracy เพิ่ม → ลูกค้าพอใจ → ลด rework
+
+## Block 3: Chain of thought
+
+Surprising finding:
+- Haiku 4.5 ฝ่าฝืน "ตอบตัวเลขเท่านั้น" — ยังคงโชว์ work
+- 3 approaches accuracy เท่ากัน (38,800) บนปัญหานี้
+- Modern frontier models = CoT internal โดย default
+
+When CoT matters:
+- Hard multi-hop reasoning (ไม่ใช่ basic math)
+- Auditability requirement
+- Format isolation via tags
+
+Production pattern:
+- Structured CoT (<thinking>...</thinking><answer>...</answer>) > "step by step" prose
+- Parse <answer> tag with regex
+- Strip thinking from user-facing output
+
+Cost: +180 output tokens ต่อ call ≈ +$0.0009 บน Haiku
+ROI positive ถ้า single wrong answer costs >$1 to fix
+
+## Cross-cutting lessons
+
+1. Format compliance ไม่แน่นอน — ต้องมี post-processing layer
+2. ทุก technique มี trade-off — measure before/after, อย่า assume
+3. Workbench down → Python script ดีกว่า (reproducible + versioned)

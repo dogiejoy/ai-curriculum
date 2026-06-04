@@ -63,21 +63,45 @@ def check_bullets_quality(cls, v: list[str]) -> list[str]:
             raise ValueError(f"Bullet {i+1} empty")
     return v
 # ===== Core logic =====
+# V1 :
+# SUMMARIZE_PROMPT = """\
+# สรุปเอกสารต่อไปนี้เป็น 3 bullet points ที่กระชับและจับใจความสำคัญ \
+# แต่ละ bullet ไม่เกิน 25 คำ
 
+# ตอบเป็น JSON เท่านั้น ในรูปแบบ:
+# {{"bullets": ["bullet 1", "bullet 2", "bullet 3"]}}
+
+# ห้ามใส่ markdown code fence หรือ explanation อื่นๆ ตอบเฉพาะ JSON
+
+# เอกสาร:
+# ---
+# {content}
+# ---"""
+# V2 : multishot
 SUMMARIZE_PROMPT = """\
-สรุปเอกสารต่อไปนี้เป็น 3 bullet points ที่กระชับและจับใจความสำคัญ \
+สรุปเอกสารต่อไปนี้เป็น 3 bullet points ที่กระชับและจับใจความสำคัญ
 แต่ละ bullet ไม่เกิน 25 คำ
 
-ตอบเป็น JSON เท่านั้น ในรูปแบบ:
-{{"bullets": ["bullet 1", "bullet 2", "bullet 3"]}}
+<example>
+<document>
+Docker Compose is a tool for defining multi-container applications using YAML.
+Services share networks, volumes, and configuration. Useful for local dev.
+</document>
+<output>
+{{"bullets": [
+  "Docker Compose จัดการ multi-container app ผ่าน YAML file เดียว ตั้งค่า service + network + volume ได้ครบ",
+  "Service ใน compose เข้าถึงกันด้วย service name เป็น hostname บน network ที่ Docker สร้างให้",
+  "ใช้ในงาน local development เพื่อ spin up dependencies เช่น Postgres + Redis ในคำสั่งเดียว"
+]}}
+</output>
+</example>
 
-ห้ามใส่ markdown code fence หรือ explanation อื่นๆ ตอบเฉพาะ JSON
+ตอบเป็น JSON เท่านั้น ห้ามใส่ markdown code fence หรือ explanation อื่นๆ
 
 เอกสาร:
 ---
 {content}
 ---"""
-
 
 def calculate_cost(model: ModelName, input_tokens: int, output_tokens: int) -> float:
     rates = PRICING[model]
