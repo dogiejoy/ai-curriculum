@@ -1,5 +1,5 @@
 # Week 2 — Prompt Engineering Notes
-
+# Day 1
 ## Block 1: Be clear and direct
 
 Top 3 takeaways:
@@ -98,3 +98,43 @@ ROI positive ถ้า single wrong answer costs >$1 to fix
 1. Format compliance ไม่แน่นอน — ต้องมี post-processing layer
 2. ทุก technique มี trade-off — measure before/after, อย่า assume
 3. Workbench down → Python script ดีกว่า (reproducible + versioned)
+
+# Day 2
+## Block 1 XML tags
+
+Insight: Template structure ≠ count enforcement
+- 3 <issue> slots ใน template → model อาจให้ 4-5 ตัว
+- ต้อง explicit ใน instruction "exactly 3" ถ้าจำเป็น
+
+Universal pitfall: Claude wrap structured output ใน ```code fences``` แม้ไม่ขอ
+- Fix: strip_code_fence() ก่อน parse — ใช้ทุก project
+
+When to use XML vs JSON:
+- Strict schema + API/DB → JSON + Pydantic
+- Mixed content + analysis → XML
+- Tool use → JSON (forced by SDK)
+- Thai content → XML นิดเดียวปลอดภัยกว่า (less escaping issues)
+
+## Block 2 Day 2: System prompts
+
+Differential ที่ system prompt ทำงาน:
+- Persona ✓ (clinic assistant แทน generic AI)
+- Behavior boundaries ✓ (refused to prescribe specific meds)
+- Format defaults ✓ (plain text, no markdown)
+- Multilingual lock ✓ (Thai only, no random Chinese chars)
+- Domain knowledge inject ✓ (offered booking + clinic context)
+
+Business value:
+- System prompt = AI personality + safety layer
+- = backbone ของ Package A deliverable
+- = legal/liability protection สำหรับ vet/medical/financial use cases
+
+Cost economics:
+- 500-token system prompt = +$0.0001-0.0002 per call (no cache)
+- WITH prompt caching → lower than no-system (cached input -90%)
+- → Long system prompts viable only with caching strategy
+
+Production pattern:
+- system="..." parameter ใน Anthropic SDK (separate from messages)
+- Different from OpenAI which puts system as a message role
+- Keep system prompt stable across session → maximizes cache hits

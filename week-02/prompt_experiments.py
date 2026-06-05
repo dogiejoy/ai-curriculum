@@ -197,71 +197,190 @@ async def main():
     # await classify_abc(test_messages)
 
     # Experiment 5: No-CoT vs Basic CoT vs Structured CoT
-    math_problem = """คลินิกแห่งหนึ่งรับสัตว์ 100 ตัวต่อสัปดาห์ เป็นแมว 60% สุนัข 40%
-        ลูกค้าส่วนใหญ่มาจากย่านอารีย์และทองหล่อ คลินิกเปิด 6 วันต่อสัปดาห์
-        ราคาวัคซีนปกติ 400 บาท ในจำนวนแมว 25% เป็นแมวพันธุ์เปอร์เซีย
-        แมวพันธุ์เปอร์เซียได้ส่วนลด 20% เจ้าของแมวพันธุ์เปอร์เซียมักนำลูกหลายตัวมาด้วย
-        ถ้าทุกตัวฉีดวัคซีน รายได้รวมต่อสัปดาห์เท่าไหร่?"""
+    # math_problem = """คลินิกแห่งหนึ่งรับสัตว์ 100 ตัวต่อสัปดาห์ เป็นแมว 60% สุนัข 40%
+    #     ลูกค้าส่วนใหญ่มาจากย่านอารีย์และทองหล่อ คลินิกเปิด 6 วันต่อสัปดาห์
+    #     ราคาวัคซีนปกติ 400 บาท ในจำนวนแมว 25% เป็นแมวพันธุ์เปอร์เซีย
+    #     แมวพันธุ์เปอร์เซียได้ส่วนลด 20% เจ้าของแมวพันธุ์เปอร์เซียมักนำลูกหลายตัวมาด้วย
+    #     ถ้าทุกตัวฉีดวัคซีน รายได้รวมต่อสัปดาห์เท่าไหร่?"""
 
-    no_cot_prompt = f"""{math_problem}
+    # no_cot_prompt = f"""{math_problem}
 
-        ตอบเป็นตัวเลขรายได้รวม (บาท) เท่านั้น"""
+    #     ตอบเป็นตัวเลขรายได้รวม (บาท) เท่านั้น"""
 
-    basic_cot_prompt = f"""{math_problem}
+    # basic_cot_prompt = f"""{math_problem}
 
-        คิดทีละขั้นตอนก่อน แล้วตอบรายได้รวม (บาท)"""
+    #     คิดทีละขั้นตอนก่อน แล้วตอบรายได้รวม (บาท)"""
 
-    structured_cot_prompt = f"""{math_problem}
+    # structured_cot_prompt = f"""{math_problem}
 
-        วิเคราะห์ในแท็ก <thinking> แล้วตอบสุดท้ายในแท็ก <answer> เป็นตัวเลขเท่านั้น
+    #     วิเคราะห์ในแท็ก <thinking> แล้วตอบสุดท้ายในแท็ก <answer> เป็นตัวเลขเท่านั้น
 
-        ตัวอย่าง format:
-        <thinking>
-        1. คำนวณ X = ...
-        2. คำนวณ Y = ...
-        </thinking>
-        <answer>12345</answer>"""
+    #     ตัวอย่าง format:
+    #     <thinking>
+    #     1. คำนวณ X = ...
+    #     2. คำนวณ Y = ...
+    #     </thinking>
+    #     <answer>12345</answer>"""
 
-    async def cot_compare():
-        """Compare 3 CoT levels on same math problem."""
+    # async def cot_compare():
+    #     """Compare 3 CoT levels on same math problem."""
+    #     print(f"\n{'=' * 75}")
+    #     print("CoT COMPARISON: No-CoT vs Basic CoT vs Structured CoT")
+    #     print(f"Correct answer: 38,800 บาท")
+    #     print('=' * 75)
+
+    #     # Use full client to also get token usage
+    #     async def run_with_usage(prompt: str):
+    #         response = await client.messages.create(
+    #             model="claude-haiku-4-5-20251001",
+    #             max_tokens=2048,
+    #             messages=[{"role": "user", "content": prompt}],
+    #         )
+    #         return {
+    #             "text": response.content[0].text,
+    #             "in_tokens": response.usage.input_tokens,
+    #             "out_tokens": response.usage.output_tokens,
+    #         }
+
+    #     no_cot, basic, structured = await asyncio.gather(
+    #         run_with_usage(no_cot_prompt),
+    #         run_with_usage(basic_cot_prompt),
+    #         run_with_usage(structured_cot_prompt),
+    #     )
+
+    #     for label, result in [
+    #         ("NO-CoT", no_cot),
+    #         ("BASIC CoT (think step by step)", basic),
+    #         ("STRUCTURED CoT (<thinking> tags)", structured),
+    #     ]:
+    #         print(f"\n── {label} ──")
+    #         print(f"Output ({result['out_tokens']} tokens):")
+    #         print(result["text"][:500])
+    #         if len(result["text"]) > 500:
+    #             print(f"... [truncated, total {len(result['text'])} chars]")
+
+    # # Call : Experiment 5
+    # await cot_compare()
+
+    # Experiment 6: Without XML structure vs With XML structure
+    # review_text = """ซื้อยาฆ่าเห็บมาจากคลินิกนี้ตั้ง 3 อาทิตย์แล้ว แต่หมายังเกาหนักมาก
+    #     สงสัยจะไม่ work หรือเปล่า ราคาก็แพงกว่าที่อื่น 200 บาท พนักงานน่ารักดีนะ
+    #     แต่คุณหมอดูยุ่งๆ ไม่ค่อยตอบคำถาม คงไม่มาอีกแล้ว"""
+
+    # clinic_context = """คลินิกสัตว์ขนาดเล็ก ย่านอารีย์ เปิดมา 2 ปี
+    #     มีหมอประจำ 1 คน ผู้ช่วย 2 คน
+    #     ขาย product + treatment"""
+
+
+    # prompt_no_xml = f"""วิเคราะห์ review ของลูกค้าจากบริบทคลินิกนี้ ตอบ sentiment overall, top 3 issues, และ 2 recommendations
+
+    #     Context: {clinic_context}
+
+    #     Review: {review_text}
+
+    #     ตอบเป็น JSON: {{"sentiment": "positive/neutral/negative", "issues": [...], "recommendations": [...]}}"""
+
+
+    # prompt_with_xml = f"""<context>
+    #     {clinic_context}
+    #     </context>
+
+    #     <review>
+    #     {review_text}
+    #     </review>
+
+    #     วิเคราะห์ review จากบริบทคลินิก ตอบในรูปแบบ:
+
+    #     <output>
+    #     <sentiment>positive | neutral | negative</sentiment>
+    #     <issues>
+    #     <issue>...</issue>
+    #     <issue>...</issue>
+    #     <issue>...</issue>
+    #     </issues>
+    #     <recommendations>
+    #     <recommendation>...</recommendation>
+    #     <recommendation>...</recommendation>
+    #     </recommendations>
+    #     </output>"""
+
+
+    # async def xml_compare():
+    #     print(f"\n{'=' * 75}")
+    #     print("XML STRUCTURE: No tags vs With tags")
+    #     print('=' * 75)
+
+    #     no_xml, with_xml = await asyncio.gather(
+    #         run_prompt(prompt_no_xml),
+    #         run_prompt(prompt_with_xml),
+    #     )
+
+    #     print(f"\n── NO XML ──\n{no_xml}")
+    #     print(f"\n── WITH XML ──\n{with_xml}")
+
+
+    # # ใน main() เพิ่ม:
+    # await xml_compare()
+
+    # Experiment 7: No system prompt vs With well-crafted system prompt
+    user_question = "หมาผมท้องเสีย 2 วันแล้ว ให้ยาอะไรดี"
+
+    vet_clinic_system = """คุณเป็น AI assistant ของคลินิกสัตวแพทย์ "PetCare Vet Clinic" ในไทย
+
+        บทบาท:
+        - ตอบคำถามเบื้องต้นเกี่ยวกับการดูแลสัตว์เลี้ยง
+        - แนะนำเมื่อต้องพบสัตวแพทย์
+        - ให้ข้อมูลคลินิก: เปิด 9:00-20:00 ทุกวัน, นัดล่วงหน้าผ่าน LINE @petcare
+
+        กฎห้ามทำ:
+        - ห้าม diagnose โรคหรือสั่งยาเอง — ทุกอาการต้อง refer ให้สัตวแพทย์
+        - ห้ามให้ dosage หรือชื่อยา specific
+        - ห้ามรับประกันผลการรักษา
+
+        กฎต้องทำ:
+        - ถ้าอาการรุนแรง (อาเจียน 3+ ครั้ง, ไม่กินอาหาร 24ชม.+, เลือดออก, ซึม) — แนะนำมาคลินิกทันที
+        - ถามอาการเพิ่มเติม (ระยะเวลา, น้ำหนัก, พฤติกรรม) ก่อนแนะนำ
+        - ใช้ภาษาไทย warm + professional
+        - ตอบกระชับ ไม่เกิน 5 ประโยค
+
+        Format: text ธรรมดา ไม่ใช้ markdown"""
+
+
+    async def system_prompt_compare():
+        """Compare same user question with/without system prompt."""
         print(f"\n{'=' * 75}")
-        print("CoT COMPARISON: No-CoT vs Basic CoT vs Structured CoT")
-        print(f"Correct answer: 38,800 บาท")
+        print("SYSTEM PROMPT: None vs Vet clinic assistant")
+        print(f"Question: {user_question}")
         print('=' * 75)
 
-        # Use full client to also get token usage
-        async def run_with_usage(prompt: str):
-            response = await client.messages.create(
-                model="claude-haiku-4-5-20251001",
-                max_tokens=2048,
-                messages=[{"role": "user", "content": prompt}],
-            )
-            return {
-                "text": response.content[0].text,
-                "in_tokens": response.usage.input_tokens,
-                "out_tokens": response.usage.output_tokens,
-            }
-
-        no_cot, basic, structured = await asyncio.gather(
-            run_with_usage(no_cot_prompt),
-            run_with_usage(basic_cot_prompt),
-            run_with_usage(structured_cot_prompt),
+        # No system prompt
+        no_sys_task = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=512,
+            messages=[{"role": "user", "content": user_question}],
         )
+        
+        # With system prompt
+        with_sys_task = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=512,
+            system=vet_clinic_system,
+            messages=[{"role": "user", "content": user_question}],
+        )
+        
+        no_sys_resp, with_sys_resp = await asyncio.gather(no_sys_task, with_sys_task)
+        
+        print(f"\n── NO SYSTEM PROMPT ──")
+        print(no_sys_resp.content[0].text)
+        print(f"\n[in: {no_sys_resp.usage.input_tokens}, out: {no_sys_resp.usage.output_tokens}]")
+        
+        print(f"\n── WITH SYSTEM PROMPT ──")
+        print(with_sys_resp.content[0].text)
+        print(f"\n[in: {with_sys_resp.usage.input_tokens}, out: {with_sys_resp.usage.output_tokens}]")
 
-        for label, result in [
-            ("NO-CoT", no_cot),
-            ("BASIC CoT (think step by step)", basic),
-            ("STRUCTURED CoT (<thinking> tags)", structured),
-        ]:
-            print(f"\n── {label} ──")
-            print(f"Output ({result['out_tokens']} tokens):")
-            print(result["text"][:500])
-            if len(result["text"]) > 500:
-                print(f"... [truncated, total {len(result['text'])} chars]")
 
-    # Call : Experiment 5
-    await cot_compare()
-
+    # ใน main() เพิ่ม:
+    await system_prompt_compare()
 
 if __name__ == "__main__":
     asyncio.run(main())
