@@ -138,3 +138,24 @@ Production pattern:
 - system="..." parameter ใน Anthropic SDK (separate from messages)
 - Different from OpenAI which puts system as a message role
 - Keep system prompt stable across session → maximizes cache hits
+
+# Day 3
+## Tutorial reinforcement
+
+Chapters 1-5 completed (Anthropic Interactive Tutorial):
+- Ch 1: Basic prompt structure (familiar)
+- Ch 2: Be clear and direct (familiar)
+- Ch 3: Role assignment via system prompt (familiar)
+- Ch 4: Data + instructions separation via XML (familiar)
+- Ch 5: Output formatting + prefilling (NEW pattern: prefilling)
+
+Key new technique from Ch 5: Prefilling Claude's response
+- Pre-populate first part of assistant turn → forces format compliance
+- Pattern: messages=[{"role": "user", "content": ...},
+                   {"role": "assistant", "content": "<expected_start>"}]
+- Use case: force JSON, force specific tone, skip preamble
+- ⚠️ Production caution: Claude continues from prefill literally — must verify output format
+
+Workflow lessons:
+- Concepts from Day 1-2 transferred to tutorial exercises smoothly
+- Tutorial value = standardized graders + new pattern (prefilling)
