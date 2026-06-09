@@ -123,18 +123,32 @@ async def summarize_file(path: Path, model: ModelName) -> FileSummary:
     content = path.read_text(encoding="utf-8")
     start = time.time()
 
+    # response = await client.messages.create(
+    #     model=model,
+    #     max_tokens=512,
+    #     messages=[{
+    #         "role": "user",
+    #         "content": SUMMARIZE_PROMPT.format(content=content),
+    #     }],
+    # )
+    #parsed = parse_json_response(response.content[0].text)
+
+    # เปลี่ยน summarize_file() เป็น:
     response = await client.messages.create(
         model=model,
         max_tokens=512,
-        messages=[{
-            "role": "user",
-            "content": SUMMARIZE_PROMPT.format(content=content),
-        }],
+        messages=[
+            {"role": "user", "content": SUMMARIZE_PROMPT.format(content=content)},
+            {"role": "assistant", "content": '{"bullets":'},   # prefill
+        ],
     )
+    # Output ตอนนี้คือ JSON value ต่อจาก {"bullets":
+    # Reconstruct + parse
+    full_json = '{"bullets":' + response.content[0].text
+    # ปกติ Claude จะ generate ['...', '...', '...']} แล้วจบ
+    parsed = json.loads(full_json)
 
     latency = time.time() - start
-
-    parsed = parse_json_response(response.content[0].text)
 
     return FileSummary(
         filename=path.name,
