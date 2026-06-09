@@ -159,3 +159,30 @@ Key new technique from Ch 5: Prefilling Claude's response
 Workflow lessons:
 - Concepts from Day 1-2 transferred to tutorial exercises smoothly
 - Tutorial value = standardized graders + new pattern (prefilling)
+
+# Day 4
+## Prefill + Chain prompts
+
+Prefill response:
+- Force JSON output by prefilling assistant message with "{"
+- Cleaner output, no markdown wrapper
+- ⚠️ Model-specific: Haiku 4.5 ✓, Sonnet 4.6 ❌ (newer models reserve reasoning phase)
+- Production pattern: combine with stop_sequences for bounded output
+
+Chain prompts:
+- Break monolithic task → focused steps
+- ⚠️ Sequential = wall time accumulate (NOT always faster)
+- Benefits: quality (focused thinking), debuggability, cost optimization (mix models),
+  modularity, caching step outputs for reuse
+- Real production value: cache step 1 (extraction) → re-run step 2 (analysis) anytime
+
+Production guidelines:
+- Mix models in chain: Haiku for extract (cheap+fast), Sonnet/Opus for reasoning
+- Cache extracted data — analyze on demand
+- Both steps need explicit JSON instruction (Sonnet doesn't prefill)
+- max_tokens needs tuning per step — monolithic needs much more
+
+Lessons:
+- Feature support varies by model version → verify in docs per model
+- Don't assume cross-model compatibility (Haiku ≠ Sonnet ≠ Opus)
+- Chain isn't free — adds latency + code complexity, weigh trade-off

@@ -323,64 +323,234 @@ async def main():
     # await xml_compare()
 
     # Experiment 7: No system prompt vs With well-crafted system prompt
-    user_question = "หมาผมท้องเสีย 2 วันแล้ว ให้ยาอะไรดี"
+    # user_question = "หมาผมท้องเสีย 2 วันแล้ว ให้ยาอะไรดี"
 
-    vet_clinic_system = """คุณเป็น AI assistant ของคลินิกสัตวแพทย์ "PetCare Vet Clinic" ในไทย
+    # vet_clinic_system = """คุณเป็น AI assistant ของคลินิกสัตวแพทย์ "PetCare Vet Clinic" ในไทย
 
-        บทบาท:
-        - ตอบคำถามเบื้องต้นเกี่ยวกับการดูแลสัตว์เลี้ยง
-        - แนะนำเมื่อต้องพบสัตวแพทย์
-        - ให้ข้อมูลคลินิก: เปิด 9:00-20:00 ทุกวัน, นัดล่วงหน้าผ่าน LINE @petcare
+    #     บทบาท:
+    #     - ตอบคำถามเบื้องต้นเกี่ยวกับการดูแลสัตว์เลี้ยง
+    #     - แนะนำเมื่อต้องพบสัตวแพทย์
+    #     - ให้ข้อมูลคลินิก: เปิด 9:00-20:00 ทุกวัน, นัดล่วงหน้าผ่าน LINE @petcare
 
-        กฎห้ามทำ:
-        - ห้าม diagnose โรคหรือสั่งยาเอง — ทุกอาการต้อง refer ให้สัตวแพทย์
-        - ห้ามให้ dosage หรือชื่อยา specific
-        - ห้ามรับประกันผลการรักษา
+    #     กฎห้ามทำ:
+    #     - ห้าม diagnose โรคหรือสั่งยาเอง — ทุกอาการต้อง refer ให้สัตวแพทย์
+    #     - ห้ามให้ dosage หรือชื่อยา specific
+    #     - ห้ามรับประกันผลการรักษา
 
-        กฎต้องทำ:
-        - ถ้าอาการรุนแรง (อาเจียน 3+ ครั้ง, ไม่กินอาหาร 24ชม.+, เลือดออก, ซึม) — แนะนำมาคลินิกทันที
-        - ถามอาการเพิ่มเติม (ระยะเวลา, น้ำหนัก, พฤติกรรม) ก่อนแนะนำ
-        - ใช้ภาษาไทย warm + professional
-        - ตอบกระชับ ไม่เกิน 5 ประโยค
+    #     กฎต้องทำ:
+    #     - ถ้าอาการรุนแรง (อาเจียน 3+ ครั้ง, ไม่กินอาหาร 24ชม.+, เลือดออก, ซึม) — แนะนำมาคลินิกทันที
+    #     - ถามอาการเพิ่มเติม (ระยะเวลา, น้ำหนัก, พฤติกรรม) ก่อนแนะนำ
+    #     - ใช้ภาษาไทย warm + professional
+    #     - ตอบกระชับ ไม่เกิน 5 ประโยค
 
-        Format: text ธรรมดา ไม่ใช้ markdown"""
+    #     Format: text ธรรมดา ไม่ใช้ markdown"""
 
+    # async def system_prompt_compare():
+    #     """Compare same user question with/without system prompt."""
+    #     print(f"\n{'=' * 75}")
+    #     print("SYSTEM PROMPT: None vs Vet clinic assistant")
+    #     print(f"Question: {user_question}")
+    #     print('=' * 75)
 
-    async def system_prompt_compare():
-        """Compare same user question with/without system prompt."""
+    #     # No system prompt
+    #     no_sys_task = client.messages.create(
+    #         model="claude-haiku-4-5-20251001",
+    #         max_tokens=512,
+    #         messages=[{"role": "user", "content": user_question}],
+    #     )
+        
+    #     # With system prompt
+    #     with_sys_task = client.messages.create(
+    #         model="claude-haiku-4-5-20251001",
+    #         max_tokens=512,
+    #         system=vet_clinic_system,
+    #         messages=[{"role": "user", "content": user_question}],
+    #     )
+        
+    #     no_sys_resp, with_sys_resp = await asyncio.gather(no_sys_task, with_sys_task)
+        
+    #     print(f"\n── NO SYSTEM PROMPT ──")
+    #     print(no_sys_resp.content[0].text)
+    #     print(f"\n[in: {no_sys_resp.usage.input_tokens}, out: {no_sys_resp.usage.output_tokens}]")
+        
+    #     print(f"\n── WITH SYSTEM PROMPT ──")
+    #     print(with_sys_resp.content[0].text)
+    #     print(f"\n[in: {with_sys_resp.usage.input_tokens}, out: {with_sys_resp.usage.output_tokens}]")
+
+    # # ใน main() เพิ่ม:
+    # await system_prompt_compare()
+
+    # Experiment 8: Without prefill vs With prefill (force JSON)
+    # extract_task = """ดึงข้อมูลต่อไปนี้จากใบเสร็จและตอบเป็น JSON:
+    #     - vendor: ชื่อร้าน
+    #     - date: วันที่
+    #     - total: ยอดรวม (ตัวเลข)
+
+    #     ใบเสร็จ:
+    #     ร้านยา PetCare เลขที่ 123 ถ.อารีย์
+    #     วันที่: 5/6/2026
+    #     รายการ:
+    #     - Frontline Plus 1 ขวด - 850.00
+    #     - อาหารแมว 2 กก. - 320.00
+    #     รวม: 1,170.00 บาท
+    #     """
+
+    # async def prefill_compare():
+    #     print(f"\n{'=' * 75}")
+    #     print("PREFILL: Without vs With")
+    #     print('=' * 75)
+
+    #     # Without prefill
+    #     no_prefill_task = client.messages.create(
+    #         model="claude-haiku-4-5-20251001",
+    #         max_tokens=256,
+    #         messages=[{"role": "user", "content": extract_task}],
+    #     )
+        
+    #     # With prefill (force start with {)
+    #     with_prefill_task = client.messages.create(
+    #         model="claude-haiku-4-5-20251001",
+    #         max_tokens=256,
+    #         messages=[
+    #             {"role": "user", "content": extract_task},
+    #             {"role": "assistant", "content": "{"},  # ← prefill
+    #         ],
+    #     )
+        
+    #     no_prefill, with_prefill = await asyncio.gather(no_prefill_task, with_prefill_task)
+        
+    #     print(f"\n── WITHOUT PREFILL ──")
+    #     print(no_prefill.content[0].text)
+        
+    #     print(f"\n── WITH PREFILL ──")
+    #     # ใส่ { กลับมาที่ output (เพราะ prefill ไม่อยู่ใน response)
+    #     print("{" + with_prefill.content[0].text)
+
+    # # ใน main() เพิ่ม:
+    # await prefill_compare()
+
+    # Experiment 9: Single monolithic prompt vs Chain prompts
+    receipt_text = """ร้านยา PetCare เลขที่ 123 ถ.อารีย์
+        วันที่: 5/6/2026
+        รายการ:
+        - Frontline Plus 1 ขวด - 850.00
+        - อาหารแมว Royal Canin 5kg - 1,250.00
+        - วิตามินสุนัข 60 เม็ด - 450.00
+        - ปลอกคอกันเห็บ - 320.00
+        - ทรายแมว 10L - 280.00
+        รวม: 3,150.00 บาท
+        """
+
+    # ===== Approach 1: Single monolithic prompt =====
+    monolithic_prompt = f"""วิเคราะห์ใบเสร็จนี้และตอบเป็น JSON ที่มี:
+        - vendor: ชื่อร้าน
+        - date: วันที่
+        - items: รายการสินค้า (array ของ {{name, price}})
+        - total: ยอดรวม
+        - categories: dict จำแนกสินค้าตามหมวด (parasite_control, food, vitamins, accessories, hygiene)
+        - anomaly: ถ้ามียอดผิดปกติ (เช่น item ราคาสูงมาก, total ไม่ตรงกับผลรวม) ระบุ otherwise null
+
+        ใบเสร็จ:
+        {receipt_text}
+
+        ตอบเป็น JSON valid เท่านั้น ห้ามมี ```json wrapper หรือ explanation อื่นๆ"""
+
+    # ===== Approach 2: Chain (2 steps) =====
+    extract_prompt = f"""ดึงข้อมูลจากใบเสร็จเป็น JSON:
+        - vendor, date, items: [{{name, price}}], total
+
+        ใบเสร็จ:
+        {receipt_text}
+
+        ตอบเป็น JSON valid เท่านั้น ห้ามมี ```json wrapper หรือ explanation อื่นๆ"""
+
+    async def call_anthropic(prompt: str, model: str) -> str:
+        """Auto-select prefill strategy based on model capability."""
+        # Models ที่ support prefill (verify ทุกครั้งใน docs)
+        supports_prefill = "haiku" in model
+        
+        if supports_prefill:
+            response = await client.messages.create(
+                model=model,
+                max_tokens=1024,
+                messages=[
+                    {"role": "user", "content": prompt},
+                    {"role": "assistant", "content": "{"},
+                ],
+            )
+            return "{" + response.content[0].text
+        else:
+            # Sonnet/Opus 4.6+ → rely on prompt instruction
+            # เพิ่ม explicit "ตอบ JSON only ไม่มี markdown" ใน prompt
+            response = await client.messages.create(
+                model=model,
+                max_tokens=1024,
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return response.content[0].text
+
+    def strip_code_fence(text: str) -> str:
+        """Remove ```json ... ``` wrapper if Sonnet/Opus adds it."""
+        text = text.strip()
+        if text.startswith("```"):
+            text = text.split("\n", 1)[1].rsplit("```", 1)[0].strip()
+        return text
+
+    def make_analyze_prompt(extracted_json: str) -> str:
+        return f"""วิเคราะห์ข้อมูลใบเสร็จที่ extract มาแล้ว เพิ่ม fields:
+            - categories: dict จำแนกสินค้าตามหมวด (parasite_control, food, vitamins, accessories, hygiene)
+            - anomaly: ระบุถ้ายอด total ไม่ตรงกับผลรวม items หรือมี item ผิดปกติ otherwise null
+
+            ข้อมูลที่ extract:
+            {extracted_json}
+
+            ตอบเป็น JSON ที่รวม fields เดิม + 2 fields ใหม่ เริ่มด้วย {{"""
+
+    async def call_with_prefill(prompt: str, model: str = "claude-haiku-4-5-20251001") -> str:
+        """Run prompt with prefill = '{' for clean JSON output."""
+        response = await client.messages.create(
+            model=model,
+            max_tokens=1024,
+            messages=[
+                {"role": "user", "content": prompt},
+                {"role": "assistant", "content": "{"},
+            ],
+        )
+        return "{" + response.content[0].text
+
+    async def chain_compare():
+        import time
+
         print(f"\n{'=' * 75}")
-        print("SYSTEM PROMPT: None vs Vet clinic assistant")
-        print(f"Question: {user_question}")
+        print("MONOLITHIC vs CHAIN — Receipt analysis")
         print('=' * 75)
 
-        # No system prompt
-        no_sys_task = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=512,
-            messages=[{"role": "user", "content": user_question}],
-        )
-        
-        # With system prompt
-        with_sys_task = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=512,
-            system=vet_clinic_system,
-            messages=[{"role": "user", "content": user_question}],
-        )
-        
-        no_sys_resp, with_sys_resp = await asyncio.gather(no_sys_task, with_sys_task)
-        
-        print(f"\n── NO SYSTEM PROMPT ──")
-        print(no_sys_resp.content[0].text)
-        print(f"\n[in: {no_sys_resp.usage.input_tokens}, out: {no_sys_resp.usage.output_tokens}]")
-        
-        print(f"\n── WITH SYSTEM PROMPT ──")
-        print(with_sys_resp.content[0].text)
-        print(f"\n[in: {with_sys_resp.usage.input_tokens}, out: {with_sys_resp.usage.output_tokens}]")
+        # Approach 1: Monolithic (Sonnet without prefill)
+        print("\n── MONOLITHIC (Sonnet, 1 call, no prefill) ──")
+        t1 = time.time()
+        mono_raw = await call_anthropic(monolithic_prompt, "claude-sonnet-4-6")
+        mono_result = strip_code_fence(mono_raw)
+        print(f"Latency: {time.time() - t1:.2f}s")
+        print(mono_result[:600])
 
+        # Approach 2: Chain (Haiku extract → Sonnet analyze)
+        print("\n── CHAIN (Haiku extract → Sonnet analyze) ──")
+        t2 = time.time()
+        extracted = await call_anthropic(extract_prompt, "claude-haiku-4-5-20251001")
+        print(f"Step 1 (Haiku extract): {time.time() - t2:.2f}s")
+        print(f"Step 1 output:\n{extracted[:300]}")
+
+        t3 = time.time()
+        analyzed_raw = await call_anthropic(
+            make_analyze_prompt(extracted), "claude-sonnet-4-6"
+        )
+        analyzed = strip_code_fence(analyzed_raw)
+        print(f"\nStep 2 (Sonnet analyze): {time.time() - t3:.2f}s")
+        print(f"Total chain latency: {time.time() - t2:.2f}s")
+        print(f"\nStep 2 output:\n{analyzed[:600]}")
 
     # ใน main() เพิ่ม:
-    await system_prompt_compare()
+    await chain_compare()
 
 if __name__ == "__main__":
     asyncio.run(main())
