@@ -186,3 +186,33 @@ Lessons:
 - Feature support varies by model version → verify in docs per model
 - Don't assume cross-model compatibility (Haiku ≠ Sonnet ≠ Opus)
 - Chain isn't free — adds latency + code complexity, weigh trade-off
+
+# Day 5
+## Project: Receipt Extractor
+
+Pipeline shipped: 6 receipts × vision API + Pydantic + smart routing
+
+Quality findings (Phase 1 → Phase 2 → Phase 3):
+- Phase 1 (Sonnet only): 4/6 quality issues — collapsed items, BE date misread, 
+  legal vs brand vendor, tax hallucination
+- Phase 2 (multi-model): Opus best on date/vendor, Sonnet cautious with [unreadable],
+  Haiku DANGEROUS (hallucinated brand 7-Eleven on Tops receipt)
+- Phase 3 (smart routing + validator): fixed BE→CE, fixed brand vs legal, BUT
+  validator over-triggers on hallucinated tax → 50% escalation = 3.4x cost
+
+Production-critical lessons:
+1. Haiku NOT suitable for vision OCR business-critical — hallucinates entities
+2. Model invents 7% VAT even when receipt doesn't show — Thai context awareness wrong
+3. Smart routing only valuable if validator precision is high
+4. Tax/service field extraction = real engineering problem (Thai has multiple patterns)
+5. Item granularity trade-off: detail vs honest "[unreadable]"
+
+Cost reality for Package A:
+- Sonnet only: $3.82/1000 receipts = ~130 THB/1000
+- Smart routing: $12.99/1000 = ~440 THB/1000
+- Vet clinic doing ~100 receipts/month = $0.38-1.30/month — easy to absorb
+
+Approach for client work:
+- Start simple (Sonnet, no separate tax/svc) → measure pain
+- Iterate schema based on real receipt corpus
+- Build golden dataset of 30+ verified examples for eval
