@@ -34,3 +34,43 @@
 ### Known quirks
 - Character bleeding (Thai + Chinese chars mixed) — recurring issue, need system prompt fix
 - Each turn = full API call = real latency (3-5s) — UX must show progress
+
+## Day 2 (Tue 16 มิ.ย.) — Structured Outputs + Strict Tools
+
+### Big news: Structured Outputs is GA
+2 sub-features:
+- JSON outputs (`output_config.format`): grammar-constrained response
+- Strict tool use (`strict: True`): guaranteed tool input schema
+
+### JSON outputs trade-offs (Block 1 data)
+- Old way (prompt + parse): 2.49s, stochastic format
+- NEW cold start: 16.78s ❌ (grammar compilation)
+- NEW warm cache: 1.74s ✓ (better than old)
+- Cache: 24 hr from last use
+
+Production rule:
+- Stable schema → NEW + pre-warm at deploy (best of both)
+- Dynamic schema → OLD wins (no cache benefit)
+- Latency-critical first call → OLD
+- Batch processing → NEW (+ 50% batch discount)
+
+### Strict tools trade-offs (Block 2 data)
+- 95% of cases: smart model handles without strict (Test 1-3 identical)
+- 5% edge cases break things: Test 4 - non-strict generated "<UNKNOWN>" string 
+  in integer field → downstream TypeError
+
+Decision rule:
+- DB writes / side effects → strict required
+- Read/search tools → skip strict (save latency)
+- Limits: 20 strict tools per request, 24 optional params total
+
+### Incompatibilities to remember
+- ❌ Cannot combine output_config.format with:
+  - Message prefilling
+  - Citations
+- ✓ Can combine with: tool use, streaming, batch, prompt caching
+
+### SDK helpers
+- Python: client.messages.parse(output_format=PydanticModel)
+- Returns response.parsed_output as Pydantic instance
+- Sync only currently (Anthropic SDK v0.60+)
