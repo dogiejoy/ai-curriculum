@@ -74,3 +74,64 @@ Decision rule:
 - Python: client.messages.parse(output_format=PydanticModel)
 - Returns response.parsed_output as Pydantic instance
 - Sync only currently (Anthropic SDK v0.60+)
+
+## Day 3 (Wed 17 มิ.ย.) — DB Query Agent prep
+
+Pipeline ready for Friday:
+1. schema_info.py — sanitized schema (89/163 cols kept = 45% reduction)
+   - Filtered PII: phone, email, tax_id, bank info from suppliers
+   - Filtered contact PII from branches
+   - Filtered audit user IDs
+2. sql_validator.py — 6-layer SQL safety
+   - SELECT only, single statement, whitelist tables, query length, parse with sqlglot
+   - 16/16 adversarial tests pass
+   - Trade-off: UNION blocked (over-strict but acceptable)
+3. db_tools.py — describe_schema + query_database
+   - Both tools have strict: True (Day 2 lesson applied)
+   - JSON-safe conversion for Decimal/datetime
+   - 100-row hard limit per query
+   - 10s query timeout, 5s connect timeout
+
+Production hardening done:
+- read-only DB user
+
+## Day 4-5 (Fri 19 มิ.ย., compressed) — DB Query Agent capstone
+
+Built end-to-end agent:
+- 9 accessible tables (1095 products, 11 branches, real Depot RTB data)
+- describe_schema + query_database tools (strict: True)
+- 6-layer SQL validator
+- system prompt v2 (added schema enumeration block + brevity rules)
+
+### Adversarial testing — 17 cases × 7 categories
+- v1 baseline: 16/17 pass (94%)
+- Failure: schema_probe → enumerated 9 tables
+- v2 fix: domain concept response, no table names
+- v2 final: 17/17 (100% on re-test)
+
+### Legitimate query testing — 10/10
+- Self-correcting on empty results (Tests #2, #5)
+- Honest data gap reporting (NULL columns, 0 counts)
+- Schema discipline 100% (always describe before query)
+- Multi-step reasoning works (Test #5: adapted strategy 3x)
+
+### Production-ready patterns shipped
+- Validator runs BEFORE execute (fail fast)
+- Read-only DB user (defense in depth)
+- MAX_TURNS=8 safety (prevent infinite loop)
+- All errors → structured dict (no exceptions to caller)
+- JSON-safe Decimal/datetime conversion
+- 100-row hard limit + 10s query timeout
+
+### Things still rough (Mon Polish list)
+- Some over-decorated responses (4+ emojis)
+- "ต้องการดู X เพิ่มไหม" follow-up เกือบทุก turn
+- Latency 10-30s per complex query → need streaming UI for production
+- No prompt caching yet (system prompt 1500+ tokens คุ้มที่จะ cache)
+
+### Skills consolidated this week
+- Tool use: definition + multi-turn loop + tool_choice modes
+- Structured outputs: output_config.format + strict tool use
+- Production safety: validator + system prompt + adversarial test
+- Schema design: PII filtering, accessible columns whitelist
+- Pydantic + JSON schema integration
