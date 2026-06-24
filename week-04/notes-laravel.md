@@ -95,3 +95,45 @@ Ping events every ~15s (keepalive — ignore in UI)
 ### Frontend
 - EventSource browser API for GET endpoints (simple)
 - fetch() + ReadableStream for POST endpoints (Wed will need)
+
+## Day 3 (Wed 24 มิ.ย.) — SSE endpoint built end-to-end
+
+### Shipped
+1. ClaudeService::streamComplete() — Generator yielding StreamingChunk DTO
+2. StreamingChunk DTO (type, text, raw event)
+3. ChatStreamController with response()->stream()
+4. SSE format: event: {type}\ndata: {json}\n\n
+5. Frontend chat.html: fetch + ReadableStream + AbortController for cancel
+
+### Code architecture
+- Service layer: streamComplete returns Generator (lazy, memory-efficient)
+- Controller layer: validates input + maps SDK events to SSE protocol
+- Filter only relevant events to client (text deltas + lifecycle)
+- Cost logging in finally block (runs even on early exit)
+
+### Critical SSE headers verified
+- Content-Type: text/event-stream
+- Cache-Control: no-cache, no-transform  
+- X-Accel-Buffering: no
+- Connection: keep-alive
+
+### Frontend pattern
+- fetch() with POST + Accept: text/event-stream (cannot use EventSource — GET only)
+- ReadableStream + TextDecoder for chunk parsing
+- Buffer accumulation + split on \n\n
+- AbortController for user-initiated cancel
+- connection_aborted() check in PHP loop for server-side detection
+
+### Environment gotcha discovered
+- php artisan serve buffers ENTIRE response → not real streaming despite code being correct
+- Verified via DevTools Timing: 15.48s waiting + 416ms content download (vs proper ~7-15s content download)
+- Production fix: nginx + php-fpm (Herd/Forge/production server)
+- Code itself proven correct via curl -N which sees chunks
+
+### Production deployment notes (for Phase 4)
+- Cannot use php artisan serve for streaming demo
+- Recommend Laravel Herd for local dev (Mac native nginx)
+- For production: ensure nginx config has:
+  - proxy_buffering off (if behind reverse proxy)
+  - X-Accel-Buffering: no respected
+  - fastcgi_buffering off in php-fpm config
