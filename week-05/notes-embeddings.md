@@ -34,3 +34,49 @@ Decision: voyage-3-large primary, OpenAI 3-small fallback
 - voyage-multilingual-3 does NOT exist (use voyage-3-large for multilingual)
 - OpenAI Thai tokens cost ~44% more than Voyage (verify before commit)
 - Lite model lose semantic precision on short queries (4-char "อาหารแมว" misclassified)
+
+## Day 2/3 combined (Wed 1 ก.ค.) — pgvector setup + integration
+
+### pgvector concepts learned
+- Extension adds vector(N) type + distance operators + index types
+- Distance operators: <=> (cosine, our choice), <-> (L2), <#> (inner product)
+- Two index types: HNSW vs IVFFlat
+
+### HNSW vs IVFFlat decision tree
+Choose HNSW when:
+- < 10M vectors (our case — Depot RTB never hits this)
+- Accuracy matters
+- Data updates frequently
+
+Choose IVFFlat when:
+- > 10M vectors
+- Build speed critical (batch ingesting)
+
+HNSW knobs:
+- Build: m=16 (edges), ef_construction=64 (build search width)
+- Query: ef_search=40-100 (runtime tunable, no rebuild)
+- Higher ef_search → better recall, slower query
+
+### Critical: index operator must match query operator
+- CREATE INDEX ... USING hnsw (embedding vector_cosine_ops)
+- SELECT ... ORDER BY embedding <=> query_vec
+- If mismatch → index ignored → full table scan
+
+### Production patterns established
+- Docker Compose with named volume (data persists container recreation)
+- Schema separates: source, content, metadata (jsonb), embedding
+- Metadata GIN index for jsonb filter queries
+- Source column index for corpus segmentation
+
+### Python integration
+- psycopg + pgvector.psycopg.register_vector() for type adapter
+- input_type MUST differ: "document" for insert, "query" for search
+- Cosine SIMILARITY = 1 - (embedding <=> query)  # pgvector returns distance
+
+### Gotchas encountered
+1. voyage-multilingual-3 doesn't exist (Day 1) → use voyage-3-large
+2. Voyage free tier: 3 RPM / 10K TPM — hit limit at query 4 in test
+   → Recommend adding payment method before Week 6 (golden dataset)
+3. psycopg.types.json.Json vs Jsonb type mismatch → use Jsonb for jsonb columns
+
+### Verified
