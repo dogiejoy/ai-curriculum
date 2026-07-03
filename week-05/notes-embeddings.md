@@ -80,3 +80,48 @@ HNSW knobs:
 3. psycopg.types.json.Json vs Jsonb type mismatch → use Jsonb for jsonb columns
 
 ### Verified
+
+## Day 4-5 combined (Fri 3 ก.ค.) — Laravel + pgvector integration
+
+### Shipped
+1. VoyageService (Laravel HTTP client wrapper) with retry
+2. Document Eloquent model with Vector cast
+3. Artisan command: docs:index (JSON → Voyage → pgvector)
+4. Endpoint /api/search with:
+   - Vector similarity (Distance::Cosine via nearestNeighbors)
+   - JSONB metadata filter (@> operator)
+   - Source column filter
+   - Combined filters
+
+### Cross-stack parity verified
+Python-indexed docs (day1_corpus, 8 rows) + Laravel-indexed docs (depot_laravel_test, 5 rows) coexist in same table.
+Search from Laravel gives identical similarity scores as Python (0.7585 exact match).
+→ Template pattern for clients: any team stack can ingest, Laravel serves search API.
+
+### pgvector-php composer package notes
+- Auto-registered migration for CREATE EXTENSION vector (2022_08_03_000000)
+- Provides Vector class + HasNeighbors trait + Distance enum
+- nearestNeighbors('embedding', $vector, Distance::Cosine) → ORDER BY <=> distance
+- Result has $doc->neighbor_distance attribute (cosine distance)
+- similarity = 1 - neighbor_distance
+
+### Production pattern discovered
+- Semantic embedding sometimes weights KEYWORDS over CONTEXT
+  - "ป้องกันเห็บ" on dog corpus → cat product with keyword rank #1
+- ALWAYS combine metadata filter + semantic search for domain-specific queries
+- Week 7 hybrid search will address this systematically
+
+### Bugs encountered + fixes
+- system PHP 7.0 vs Herd 8.3 PATH conflict — reactivate Herd terminal
+- Migration table exists (from Python) → IF NOT EXISTS makes idempotent
+- Json vs Jsonb type — Laravel Eloquent metadata cast handles automatically
+- JSON_UNESCAPED_UNICODE missing in response → improvement for Week 6
+
+### Skills consolidated (Week 5)
+- Embedding fundamentals + cosine similarity math
+- Voyage AI multilingual verified 4/4 Thai accuracy
+- HNSW vs IVFFlat trade-offs, when to choose which
+- Docker Compose stateful services + persistent volumes
+- Laravel migrations for extension-based Postgres features
+- Eloquent + pgvector cross-stack (Python ingest, Laravel search)
+- Metadata jsonb filtering with @> containment operator
