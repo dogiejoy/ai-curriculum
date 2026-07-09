@@ -65,3 +65,57 @@ Semantic reserved for: long marketing content, blog posts, unstructured guides
 - Answer key = doc_id (which doc contains the answer)
 - Run each question × 4 strategies → measure recall@5 + MRR
 - Compare rankings + report which strategy wins for Depot RTB context
+
+## Day 4-5 combined (Thu 9 ก.ค.) — Retrieval metrics
+
+### Golden dataset built
+- 15 questions covering 13 corpus docs
+- Balance: easy 8 / medium 5 / hard 2
+- 3 doc types: product 6, faq 5, guide 4
+- Language: th 13, en 1, mixed 1
+- Saved as JSON — reusable Week 7+ retrieval, Week 9 eval framework
+
+### Retrieval results
+
+| Strategy | hit@1 | recall@5 | MRR |
+|---|---|---|---|
+| Fixed (400/50) | 93.3% | 100% | 0.967 |
+| Structural | 86.7% | 100% | 0.933 |
+| Recursive | 80.0% | 93.3% | 0.867 |
+| Semantic | 80.0% | 93.3% | 0.867 |
+
+### Counter-intuitive finding
+Fixed chunker beats Structural despite:
+- No metadata awareness
+- Boundary quality worse (mid-word cuts)
+
+Hypothesis: overlap (50 chars) creates redundant "safety net" for queries that straddle chunk boundaries. Every retrievable keyword appears in 2+ chunks. → confirms Chroma Research: "semantic doesn't always win"
+
+### Hard-query ceiling
+Q06 "ยาแก้ปวด ไม่ใช่ steroid" → all 4 strategies fail
+- Requires reasoning (NSAID = non-steroid) or hybrid search
+- Q6-class questions define upper limit of embedding-only retrieval
+- Week 7 hybrid + Week 8 RAG generation will address
+
+### Production decision for Depot RTB
+- Default: Fixed (400 chunk, 50 overlap) — highest accuracy
+- Backup: Structural — 6.6% lower hit@1 but path metadata for citations
+- Trade-off is UX vs accuracy, not technical
+
+### Week 6 skills consolidated
+- 4 chunking strategies implemented from scratch
+- Multi-doc chunker with metadata merging
+- Golden dataset methodology
+- Retrieval metrics (hit@1, recall@5, MRR)
+- pgvector search with strategy-labeled sources
+- Learned: don't over-engineer — Fixed often wins
+
+### Blog draft outline (skip full write, saved for later)
+Title: "4 Chunking Strategies on Thai Vet Warehouse Data: Fixed Won"
+Sections:
+1. Setup: 13 docs, 15 golden questions, Voyage 3-large
+2. 4 strategies described (Fixed/Recursive/Structural/Semantic)
+3. Findings: Fixed 93.3% hit@1 vs Structural 86.7%
+4. Why: overlap = redundancy safety net
+5. When Structural still wins: citation UX
+6. Q06 ceiling: what's next (hybrid + RAG)

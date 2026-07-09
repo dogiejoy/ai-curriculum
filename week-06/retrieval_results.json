@@ -1,0 +1,1492 @@
+[
+  {
+    "question_id": "Q01",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "prod_001",
+      "prod_006",
+      "prod_002",
+      "prod_005",
+      "prod_004"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_001"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6641599540424441,
+      0.570828156793963,
+      0.5535202228688805,
+      0.5180257558822668,
+      0.5011212528420321
+    ],
+    "latency_seconds": 0.8539128303527832
+  },
+  {
+    "question_id": "Q02",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "prod_003",
+      "prod_006",
+      "prod_001",
+      "prod_002",
+      "faq_004"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6955691601844874,
+      0.5688023736716027,
+      0.535242931104986,
+      0.5315140327360045,
+      0.5300591465883686
+    ],
+    "latency_seconds": 0.31748414039611816
+  },
+  {
+    "question_id": "Q03",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "prod_005",
+      "prod_004",
+      "prod_001",
+      "prod_002",
+      "prod_003"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6749157101016439,
+      0.537228171494985,
+      0.5219688726645045,
+      0.5188728857712227,
+      0.505828887571627
+    ],
+    "latency_seconds": 0.3057518005371094
+  },
+  {
+    "question_id": "Q04",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "prod_004",
+      "prod_002",
+      "prod_001",
+      "prod_003",
+      "prod_005"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_004"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6946513031734928,
+      0.6821219907293999,
+      0.6502706006249968,
+      0.5383500021204355,
+      0.5314786909352565
+    ],
+    "latency_seconds": 0.27631115913391113
+  },
+  {
+    "question_id": "Q05",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "prod_006",
+      "prod_003",
+      "prod_001",
+      "prod_005"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_006"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6348729512019735,
+      0.5938988681971363,
+      0.5393117987699398,
+      0.5097159731726715
+    ],
+    "latency_seconds": 0.33869171142578125
+  },
+  {
+    "question_id": "Q06",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "prod_005",
+      "prod_001",
+      "prod_004",
+      "prod_002",
+      "prod_006"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6571311541952125,
+      0.5270718899879624,
+      0.5135421326074259,
+      0.49485713243484497,
+      0.47112345523378063
+    ],
+    "latency_seconds": 0.2683887481689453
+  },
+  {
+    "question_id": "Q07",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "faq_002",
+      "guide_001",
+      "guide_002",
+      "faq_004",
+      "prod_002"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.5893926796136107,
+      0.45908665413180993,
+      0.4043484628200531,
+      0.40137352951607363,
+      0.40045768615855726
+    ],
+    "latency_seconds": 0.28246212005615234
+  },
+  {
+    "question_id": "Q08",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "faq_003",
+      "guide_003",
+      "prod_004",
+      "prod_003",
+      "prod_002"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6177395170253374,
+      0.6073050860944452,
+      0.5934522151947021,
+      0.5165016055107117,
+      0.5038492679595947
+    ],
+    "latency_seconds": 0.28119611740112305
+  },
+  {
+    "question_id": "Q09",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "faq_004",
+      "prod_005",
+      "prod_002",
+      "guide_002",
+      "prod_001"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_004"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6070768109468447,
+      0.4442414078568582,
+      0.42499227225872604,
+      0.4241088674003568,
+      0.4229267881556287
+    ],
+    "latency_seconds": 0.2885448932647705
+  },
+  {
+    "question_id": "Q10",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "faq_005",
+      "faq_003",
+      "guide_001",
+      "guide_003",
+      "faq_002"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6765450642433812,
+      0.5787620889402691,
+      0.5537197158849158,
+      0.5387744353740772,
+      0.4979473652902442
+    ],
+    "latency_seconds": 0.2698628902435303
+  },
+  {
+    "question_id": "Q11",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "faq_002",
+      "prod_002",
+      "faq_005",
+      "guide_001",
+      "prod_006"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.4593651592731476,
+      0.3709540444043855,
+      0.34559155540441155,
+      0.30594577228699804,
+      0.2843910368188135
+    ],
+    "latency_seconds": 0.26852989196777344
+  },
+  {
+    "question_id": "Q12",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "guide_002",
+      "faq_003",
+      "guide_003",
+      "prod_002",
+      "guide_001"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.5992401481127662,
+      0.46268966794013977,
+      0.4491297675862611,
+      0.4371070861816406,
+      0.4298574924468994
+    ],
+    "latency_seconds": 0.2845289707183838
+  },
+  {
+    "question_id": "Q13",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "guide_003",
+      "faq_003",
+      "prod_004",
+      "faq_005",
+      "guide_002"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.7648793914842366,
+      0.6701575517654467,
+      0.5320321004371593,
+      0.504626870155338,
+      0.4696762859821353
+    ],
+    "latency_seconds": 0.3062598705291748
+  },
+  {
+    "question_id": "Q14",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "guide_001",
+      "faq_004",
+      "faq_002",
+      "faq_005",
+      "prod_006"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_001"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.4959717533529484,
+      0.4196010559202831,
+      0.41414028406144365,
+      0.3498448058731578,
+      0.3279453012878085
+    ],
+    "latency_seconds": 0.3089108467102051
+  },
+  {
+    "question_id": "Q15",
+    "strategy": "fixed",
+    "retrieved_doc_ids": [
+      "guide_003",
+      "faq_003",
+      "faq_005",
+      "guide_001",
+      "prod_004"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6246485710144221,
+      0.5579368735589549,
+      0.44932487909050234,
+      0.4419171415045482,
+      0.41758270054070046
+    ],
+    "latency_seconds": 0.2711799144744873
+  },
+  {
+    "question_id": "Q01",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "prod_001",
+      "prod_006",
+      "prod_002",
+      "prod_004",
+      "prod_005"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_001"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.7372140727766914,
+      0.5741414852696237,
+      0.5325938502066109,
+      0.5133588604117129,
+      0.4988414197814943
+    ],
+    "latency_seconds": 0.3472104072570801
+  },
+  {
+    "question_id": "Q02",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "prod_003",
+      "prod_001",
+      "prod_006",
+      "prod_005",
+      "faq_004"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.7087532108278997,
+      0.5650353263308033,
+      0.5399341309031326,
+      0.5109513110489434,
+      0.507263094619697
+    ],
+    "latency_seconds": 0.3043210506439209
+  },
+  {
+    "question_id": "Q03",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "prod_005",
+      "prod_001",
+      "prod_004",
+      "prod_002"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.7039147052688636,
+      0.5373449165420281,
+      0.5371702429202041,
+      0.5274836925383224
+    ],
+    "latency_seconds": 0.8184540271759033
+  },
+  {
+    "question_id": "Q04",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "prod_004",
+      "prod_002",
+      "prod_001",
+      "prod_005",
+      "prod_003"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_004"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6932701857903573,
+      0.6681381862245909,
+      0.6671221057438249,
+      0.5327403584409197,
+      0.5203449881179629
+    ],
+    "latency_seconds": 0.30655384063720703
+  },
+  {
+    "question_id": "Q05",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "prod_006",
+      "prod_003",
+      "prod_001",
+      "prod_005",
+      "prod_004"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_006"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6308074813599907,
+      0.5964456378354325,
+      0.5460565090179443,
+      0.5350210943805529,
+      0.4760262072086334
+    ],
+    "latency_seconds": 0.30686020851135254
+  },
+  {
+    "question_id": "Q06",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "prod_005",
+      "prod_001",
+      "prod_004",
+      "prod_002",
+      "faq_004"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6494564011530999,
+      0.538787841796875,
+      0.5222181081771851,
+      0.49434694681483915,
+      0.4721936426220432
+    ],
+    "latency_seconds": 0.27640700340270996
+  },
+  {
+    "question_id": "Q07",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "faq_002",
+      "guide_001",
+      "faq_004",
+      "guide_002"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.5971434952531257,
+      0.45679068307821136,
+      0.39640248385690025,
+      0.3950204315769479
+    ],
+    "latency_seconds": 0.33818793296813965
+  },
+  {
+    "question_id": "Q08",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "faq_003",
+      "guide_003",
+      "prod_004",
+      "prod_005",
+      "prod_003"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6351663820693537,
+      0.624347984790802,
+      0.6034346222877502,
+      0.5392759006999703,
+      0.5104292631149292
+    ],
+    "latency_seconds": 0.306657075881958
+  },
+  {
+    "question_id": "Q09",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "faq_004",
+      "guide_001",
+      "guide_002",
+      "prod_005",
+      "prod_001"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_004"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6230618768017949,
+      0.460299372673038,
+      0.4493940144416174,
+      0.4460970626444518,
+      0.4212322925052294
+    ],
+    "latency_seconds": 0.408458948135376
+  },
+  {
+    "question_id": "Q10",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "faq_005",
+      "faq_003",
+      "guide_001",
+      "guide_003",
+      "faq_002"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6514326541761973,
+      0.5668946673540675,
+      0.5419225854254542,
+      0.531563401222229,
+      0.4997075199906549
+    ],
+    "latency_seconds": 0.30794787406921387
+  },
+  {
+    "question_id": "Q11",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "faq_002",
+      "prod_002",
+      "faq_005",
+      "guide_001",
+      "prod_006"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.45411959290504456,
+      0.35840009799004247,
+      0.33907590275550525,
+      0.30999356508255005,
+      0.3010927855317129
+    ],
+    "latency_seconds": 0.3080739974975586
+  },
+  {
+    "question_id": "Q12",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "guide_002",
+      "faq_003",
+      "guide_001",
+      "guide_003",
+      "prod_002"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6154008828700908,
+      0.4774194800084728,
+      0.4609355789144265,
+      0.4406624532338208,
+      0.44014531972189563
+    ],
+    "latency_seconds": 0.3092920780181885
+  },
+  {
+    "question_id": "Q13",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "guide_003",
+      "faq_003",
+      "prod_004",
+      "prod_002",
+      "faq_005"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.7102790647578809,
+      0.6274875215444733,
+      0.5520595579111849,
+      0.5234952128975215,
+      0.4798104918059579
+    ],
+    "latency_seconds": 0.30356502532958984
+  },
+  {
+    "question_id": "Q14",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "guide_001",
+      "faq_002",
+      "faq_004",
+      "faq_005",
+      "prod_006"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_001"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.46252640858450733,
+      0.3929166900366594,
+      0.38779504749716165,
+      0.3544381472133542,
+      0.31346135042031986
+    ],
+    "latency_seconds": 0.3059999942779541
+  },
+  {
+    "question_id": "Q15",
+    "strategy": "recursive",
+    "retrieved_doc_ids": [
+      "guide_003",
+      "faq_003",
+      "prod_004",
+      "guide_001",
+      "faq_005"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6309709016732761,
+      0.5502624019745886,
+      0.4891380680634929,
+      0.429190001262133,
+      0.4171940435651582
+    ],
+    "latency_seconds": 0.30890488624572754
+  },
+  {
+    "question_id": "Q01",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "prod_001",
+      "prod_006",
+      "prod_002",
+      "prod_005",
+      "prod_004"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_001"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.733149337801457,
+      0.5684830289175022,
+      0.5519295601886782,
+      0.5273533116543341,
+      0.5062320232391393
+    ],
+    "latency_seconds": 0.3093242645263672
+  },
+  {
+    "question_id": "Q02",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "prod_003",
+      "faq_004",
+      "prod_004",
+      "prod_005",
+      "prod_006"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.7174410269356696,
+      0.515224652770857,
+      0.511996345519477,
+      0.5036366135965771,
+      0.4941443359126799
+    ],
+    "latency_seconds": 0.27899885177612305
+  },
+  {
+    "question_id": "Q03",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "prod_005",
+      "prod_002",
+      "prod_004",
+      "prod_001",
+      "prod_003"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6973490118980408,
+      0.5402795946431411,
+      0.5380882666216252,
+      0.5213989589930859,
+      0.4777540875819878
+    ],
+    "latency_seconds": 0.27807188034057617
+  },
+  {
+    "question_id": "Q04",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "prod_004",
+      "prod_002",
+      "prod_001",
+      "prod_005",
+      "prod_003"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_004"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6663619280133982,
+      0.6635455686910623,
+      0.6339104960534128,
+      0.5364021775362988,
+      0.49219031655221435
+    ],
+    "latency_seconds": 0.46487903594970703
+  },
+  {
+    "question_id": "Q05",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "prod_006",
+      "prod_003",
+      "prod_005",
+      "prod_001",
+      "prod_002"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_006"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6490878881111325,
+      0.6005337596257793,
+      0.5223814249038696,
+      0.5067836634178599,
+      0.4464948805275639
+    ],
+    "latency_seconds": 0.2723960876464844
+  },
+  {
+    "question_id": "Q06",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "prod_005",
+      "prod_001",
+      "prod_004",
+      "prod_002",
+      "faq_004"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6460161209106445,
+      0.5275251144938294,
+      0.49658676941237445,
+      0.4953645172497927,
+      0.4572502672672272
+    ],
+    "latency_seconds": 0.3416769504547119
+  },
+  {
+    "question_id": "Q07",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "faq_002",
+      "guide_001",
+      "prod_001",
+      "faq_004",
+      "prod_006"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.5760003671646348,
+      0.45687228184177253,
+      0.4095214849425255,
+      0.3859659297425664,
+      0.3839103441131525
+    ],
+    "latency_seconds": 0.3070037364959717
+  },
+  {
+    "question_id": "Q08",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "prod_004",
+      "faq_003",
+      "guide_003",
+      "prod_001",
+      "prod_003"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_003"
+    ],
+    "hit_at_1": false,
+    "recall_at_5": true,
+    "reciprocal_rank": 0.5,
+    "top_5_similarities": [
+      0.6382877065792479,
+      0.6256966664141517,
+      0.5756662397782558,
+      0.5418452620506287,
+      0.5076861835437602
+    ],
+    "latency_seconds": 0.30702686309814453
+  },
+  {
+    "question_id": "Q09",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "faq_004",
+      "prod_005",
+      "prod_006",
+      "prod_002",
+      "prod_001"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_004"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.5766049188485897,
+      0.4562782969308923,
+      0.40639778971672347,
+      0.4007785556844369,
+      0.39773011817156634
+    ],
+    "latency_seconds": 0.30739402770996094
+  },
+  {
+    "question_id": "Q10",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "faq_005",
+      "faq_003",
+      "guide_001",
+      "guide_003",
+      "faq_002"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6614565253257751,
+      0.5645320415496826,
+      0.5352106967442822,
+      0.5305624166298635,
+      0.493469774723053
+    ],
+    "latency_seconds": 0.30858683586120605
+  },
+  {
+    "question_id": "Q11",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "faq_002",
+      "prod_002",
+      "guide_001",
+      "faq_005",
+      "prod_001"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.46231747122795064,
+      0.33992794038154306,
+      0.32811050582590795,
+      0.31863388419151306,
+      0.28881967067718506
+    ],
+    "latency_seconds": 0.30608391761779785
+  },
+  {
+    "question_id": "Q12",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "guide_002",
+      "faq_003",
+      "guide_001",
+      "guide_003",
+      "prod_002"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6128823161125183,
+      0.45884880668826145,
+      0.4571559429168701,
+      0.4567169087146794,
+      0.4294471400646658
+    ],
+    "latency_seconds": 0.30585193634033203
+  },
+  {
+    "question_id": "Q13",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "guide_003",
+      "faq_003",
+      "prod_004",
+      "prod_001",
+      "prod_002"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.7072355114905158,
+      0.6284832579801626,
+      0.5547892916704913,
+      0.5127137288196446,
+      0.49232044861791624
+    ],
+    "latency_seconds": 0.30501294136047363
+  },
+  {
+    "question_id": "Q14",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "guide_001",
+      "faq_002",
+      "faq_004",
+      "guide_003",
+      "faq_005"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_001"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.4440904755754137,
+      0.39980571267673215,
+      0.3878904678625712,
+      0.32367256111012055,
+      0.31504301012075286
+    ],
+    "latency_seconds": 0.2802700996398926
+  },
+  {
+    "question_id": "Q15",
+    "strategy": "structural",
+    "retrieved_doc_ids": [
+      "guide_003",
+      "faq_003",
+      "prod_004",
+      "guide_001",
+      "faq_005"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6195267523181296,
+      0.5225735591308225,
+      0.44577671390134954,
+      0.4395730901527848,
+      0.41408846294353296
+    ],
+    "latency_seconds": 0.2762570381164551
+  },
+  {
+    "question_id": "Q01",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "prod_001",
+      "prod_002",
+      "prod_006",
+      "prod_005",
+      "prod_004"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_001"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.7356261768563893,
+      0.5698464769216501,
+      0.556583139692741,
+      0.5341916402692666,
+      0.5040163693418291
+    ],
+    "latency_seconds": 0.30054497718811035
+  },
+  {
+    "question_id": "Q02",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "prod_003",
+      "faq_004",
+      "prod_005",
+      "guide_001",
+      "prod_002"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.710130031991308,
+      0.551109833982296,
+      0.5430863661493771,
+      0.5372765544602177,
+      0.5037508761511579
+    ],
+    "latency_seconds": 0.37366795539855957
+  },
+  {
+    "question_id": "Q03",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "prod_005",
+      "prod_002",
+      "prod_004",
+      "prod_001",
+      "prod_003"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.708124041557312,
+      0.5472416877746582,
+      0.5420998819559729,
+      0.5232802629470825,
+      0.4834054132216711
+    ],
+    "latency_seconds": 0.3079252243041992
+  },
+  {
+    "question_id": "Q04",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "prod_004",
+      "prod_002",
+      "prod_001",
+      "prod_005",
+      "prod_003"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_004"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.684924743762583,
+      0.6712807616973153,
+      0.6323951294304417,
+      0.5402863830754754,
+      0.5038852245773444
+    ],
+    "latency_seconds": 0.4100818634033203
+  },
+  {
+    "question_id": "Q05",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "prod_006",
+      "prod_003",
+      "prod_001",
+      "prod_005",
+      "guide_001"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_006"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6421313881874084,
+      0.5975884678854427,
+      0.5265635848045349,
+      0.525210976600647,
+      0.4812864650062608
+    ],
+    "latency_seconds": 0.30704593658447266
+  },
+  {
+    "question_id": "Q06",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "prod_005",
+      "prod_001",
+      "prod_004",
+      "prod_002",
+      "prod_006"
+    ],
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6587957143783569,
+      0.5275133848190308,
+      0.5023794623356597,
+      0.5008481740951538,
+      0.4806286096572876
+    ],
+    "latency_seconds": 0.3063681125640869
+  },
+  {
+    "question_id": "Q07",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "faq_002",
+      "prod_006",
+      "guide_001",
+      "prod_002",
+      "faq_005"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.5685232538865148,
+      0.47360393247627885,
+      0.45161520857992277,
+      0.41956802723217246,
+      0.41472476720810225
+    ],
+    "latency_seconds": 0.3038609027862549
+  },
+  {
+    "question_id": "Q08",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "prod_004",
+      "faq_003",
+      "guide_003",
+      "prod_001",
+      "prod_005"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_003"
+    ],
+    "hit_at_1": false,
+    "recall_at_5": true,
+    "reciprocal_rank": 0.5,
+    "top_5_similarities": [
+      0.6334897657328715,
+      0.632511415035214,
+      0.6108196377754211,
+      0.5399814200423494,
+      0.5351349711418152
+    ],
+    "latency_seconds": 0.28176116943359375
+  },
+  {
+    "question_id": "Q09",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "faq_004",
+      "prod_005",
+      "guide_001",
+      "faq_002",
+      "prod_001"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_004"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.596455085700144,
+      0.49580568100180233,
+      0.48414659500122414,
+      0.4282094581002327,
+      0.4069268051938364
+    ],
+    "latency_seconds": 0.33568787574768066
+  },
+  {
+    "question_id": "Q10",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "faq_005",
+      "faq_003",
+      "guide_001",
+      "prod_004",
+      "guide_003"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_005"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6874071955680847,
+      0.5706691401798055,
+      0.5663904210096357,
+      0.565243039443675,
+      0.5421051655945093
+    ],
+    "latency_seconds": 0.273068904876709
+  },
+  {
+    "question_id": "Q11",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "faq_002",
+      "prod_002",
+      "guide_001",
+      "prod_006",
+      "prod_001"
+    ],
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.46161924188194425,
+      0.38338539004325867,
+      0.34189053274506187,
+      0.33741897344589233,
+      0.3370275597878565
+    ],
+    "latency_seconds": 0.27378082275390625
+  },
+  {
+    "question_id": "Q12",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "guide_002",
+      "guide_001",
+      "faq_003",
+      "guide_003",
+      "faq_005"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_002"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6136370165780807,
+      0.4896984100341797,
+      0.48064571619033813,
+      0.4680257756694697,
+      0.41934902437341215
+    ],
+    "latency_seconds": 0.2821629047393799
+  },
+  {
+    "question_id": "Q13",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "faq_003",
+      "guide_003",
+      "prod_004",
+      "prod_001"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "hit_at_1": false,
+    "recall_at_5": true,
+    "reciprocal_rank": 0.5,
+    "top_5_similarities": [
+      0.6766035346265394,
+      0.6567681840934534,
+      0.5696779489517252,
+      0.5136348282751757
+    ],
+    "latency_seconds": 0.29728007316589355
+  },
+  {
+    "question_id": "Q14",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "guide_001",
+      "faq_003",
+      "faq_002",
+      "faq_004",
+      "prod_006"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_001"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.4798133933210489,
+      0.4276299347215782,
+      0.4121834233025846,
+      0.38799055075533073,
+      0.3499805748439545
+    ],
+    "latency_seconds": 0.3071720600128174
+  },
+  {
+    "question_id": "Q15",
+    "strategy": "semantic",
+    "retrieved_doc_ids": [
+      "guide_003",
+      "faq_003",
+      "prod_004",
+      "guide_002"
+    ],
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "hit_at_1": true,
+    "recall_at_5": true,
+    "reciprocal_rank": 1.0,
+    "top_5_similarities": [
+      0.6282107608444231,
+      0.5645983892200618,
+      0.5011721852236272,
+      0.44424923257516724
+    ],
+    "latency_seconds": 0.26445817947387695
+  }
+]

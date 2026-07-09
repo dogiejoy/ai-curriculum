@@ -1,0 +1,167 @@
+[
+  {
+    "id": "Q01",
+    "query": "NexGard Spectra สำหรับสุนัขน้ำหนักเท่าไหร่",
+    "ground_truth_doc_ids": [
+      "prod_001"
+    ],
+    "difficulty": "easy",
+    "doc_type": "product",
+    "language": "th",
+    "notes": ""
+  },
+  {
+    "id": "Q02",
+    "query": "อาหารแมวโรคไต Royal Canin ต้องใบสั่งไหม",
+    "ground_truth_doc_ids": [
+      "prod_003"
+    ],
+    "difficulty": "easy",
+    "doc_type": "product",
+    "language": "th",
+    "notes": ""
+  },
+  {
+    "id": "Q03",
+    "query": "Metacam คือยาอะไร ใช้กับสัตว์ประเภทไหน",
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "difficulty": "easy",
+    "doc_type": "product",
+    "language": "th",
+    "notes": ""
+  },
+  {
+    "id": "Q04",
+    "query": "ยาป้องกันเห็บสำหรับแมวแบบฉีดตัวไหน",
+    "ground_truth_doc_ids": [
+      "prod_004"
+    ],
+    "difficulty": "medium",
+    "doc_type": "product",
+    "language": "th",
+    "notes": "Bravecto Plus injectable — form-factor match required"
+  },
+  {
+    "id": "Q05",
+    "query": "prescription diet สำหรับหมาท้องเสียง่าย",
+    "ground_truth_doc_ids": [
+      "prod_006"
+    ],
+    "difficulty": "medium",
+    "doc_type": "product",
+    "language": "mixed",
+    "notes": "Hill's Sensitive Stomach — 'prescription' keyword may confuse with prod_003/prod_005"
+  },
+  {
+    "id": "Q06",
+    "query": "ยาแก้ปวดสำหรับสุนัข ไม่ใช่ steroid",
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "difficulty": "hard",
+    "doc_type": "product",
+    "language": "th",
+    "notes": "Requires understanding NSAID = non-steroid"
+  },
+  {
+    "id": "Q07",
+    "query": "สาขาใหม่จะเปิด account สั่งซื้อยังไง",
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "difficulty": "easy",
+    "doc_type": "faq",
+    "language": "th",
+    "notes": ""
+  },
+  {
+    "id": "Q08",
+    "query": "สินค้า cold chain ต้องเก็บอุณหภูมิเท่าไหร่",
+    "ground_truth_doc_ids": [
+      "faq_003"
+    ],
+    "difficulty": "easy",
+    "doc_type": "faq",
+    "language": "th",
+    "notes": ""
+  },
+  {
+    "id": "Q09",
+    "query": "ต้องส่งเอกสารอะไรบ้างสำหรับสั่งยาควบคุมพิเศษ",
+    "ground_truth_doc_ids": [
+      "faq_004"
+    ],
+    "difficulty": "easy",
+    "doc_type": "faq",
+    "language": "th",
+    "notes": ""
+  },
+  {
+    "id": "Q10",
+    "query": "สินค้าเสียหายตอนขนส่ง ทำยังไง",
+    "ground_truth_doc_ids": [
+      "faq_005"
+    ],
+    "difficulty": "medium",
+    "doc_type": "faq",
+    "language": "th",
+    "notes": ""
+  },
+  {
+    "id": "Q11",
+    "query": "เงื่อนไขการชำระเงินสำหรับลูกค้าเก่า",
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "difficulty": "medium",
+    "doc_type": "faq",
+    "language": "th",
+    "notes": "Payment terms mentioned in faq_002 (ordering doc)"
+  },
+  {
+    "id": "Q12",
+    "query": "ต้องนับสต็อกเดือนละครั้งใช่ไหม ทำยังไง",
+    "ground_truth_doc_ids": [
+      "guide_002"
+    ],
+    "difficulty": "easy",
+    "doc_type": "guide",
+    "language": "th",
+    "notes": ""
+  },
+  {
+    "id": "Q13",
+    "query": "วัคซีนอุณหภูมิผิด ต้องทำยังไง",
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "difficulty": "easy",
+    "doc_type": "guide",
+    "language": "th",
+    "notes": ""
+  },
+  {
+    "id": "Q14",
+    "query": "สั่งด่วนหลังเลิกงานได้ไหม",
+    "ground_truth_doc_ids": [
+      "guide_001"
+    ],
+    "difficulty": "medium",
+    "doc_type": "guide",
+    "language": "th",
+    "notes": ""
+  },
+  {
+    "id": "Q15",
+    "query": "SOP for temperature excursion incident reporting",
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "difficulty": "hard",
+    "doc_type": "guide",
+    "language": "en",
+    "notes": "English query vs Thai doc — cross-language test"
+  }
+]
