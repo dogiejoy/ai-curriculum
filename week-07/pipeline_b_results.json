@@ -1,0 +1,463 @@
+[
+  {
+    "question_id": "Q01",
+    "query": "NexGard Spectra สำหรับสุนัขน้ำหนักเท่าไหร่",
+    "vector_top5_docs": [
+      "prod_001",
+      "prod_006",
+      "prod_002",
+      "prod_005",
+      "prod_004"
+    ],
+    "reranked_top5_docs": [
+      "prod_001",
+      "prod_002",
+      "prod_004",
+      "prod_005",
+      "prod_006"
+    ],
+    "ground_truth": [
+      "prod_001"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.46681714057922363,
+    "latency_rerank": 0.48723697662353516,
+    "tokens_rerank": 4414,
+    "cost_rerank": 0.00022070000000000002
+  },
+  {
+    "question_id": "Q02",
+    "query": "อาหารแมวโรคไต Royal Canin ต้องใบสั่งไหม",
+    "vector_top5_docs": [
+      "prod_003",
+      "prod_006",
+      "prod_001",
+      "prod_002",
+      "faq_004"
+    ],
+    "reranked_top5_docs": [
+      "prod_003",
+      "prod_005",
+      "prod_004",
+      "faq_004",
+      "prod_001"
+    ],
+    "ground_truth": [
+      "prod_003"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.31336069107055664,
+    "latency_rerank": 0.40378332138061523,
+    "tokens_rerank": 4108,
+    "cost_rerank": 0.0002054
+  },
+  {
+    "question_id": "Q03",
+    "query": "Metacam คือยาอะไร ใช้กับสัตว์ประเภทไหน",
+    "vector_top5_docs": [
+      "prod_005",
+      "prod_004",
+      "prod_001",
+      "prod_002",
+      "prod_003"
+    ],
+    "reranked_top5_docs": [
+      "prod_005",
+      "prod_004",
+      "prod_001",
+      "prod_002",
+      "prod_003"
+    ],
+    "ground_truth": [
+      "prod_005"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.30797529220581055,
+    "latency_rerank": 0.5091280937194824,
+    "tokens_rerank": 4363,
+    "cost_rerank": 0.00021815
+  },
+  {
+    "question_id": "Q04",
+    "query": "ยาป้องกันเห็บสำหรับแมวแบบฉีดตัวไหน",
+    "vector_top5_docs": [
+      "prod_004",
+      "prod_002",
+      "prod_001",
+      "prod_003",
+      "prod_005"
+    ],
+    "reranked_top5_docs": [
+      "prod_004",
+      "prod_002",
+      "prod_001",
+      "prod_005",
+      "prod_003"
+    ],
+    "ground_truth": [
+      "prod_004"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.31334567070007324,
+    "latency_rerank": 0.42378807067871094,
+    "tokens_rerank": 4387,
+    "cost_rerank": 0.00021935000000000002
+  },
+  {
+    "question_id": "Q05",
+    "query": "prescription diet สำหรับหมาท้องเสียง่าย",
+    "vector_top5_docs": [
+      "prod_006",
+      "prod_003",
+      "prod_001",
+      "prod_005"
+    ],
+    "reranked_top5_docs": [
+      "prod_006",
+      "prod_001",
+      "prod_003",
+      "prod_005"
+    ],
+    "ground_truth": [
+      "prod_006"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.2692267894744873,
+    "latency_rerank": 0.42157578468322754,
+    "tokens_rerank": 4227,
+    "cost_rerank": 0.00021135000000000001
+  },
+  {
+    "question_id": "Q06",
+    "query": "ยาแก้ปวดสำหรับสุนัข ไม่ใช่ steroid",
+    "vector_top5_docs": [
+      "prod_005",
+      "prod_001",
+      "prod_004",
+      "prod_002",
+      "prod_006"
+    ],
+    "reranked_top5_docs": [
+      "prod_005",
+      "prod_001",
+      "prod_004",
+      "prod_006",
+      "prod_002"
+    ],
+    "ground_truth": [
+      "prod_005"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.3204360008239746,
+    "latency_rerank": 0.48035597801208496,
+    "tokens_rerank": 4463,
+    "cost_rerank": 0.00022315
+  },
+  {
+    "question_id": "Q07",
+    "query": "สาขาใหม่จะเปิด account สั่งซื้อยังไง",
+    "vector_top5_docs": [
+      "faq_002",
+      "guide_001",
+      "guide_002",
+      "faq_004",
+      "prod_002"
+    ],
+    "reranked_top5_docs": [
+      "faq_002",
+      "guide_001",
+      "faq_004",
+      "prod_002",
+      "guide_002"
+    ],
+    "ground_truth": [
+      "faq_002"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.33615899085998535,
+    "latency_rerank": 0.499798059463501,
+    "tokens_rerank": 4108,
+    "cost_rerank": 0.0002054
+  },
+  {
+    "question_id": "Q08",
+    "query": "สินค้า cold chain ต้องเก็บอุณหภูมิเท่าไหร่",
+    "vector_top5_docs": [
+      "faq_003",
+      "guide_003",
+      "prod_004",
+      "prod_003",
+      "prod_002"
+    ],
+    "reranked_top5_docs": [
+      "faq_003",
+      "guide_003",
+      "prod_004",
+      "prod_003",
+      "prod_005"
+    ],
+    "ground_truth": [
+      "faq_003"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.28378868103027344,
+    "latency_rerank": 0.9886422157287598,
+    "tokens_rerank": 4295,
+    "cost_rerank": 0.00021475000000000002
+  },
+  {
+    "question_id": "Q09",
+    "query": "ต้องส่งเอกสารอะไรบ้างสำหรับสั่งยาควบคุมพิเศษ",
+    "vector_top5_docs": [
+      "faq_004",
+      "prod_005",
+      "prod_002",
+      "guide_002",
+      "prod_001"
+    ],
+    "reranked_top5_docs": [
+      "faq_004",
+      "prod_005",
+      "guide_001",
+      "faq_002",
+      "guide_002"
+    ],
+    "ground_truth": [
+      "faq_004"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.37795400619506836,
+    "latency_rerank": 0.5068619251251221,
+    "tokens_rerank": 4392,
+    "cost_rerank": 0.00021960000000000003
+  },
+  {
+    "question_id": "Q10",
+    "query": "สินค้าเสียหายตอนขนส่ง ทำยังไง",
+    "vector_top5_docs": [
+      "faq_005",
+      "faq_003",
+      "guide_001",
+      "guide_003",
+      "faq_002"
+    ],
+    "reranked_top5_docs": [
+      "faq_005",
+      "faq_003",
+      "guide_003",
+      "guide_001",
+      "guide_002"
+    ],
+    "ground_truth": [
+      "faq_005"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.31424593925476074,
+    "latency_rerank": 0.5046160221099854,
+    "tokens_rerank": 4002,
+    "cost_rerank": 0.00020010000000000004
+  },
+  {
+    "question_id": "Q11",
+    "query": "เงื่อนไขการชำระเงินสำหรับลูกค้าเก่า",
+    "vector_top5_docs": [
+      "faq_002",
+      "prod_002",
+      "faq_005",
+      "guide_001",
+      "prod_006"
+    ],
+    "reranked_top5_docs": [
+      "faq_002",
+      "faq_005",
+      "prod_002",
+      "guide_001",
+      "prod_006"
+    ],
+    "ground_truth": [
+      "faq_002"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.31672096252441406,
+    "latency_rerank": 0.5017180442810059,
+    "tokens_rerank": 4073,
+    "cost_rerank": 0.00020365000000000002
+  },
+  {
+    "question_id": "Q12",
+    "query": "ต้องนับสต็อกเดือนละครั้งใช่ไหม ทำยังไง",
+    "vector_top5_docs": [
+      "guide_002",
+      "faq_003",
+      "guide_003",
+      "prod_002",
+      "guide_001"
+    ],
+    "reranked_top5_docs": [
+      "guide_002",
+      "faq_002",
+      "faq_003",
+      "guide_001",
+      "prod_002"
+    ],
+    "ground_truth": [
+      "guide_002"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.3142850399017334,
+    "latency_rerank": 0.4026045799255371,
+    "tokens_rerank": 4214,
+    "cost_rerank": 0.0002107
+  },
+  {
+    "question_id": "Q13",
+    "query": "วัคซีนอุณหภูมิผิด ต้องทำยังไง",
+    "vector_top5_docs": [
+      "guide_003",
+      "faq_003",
+      "prod_004",
+      "faq_005"
+    ],
+    "reranked_top5_docs": [
+      "guide_003",
+      "faq_003",
+      "prod_004",
+      "faq_005"
+    ],
+    "ground_truth": [
+      "guide_003"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.3134760856628418,
+    "latency_rerank": 0.5084848403930664,
+    "tokens_rerank": 4292,
+    "cost_rerank": 0.0002146
+  },
+  {
+    "question_id": "Q14",
+    "query": "สั่งด่วนหลังเลิกงานได้ไหม",
+    "vector_top5_docs": [
+      "guide_001",
+      "faq_004",
+      "faq_002",
+      "faq_005",
+      "prod_006"
+    ],
+    "reranked_top5_docs": [
+      "faq_002",
+      "guide_001",
+      "faq_004",
+      "faq_005",
+      "prod_006"
+    ],
+    "ground_truth": [
+      "guide_001"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": false,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 0.5,
+    "latency_vector": 0.27742910385131836,
+    "latency_rerank": 0.4350259304046631,
+    "tokens_rerank": 3919,
+    "cost_rerank": 0.00019595
+  },
+  {
+    "question_id": "Q15",
+    "query": "SOP for temperature excursion incident reporting",
+    "vector_top5_docs": [
+      "guide_003",
+      "faq_003",
+      "faq_005",
+      "guide_001",
+      "prod_004"
+    ],
+    "reranked_top5_docs": [
+      "guide_003",
+      "faq_003",
+      "guide_001",
+      "faq_005",
+      "prod_004"
+    ],
+    "ground_truth": [
+      "guide_003"
+    ],
+    "vector_hit_at_1": true,
+    "reranked_hit_at_1": true,
+    "vector_recall_at_5": true,
+    "reranked_recall_at_5": true,
+    "vector_mrr": 1.0,
+    "reranked_mrr": 1.0,
+    "latency_vector": 0.3176729679107666,
+    "latency_rerank": 0.3993048667907715,
+    "tokens_rerank": 3831,
+    "cost_rerank": 0.00019155000000000002
+  }
+]
