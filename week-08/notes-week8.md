@@ -172,3 +172,64 @@ Layout responsive to content length
 
 ### v0.1 backend + frontend feature complete
 Depot RTB Assistant ready for Friday demo + measurement
+
+## Day 5 (Fri 24 ก.ค.) — Demo Day + Phase 2 Close
+
+### End-to-end measurement
+15 questions × full pipeline (retrieval + Sonnet 4.6 generation):
+- Retrieval hit@1: 100% (15/15)
+- Answer cites correct truth doc: 100% (15/15)
+- Avg cost/query: $0.0462
+- Total run cost: $0.69
+- Avg total latency: 15.7s
+
+### 6 portfolio demos captured
+D1 Metacam dose: calculation + reasoning ($0.0456, 16.7s)
+D2 Cold chain: multi-source table + operational thresholds ($0.0477, 14.9s)
+D3 Open account: business process workflow ($0.0467, 13.5s)
+D4 English SOP: cross-language multilingual proof ($0.0528, 24.3s)
+D5 Metadata filter (curl): API transparency for developers
+D6 Refusal: guardrails clean ($0.001, 2.6s)
+
+### v0.1 ship state
+- Backend: RetrievalService + ContextBuilder + AssistantChatController
+- Frontend: assistant.html with markdown + sources sidebar
+- Evaluation: assistant:eval-retrieval + assistant:eval-e2e commands
+- Regression testing: rerun any time in ~5 minutes
+
+### Phase 2 Retrospective (Weeks 5-8)
+
+Shipped 4 weeks of production RAG:
+- Voyage embeddings selection (measured, not guessed)
+- pgvector integration (cross-stack Python + Laravel)
+- Chunking strategies (Fixed wins on this corpus)
+- Retrieval optimization (hybrid/rerank/HyDE all measured net-negative)
+- Full RAG pipeline in Laravel (production stack)
+- 100% accuracy on golden dataset
+
+Key methodology wins:
+1. Golden dataset (Week 6) reused Weeks 7-8 for every measurement
+2. Empirical > opinion for every decision
+3. Reuse maps from Phase 1 (Weeks 1-4) → saved days
+4. Package A angle: "knowing when NOT to add complexity"
+
+Tech debt logged for Phase 3:
+- Semantic chunker Thai sentence splitter (over-fragments)
+- Postgres FTS Thai limitation (no word tokenizer)
+- chunk_index missing from metadata (id-based ordering fragile)
+- artisan serve buffering (production nginx needed)
+- Golden dataset ceiling (100% hit@1 = no measurement headroom)
+
+### Phase 3 preview (Weeks 9-12)
+Week 9: Evaluation framework + LLM-as-judge + expand golden dataset to 30+
+Week 10: Guardrails (PII, prompt injection, medical compliance)
+Week 11: Cost optimization (Haiku routing + prompt caching)
+Week 12: Production deployment (nginx, monitoring, runbook)
+
+### Business timeline check
+Phase 2 done Fri 24 ก.ค. (planned Fri 19 มิ.ย. — 5-week slip)
+Phase 3 target: ~Fri 21 ส.ค. 2026
+Phase 4 (Package A launch prep): Weeks 13-16
+Realistic launch: early October 2026
+Still 6+ months of active selling before 12-month deadline
+On track for business goal: 2-3 client deals in first year
