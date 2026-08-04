@@ -7,14 +7,36 @@ from dataclasses import dataclass, field
 from typing import Literal
 
 
+#@dataclass
+#class GoldenQuestion:
+#    id: str
+#    query: str
+#    ground_truth_doc_ids: list[str]  # Which doc(s) contain the answer
+#    difficulty: Literal["easy", "medium", "hard"]
+#    doc_type: Literal["product", "faq", "guide"]
+#    language: Literal["th", "en", "mixed"]
+#    notes: str = ""
+
+# Add to golden_dataset.py existing structure
 @dataclass
 class GoldenQuestion:
     id: str
     query: str
-    ground_truth_doc_ids: list[str]  # Which doc(s) contain the answer
+    ground_truth_doc_ids: list[str]  # can be multiple for multi-hop
     difficulty: Literal["easy", "medium", "hard"]
-    doc_type: Literal["product", "faq", "guide"]
+    doc_type: Literal["product", "faq", "guide", "multiple"]  # + "multiple"
     language: Literal["th", "en", "mixed"]
+    
+    # NEW fields:
+    question_type: Literal[
+        "single_doc",      # existing questions (Q01-Q15)
+        "multi_hop",       # needs 2+ docs
+        "ambiguous",       # multiple docs match, need disambiguation
+        "no_answer",       # corpus doesn't contain answer
+        "precise_value",   # extract specific number/fact
+    ]
+    expected_answer_contains: list[str]  # keywords/phrases that must appear
+    expected_refusal: bool = False       # true for no_answer questions
     notes: str = ""
 
 

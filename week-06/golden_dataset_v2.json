@@ -1,0 +1,462 @@
+[
+  {
+    "id": "Q01",
+    "query": "NexGard Spectra สำหรับสุนัขน้ำหนักเท่าไหร่",
+    "ground_truth_doc_ids": [
+      "prod_001"
+    ],
+    "difficulty": "easy",
+    "doc_type": "product",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": ""
+  },
+  {
+    "id": "Q02",
+    "query": "อาหารแมวโรคไต Royal Canin ต้องใบสั่งไหม",
+    "ground_truth_doc_ids": [
+      "prod_003"
+    ],
+    "difficulty": "easy",
+    "doc_type": "product",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": ""
+  },
+  {
+    "id": "Q03",
+    "query": "Metacam คือยาอะไร ใช้กับสัตว์ประเภทไหน",
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "difficulty": "easy",
+    "doc_type": "product",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": ""
+  },
+  {
+    "id": "Q04",
+    "query": "ยาป้องกันเห็บสำหรับแมวแบบฉีดตัวไหน",
+    "ground_truth_doc_ids": [
+      "prod_004"
+    ],
+    "difficulty": "medium",
+    "doc_type": "product",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": "Bravecto Plus injectable — form-factor match required"
+  },
+  {
+    "id": "Q05",
+    "query": "prescription diet สำหรับหมาท้องเสียง่าย",
+    "ground_truth_doc_ids": [
+      "prod_006"
+    ],
+    "difficulty": "medium",
+    "doc_type": "product",
+    "language": "mixed",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": "Hill's Sensitive Stomach — 'prescription' keyword may confuse with prod_003/prod_005"
+  },
+  {
+    "id": "Q06",
+    "query": "ยาแก้ปวดสำหรับสุนัข ไม่ใช่ steroid",
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "difficulty": "hard",
+    "doc_type": "product",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": "Requires understanding NSAID = non-steroid"
+  },
+  {
+    "id": "Q07",
+    "query": "สาขาใหม่จะเปิด account สั่งซื้อยังไง",
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "difficulty": "easy",
+    "doc_type": "faq",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": ""
+  },
+  {
+    "id": "Q08",
+    "query": "สินค้า cold chain ต้องเก็บอุณหภูมิเท่าไหร่",
+    "ground_truth_doc_ids": [
+      "faq_003"
+    ],
+    "difficulty": "easy",
+    "doc_type": "faq",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": ""
+  },
+  {
+    "id": "Q09",
+    "query": "ต้องส่งเอกสารอะไรบ้างสำหรับสั่งยาควบคุมพิเศษ",
+    "ground_truth_doc_ids": [
+      "faq_004"
+    ],
+    "difficulty": "easy",
+    "doc_type": "faq",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": ""
+  },
+  {
+    "id": "Q10",
+    "query": "สินค้าเสียหายตอนขนส่ง ทำยังไง",
+    "ground_truth_doc_ids": [
+      "faq_005"
+    ],
+    "difficulty": "medium",
+    "doc_type": "faq",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": ""
+  },
+  {
+    "id": "Q11",
+    "query": "เงื่อนไขการชำระเงินสำหรับลูกค้าเก่า",
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "difficulty": "medium",
+    "doc_type": "faq",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": "Payment terms mentioned in faq_002 (ordering doc)"
+  },
+  {
+    "id": "Q12",
+    "query": "ต้องนับสต็อกเดือนละครั้งใช่ไหม ทำยังไง",
+    "ground_truth_doc_ids": [
+      "guide_002"
+    ],
+    "difficulty": "easy",
+    "doc_type": "guide",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": ""
+  },
+  {
+    "id": "Q13",
+    "query": "วัคซีนอุณหภูมิผิด ต้องทำยังไง",
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "difficulty": "easy",
+    "doc_type": "guide",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": ""
+  },
+  {
+    "id": "Q14",
+    "query": "สั่งด่วนหลังเลิกงานได้ไหม",
+    "ground_truth_doc_ids": [
+      "guide_001"
+    ],
+    "difficulty": "medium",
+    "doc_type": "guide",
+    "language": "th",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": ""
+  },
+  {
+    "id": "Q15",
+    "query": "SOP for temperature excursion incident reporting",
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "difficulty": "hard",
+    "doc_type": "guide",
+    "language": "en",
+    "question_type": "single_doc",
+    "expected_answer_contains": [],
+    "expected_refusal": false,
+    "notes": "English query vs Thai doc — cross-language test"
+  },
+  {
+    "id": "Q16",
+    "query": "ยาป้องกันเห็บสำหรับแมวแบบฉีด ต้องใบสั่งไหม",
+    "ground_truth_doc_ids": [
+      "prod_004",
+      "faq_004"
+    ],
+    "difficulty": "medium",
+    "doc_type": "multiple",
+    "language": "th",
+    "question_type": "multi_hop",
+    "expected_answer_contains": [
+      "Bravecto Plus",
+      "ใบสั่ง"
+    ],
+    "expected_refusal": false,
+    "notes": "Product + Rx policy integration"
+  },
+  {
+    "id": "Q17",
+    "query": "อาหารแมวโรคไต เก็บที่อุณหภูมิเท่าไหร่",
+    "ground_truth_doc_ids": [
+      "prod_003",
+      "faq_003"
+    ],
+    "difficulty": "medium",
+    "doc_type": "multiple",
+    "language": "th",
+    "question_type": "multi_hop",
+    "expected_answer_contains": [
+      "Royal Canin",
+      "อุณหภูมิ"
+    ],
+    "expected_refusal": false,
+    "notes": "Product spec + cold-chain policy"
+  },
+  {
+    "id": "Q18",
+    "query": "Bravecto Plus ต้องส่งเอกสารอะไรบ้างในการสั่ง",
+    "ground_truth_doc_ids": [
+      "prod_004",
+      "faq_004"
+    ],
+    "difficulty": "hard",
+    "doc_type": "multiple",
+    "language": "th",
+    "question_type": "multi_hop",
+    "expected_answer_contains": [
+      "Bravecto Plus",
+      "ใบอนุญาต"
+    ],
+    "expected_refusal": false,
+    "notes": "Product-specific docs + Rx documentation"
+  },
+  {
+    "id": "Q19",
+    "query": "วัคซีนถ้าอุณหภูมิเกินต้องรายงานภายในกี่นาที และใช้แบบฟอร์มอะไร",
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "difficulty": "hard",
+    "doc_type": "guide",
+    "language": "th",
+    "question_type": "multi_hop",
+    "expected_answer_contains": [
+      "15",
+      "BREACH-RPT-03"
+    ],
+    "expected_refusal": false,
+    "notes": "2 facts from same guide — timing + form ID"
+  },
+  {
+    "id": "Q20",
+    "query": "สั่งซื้อ Metacam ต้องเตรียมอะไรบ้าง และจัดส่งกี่วัน",
+    "ground_truth_doc_ids": [
+      "prod_005",
+      "faq_004",
+      "faq_002"
+    ],
+    "difficulty": "hard",
+    "doc_type": "multiple",
+    "language": "th",
+    "question_type": "multi_hop",
+    "expected_answer_contains": [
+      "Metacam",
+      "ใบสั่ง",
+      "จัดส่ง"
+    ],
+    "expected_refusal": false,
+    "notes": "3-doc integration"
+  },
+  {
+    "id": "Q21",
+    "query": "อาหารสำหรับสุนัข",
+    "ground_truth_doc_ids": [
+      "prod_006"
+    ],
+    "difficulty": "medium",
+    "doc_type": "product",
+    "language": "th",
+    "question_type": "ambiguous",
+    "expected_answer_contains": [
+      "Hill's",
+      "Sensitive Stomach"
+    ],
+    "expected_refusal": false,
+    "notes": "prod_003 is CAT food — test species disambiguation"
+  },
+  {
+    "id": "Q22",
+    "query": "ยาสำหรับสุนัขที่มีอาการอักเสบ",
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "difficulty": "medium",
+    "doc_type": "product",
+    "language": "th",
+    "question_type": "ambiguous",
+    "expected_answer_contains": [
+      "Metacam",
+      "NSAID"
+    ],
+    "expected_refusal": false,
+    "notes": "Anti-inflammatory keyword ambiguity"
+  },
+  {
+    "id": "Q23",
+    "query": "สินค้าที่ต้องเก็บเย็น",
+    "ground_truth_doc_ids": [
+      "prod_004",
+      "faq_003"
+    ],
+    "difficulty": "medium",
+    "doc_type": "multiple",
+    "language": "th",
+    "question_type": "ambiguous",
+    "expected_answer_contains": [
+      "Bravecto Plus",
+      "cold-chain"
+    ],
+    "expected_refusal": false,
+    "notes": "Test metadata-aware retrieval"
+  },
+  {
+    "id": "Q24",
+    "query": "การสั่งซื้อทำยังไง",
+    "ground_truth_doc_ids": [
+      "faq_002"
+    ],
+    "difficulty": "easy",
+    "doc_type": "faq",
+    "language": "th",
+    "question_type": "ambiguous",
+    "expected_answer_contains": [
+      "account",
+      "สั่งซื้อ"
+    ],
+    "expected_refusal": false,
+    "notes": "Broad ordering query"
+  },
+  {
+    "id": "Q25",
+    "query": "ยาป้องกันสำหรับสัตว์เลี้ยง",
+    "ground_truth_doc_ids": [
+      "prod_001",
+      "prod_002",
+      "prod_004"
+    ],
+    "difficulty": "hard",
+    "doc_type": "product",
+    "language": "th",
+    "question_type": "ambiguous",
+    "expected_answer_contains": [
+      "NexGard",
+      "Revolution",
+      "Bravecto"
+    ],
+    "expected_refusal": false,
+    "notes": "Broad query should list multiple parasite control products"
+  },
+  {
+    "id": "Q26",
+    "query": "Metacam ราคาต่อขวดเท่าไหร่",
+    "ground_truth_doc_ids": [],
+    "difficulty": "medium",
+    "doc_type": "product",
+    "language": "th",
+    "question_type": "no_answer",
+    "expected_answer_contains": [],
+    "expected_refusal": true,
+    "notes": "Corpus omits prices"
+  },
+  {
+    "id": "Q27",
+    "query": "สาขาไหนของ Depot RTB มีสต็อกวัคซีน rabies เยอะสุด",
+    "ground_truth_doc_ids": [],
+    "difficulty": "hard",
+    "doc_type": "faq",
+    "language": "th",
+    "question_type": "no_answer",
+    "expected_answer_contains": [],
+    "expected_refusal": true,
+    "notes": "No inventory data"
+  },
+  {
+    "id": "Q28",
+    "query": "สั่ง COVID-19 vaccine สำหรับสัตว์ได้ไหม",
+    "ground_truth_doc_ids": [],
+    "difficulty": "medium",
+    "doc_type": "product",
+    "language": "th",
+    "question_type": "no_answer",
+    "expected_answer_contains": [],
+    "expected_refusal": true,
+    "notes": "Non-existent product"
+  },
+  {
+    "id": "Q29",
+    "query": "High alarm ตั้งที่กี่องศา",
+    "ground_truth_doc_ids": [
+      "guide_003"
+    ],
+    "difficulty": "medium",
+    "doc_type": "guide",
+    "language": "th",
+    "question_type": "precise_value",
+    "expected_answer_contains": [
+      "+9°C",
+      "9"
+    ],
+    "expected_refusal": false,
+    "notes": "Specific threshold value"
+  },
+  {
+    "id": "Q30",
+    "query": "Metacam Loading dose คือกี่ mg per kg",
+    "ground_truth_doc_ids": [
+      "prod_005"
+    ],
+    "difficulty": "medium",
+    "doc_type": "product",
+    "language": "mixed",
+    "question_type": "precise_value",
+    "expected_answer_contains": [
+      "0.2 mg/kg",
+      "0.2"
+    ],
+    "expected_refusal": false,
+    "notes": "Specific dose value"
+  }
+]
