@@ -56,3 +56,127 @@ Attack surface reduced without hurting primary use case."
 Reading: prompt injection patterns + detection strategies
 Design: which injection attempts to catch (jailbreak, instruction override,
 data exfiltration)
+
+## Day 2 (Wed 5 ส.ค.) — Prompt Injection Threat Model + Design
+
+### Attack pattern catalog (7 categories)
+1. Direct instruction override — regex-catchable, medium likelihood
+2. Role-play jailbreak — regex + LLM, high impact ⭐
+3. System prompt extraction — regex, low priority for vet context
+4. Data exfiltration — regex, medium priority
+5. Scope violation / medical advice — LLM classifier, ⭐ #1 real threat
+6. Encoded / obfuscated — very low frequency, skip for v0.1
+7. Multi-turn poisoning — N/A (single-turn stateless)
+
+### Depot RTB priority ranking (P0/P1/P2)
+P0 (ship for v0.1):
+- Direct override (regex)
+- Role-play jailbreak (regex + LLM)
+- Scope violation / medical advice (LLM classifier)
+
+P1 (nice to have):
+- Data exfiltration (regex)
+
+P2 (defer):
+- System prompt extraction
+- Encoded attacks
+
+### Key insight — real threat model
+Attack surface = staff themselves under time pressure
+NOT adversarial hackers (internal system)
+
+Priority: prevent accidental medical-advice scope creep > defend against 
+sophisticated attacks. Cost of over-blocking legitimate queries > cost of 
+edge case attacks getting through.
+
+### Detection architecture (2-layer)
+Layer A: Regex (<1ms, $0) — direct patterns, extraction, exfil
+Layer B: LLM classifier Haiku 4.5 (~300ms, ~$0.001) — semantic threats
+Layer B only if Layer A didn't catch (skip 90% of queries)
+
+### Response strategy
+- Block (400): generic refusal, don't reveal category
+- Redirect (200 no LLM): helpful message + what to do
+- Proceed: invisible
+
+### Estimated cost for v0.1
+Haiku classifier: $0.25/day at 1000 queries (all classified)
+Realistic: $0.025/day (only ~10% reach Layer B after regex filter)
+Acceptable for production safety layer.
+
+### Thu implementation plan
+1. PromptInjectionDetector service class
+2. Regex patterns for Layer A (7 patterns above)
+3. LLM classifier prompt for Layer B (Haiku 4.5)
+4. InjectionSafeguard middleware
+5. Test suite: 7 regex tests + 5 LLM tests
+6. Integration into /api/assistant/chat middleware chain
+
+## Day 3 (Thu 6 ส.ค.) — Prompt Injection Detection Implementation
+
+### Shipped
+1. InjectionDetectionResult DTO (immutable):
+   - 7 categories, 3 actions, layer tracking, confidence, cost
+   - Static factory: ::clean() for safe pass-through
+2. PromptInjectionDetector service (2-layer):
+   - Layer A: 9 regex patterns (EN + Thai)
+     * jailbreak_instruction_override (ignore/forget/disregard)
+     * jailbreak_role_play (you are now, DAN)
+     * system_prompt_extraction
+     * data_exfiltration (list/dump all)
+   - Layer B: Haiku 4.5 semantic classifier
+     * Handles: medical_advice_request, subtle jailbreaks, off_topic
+     * Fail-open on classifier errors (log warning, don't block legit users)
+3. InjectionSafeguard middleware:
+   - Chained after PiiSafeguard on /api/assistant/chat
+   - Block (400) for adversarial categories
+   - Redirect (200 no LLM call) for medical/off_topic
+   - Full audit logging per detection
+
+### Layer A verification (regex, $0)
+8/8 correct including no false positive on "รายการสินค้าสำหรับแมว"
+
+### Layer B verification (Haiku 4.5 classifier)
+9/9 correct — including semantic nuance:
+- "หมาผมท้องเสีย รักษายังไง" → medical (user's animal + treatment)
+- "สินค้าไหนใช้สำหรับสุนัขที่อาเจียน" → safe (product info about symptom)
+- This distinction requires semantic understanding regex can't provide
+
+### Cost profile (verified in production)
+- Layer A hits: $0 (regex, fast)
+- Layer B hits: ~$0.00141/query (Haiku 4.5)
+- Production estimate at 1000 queries/day:
+  - ~90% caught by regex or clean = skip LLM
+  - ~100 hit Layer B = $0.14/day = ~$4.20/month
+  - Acceptable safety layer cost
+
+### Design decisions
+- Fail-open on classifier errors — don't block legitimate users due to
+  transient API issues, log warning for monitoring
+- Generic block message — don't reveal detection category to attackers
+- Redirect (200) for medical/off_topic — user retains agency + guidance
+- Order: PiiSafeguard → InjectionSafeguard (save Layer B cost when PII blocks)
+
+### End-to-end verified
+- Clean query → SSE stream normally
+- Direct override → 400 block
+- Medical advice → 200 redirect (helpful Thai message)
+- Off-topic → 200 redirect
+- Full audit trail in logs (category, layer, reason, IP, query preview)
+
+### Deferred to Week 11 / 12
+- Output PII scan (LLM might quote user's PII in refusal)
+- Multi-turn context poisoning (v0.1 is single-turn)
+- Encoded attack detection (base64, leet-speak) — very low frequency
+- Rate limiting per IP (production infra concern)
+- Prompt caching for classifier (frequent similar patterns)
+
+### Business framing for Package A
+"Depot RTB Assistant blocks 3 threat categories transparently:
+1. Instruction override attempts (regex, $0 cost)
+2. Data exfiltration attempts (regex, $0 cost)
+3. Medical scope violations + subtle jailbreaks (LLM classifier, $0.14/day)
+
+Full audit log per detection: category, method, reason, IP.
+Attack surface reduced by 3 layers stacked (input validation → PII →
+injection). Compliance-ready observability."
