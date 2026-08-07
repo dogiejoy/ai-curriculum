@@ -180,3 +180,67 @@ Acceptable for production safety layer.
 Full audit log per detection: category, method, reason, IP.
 Attack surface reduced by 3 layers stacked (input validation → PII →
 injection). Compliance-ready observability."
+
+## Day 4 (Fri 7 ส.ค.) — Frontend Integration + Week 10 Close
+
+### Shipped
+public/assistant.html updates:
+1. Content-Type detection before response consumption
+2. renderGuardrailBanner() function — 2 visual variants:
+   - Block (red 🚫, border-left #ff3b30, bg #fff2f2)
+   - Redirect (blue ℹ️, border-left #007aff, bg #f0f7ff)
+3. Category/detection metadata display for transparency
+4. Sources sidebar clears on guardrail trigger
+5. Status bar shows guardrail type for developer debugging
+
+### 5 test scenarios verified end-to-end (screenshots captured)
+- Safe query: normal streaming with sources + citations
+- PII (national_id): red banner "Detected: national_id"  
+- Injection: red banner generic (no category revealed)
+- Medical advice: blue banner "Category: medical_advice_request"
+- Off-topic: blue banner "Category: off_topic"
+
+### UX design decisions
+- Red vs blue color: intuitive severity signal
+- Emojis (🚫 vs ℹ️): tone matches action (block vs guide)
+- Category transparency ONLY on redirects (informational)
+- Generic message on blocks (don't teach attackers)
+- Sources cleared on guardrail (clean state prevents confusion)
+
+### Week 10 Retrospective
+
+Shipped 4 days:
+- Day 1: PII detection + redaction middleware
+- Day 2: Threat model + design (reading)
+- Day 3: Injection detection (2-layer regex + Haiku classifier)
+- Day 4: Frontend integration + screenshots
+
+Depot RTB Assistant v0.1.2 = safety-hardened:
+- PII layer: national_id/credit card blocked, phone/email redacted from logs
+- Injection layer: 4 categories blocked, medical/off-topic redirected
+- Full audit trail per decision
+- Cost impact: ~$4.20/month at 1000 queries/day
+
+### Business framing (Package A pitch material)
+
+"Depot RTB Assistant ships with 3-layer defense stacked:
+1. Input validation
+2. PII safeguard (Thai national ID, credit card block; phone/email log-redact)
+3. Injection safeguard (regex for known attacks + Haiku classifier for
+   semantic threats like medical advice or off-topic)
+
+Attack surface reduced without hurting primary use case.
+Vet staff still get full product info experience — just protected from
+themselves under time pressure and from accidental scope creep.
+
+5 screenshot portfolio available (feature, compliance, security, scope,
+focus). Total additional cost for full guardrail: ~$4.20/month per
+1000 queries. Package A includes."
+
+### Deferred to Week 11/12
+- Output PII scan (LLM might quote user's PII in refusal)
+- Rate limiting (production infra concern)  
+- Multi-turn state (v0.1 is single-turn)
+- Prompt caching for classifier repeat patterns
+- pg_bigm for Thai FTS (from Week 7)
+- Semantic chunker Thai splitter fix (from Week 6)
