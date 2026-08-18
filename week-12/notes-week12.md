@@ -54,3 +54,55 @@
 No exotic infrastructure. Client ops teams already know this stack.
 Ships as docker-compose.yml — one command to launch.
 Streaming works production-grade (not just artisan serve buffering)."
+
+## Day 2 (Tue 18 ส.ค.) — Full Docker Compose
+
+### Shipped
+1. docker-compose.yml consolidated to 3 services:
+   - nginx :8080 (SSE-tuned)
+   - php-fpm :9000 (Laravel + pgvector extensions)
+   - postgres :5432 (external volume week-05_pgdata)
+2. External volume reuse preserved Week 6 data:
+   - 4 chunking strategies (fixed/recursive/semantic/structural)
+   - 474 chunks total intact
+3. Environment secrets pattern:
+   - .env.docker (gitignored) for API keys + passwords
+   - .env.docker.example checked into repo as template
+   - php-fpm and postgres services read via env_file directive
+4. Datasets moved into project:
+   - storage/app/eval-datasets/v1.json (15 questions)
+   - storage/app/eval-datasets/v2.json (30 questions)
+   - Self-contained — no external filesystem dependency
+
+### Verified end-to-end
+- docker compose ps: 3 services running
+- Data preservation: SELECT confirms 474 chunks intact after volume remount
+- Full retrieval eval: 100% hit@1 preserved (matches Week 8/11 baseline)
+- API endpoint: retrieval + routing + cache all functional
+- Env secrets flow: ANTHROPIC_API_KEY + VOYAGE_API_KEY reach php-fpm
+
+### Design decisions
+- External volume (external: true, name: week-05_pgdata) = data survives
+  container rebuilds + reuses Week 5 investment
+- .env.docker not .env — separate from Laravel-native .env (host runtime)
+- Overrides pattern: DB_HOST/PORT/DB fixed in compose, secrets from env_file
+- Datasets in storage/app/eval-datasets = production-portable, no filesystem
+  dependency on host layout
+
+### Trade-offs
+- Docker overhead: +43ms per query vs host-native (445ms vs 402ms)
+- Acceptable: portable stack > tiny latency gain
+- Client onboarding: 1 file (.env.docker) + docker compose up
+
+### Bug fixed
+Path assumption ai-curriculum was ~/side-projects/ but actual ~/ai-sp/
+- Old default: base_path('../ai-curriculum/week-XX/golden_dataset.json')
+- Broke inside container (mount only sees /var/www/html)
+- Fix: storage_path('app/eval-datasets/vN.json') — Laravel-native path
+
+### For Day 3 (Wed 19 ส.ค.)
+Monitoring + observability:
+- Cost dashboard endpoint (aggregate cache hit + routing distribution)
+- Health check endpoints (/api/health, /api/ready)
+- Structured JSON logs
+- Consider Loki/Grafana OR just tail logs for v0.3
