@@ -106,3 +106,59 @@ Monitoring + observability:
 - Health check endpoints (/api/health, /api/ready)
 - Structured JSON logs
 - Consider Loki/Grafana OR just tail logs for v0.3
+
+## Day 3 (Wed 19 ส.ค.) — Monitoring + Observability
+
+### Shipped
+1. HealthController with 2 endpoints:
+   - GET /api/health — liveness (fast, no dependencies)
+   - GET /api/ready — readiness (DB + corpus + API keys)
+2. Docker healthcheck wired on nginx service (30s interval)
+3. AssistantQueryLog model + migration:
+   - Captures every query metric from Week 8/10/11 logging
+   - Fields: query_redacted, sources, model, routing_rule, tokens
+     (input/output/cache_creation/cache_read), cost_usd, latency,
+     PII count + types, guardrail action + category
+   - Indexes on created_at + (model, created_at) for stats queries
+4. AdminStatsController::costStats endpoint:
+   - GET /api/admin/cost-stats?hours=N
+   - Aggregates: total cost, cache hit rate, model distribution,
+     rule distribution, latency percentiles (p50/p95/p99), PII stats
+5. artisan assistant:stats CLI command:
+   - Ops-friendly terminal output
+   - Same data as endpoint, no HTTP overhead
+
+### Verified in production
+5 queries in 1-hour window:
+- Total cost: $0.1921 (avg $0.038/query — 15% below Week 11 projection)
+- Cache hit rate: 41.4% (23,456 reads / 33,207 writes)
+- Cache savings: $0.063 (33% off baseline)
+- Latency p50: 20s, p95: 22.8s
+- Routing: 100% Sonnet (multi_hop rule dominates as expected)
+
+### Business framing
+"Depot RTB Assistant v0.3 ships with per-client cost visibility. 
+Admin endpoint returns 24hr cost + cache performance + latency 
+percentiles. CLI available for ops (SSH-in stats). Client can audit 
+every query cost themselves. This is production monitoring baseline —
+Prometheus/Loki upgrade path exists if needed for scale."
+
+### Design decisions
+- DB table over log parsing — proper analytics, queryable, indexes
+- Middleware bypass for guardrail_action=proceed only (v0.3 scope)
+- Guardrail-triggered queries (blocked/redirected) NOT logged to DB yet
+- p99 requires 100+ samples for meaningful measurement
+- Cache savings calc: 2.70/1M savings per read token (Sonnet)
+
+### Trade-offs
+- APP_ENV=production in .env.docker means migrate needs confirmation
+- Consider APP_ENV=staging in dev, production only for deploy
+- Log middleware bypass = missing analytics for blocked queries
+  (Week 12 Day 4 if time)
+
+### For Day 4 (Thu 20 ส.ค.)
+Deployment runbook + client onboarding docs:
+- README section: quickstart (git clone → .env.docker → docker compose up)
+- Runbook: common ops (restart, rebuild, backup, view stats)
+- Failure scenarios: DB down, API key expired, disk full
+- Client-onboarding checklist (secrets, domain, TLS notes)
