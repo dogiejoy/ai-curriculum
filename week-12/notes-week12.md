@@ -162,3 +162,47 @@ Deployment runbook + client onboarding docs:
 - Runbook: common ops (restart, rebuild, backup, view stats)
 - Failure scenarios: DB down, API key expired, disk full
 - Client-onboarding checklist (secrets, domain, TLS notes)
+
+## Day 4 (Thu 20 ส.ค.) — Documentation + Runbooks
+
+### Shipped
+1. README.md — full rewrite:
+   - Feature list, quickstart (5-min setup)
+   - Architecture diagram
+   - Endpoints reference
+   - Configuration table
+   - Links to detailed docs
+2. docs/runbook.md — 194 lines:
+   - Daily ops (health, stats, logs)
+   - Restart operations (graceful/full/rebuild)
+   - Data management (backup, restore, truncate)
+   - Secrets rotation (Anthropic, Voyage, DB)
+   - Monitoring alert thresholds
+   - Common ops FAQ
+3. docs/failure-scenarios.md — 297 lines:
+   - 6 primary failure modes with symptoms → diagnosis → fix
+   - Ready check breakdowns
+   - API errors (Anthropic/Voyage)
+   - Streaming failures
+   - Cost spikes with investigation SQL
+   - Disk full recovery
+   - Container restart loops
+4. docs/client-onboarding.md — 100+ lines:
+   - Pre-sales info gathering
+   - Technical prep checklist
+   - 5-step deployment
+   - Handover to client
+   - Package A tier guidance ($99/$299/$999)
+
+### Business asset unlocked
+Package A now has:
+- Client-facing README (professional impression)
+- Ops runbook (client can self-serve daily tasks)
+- Failure playbook (reduces our support burden)
+- Onboarding checklist (repeatable client rollouts)
+
+### Deferred to Day 5
+- Full end-to-end verification with fresh Docker rebuild
+- Phase 3 retrospective (Weeks 9-12)
+- Phase 4 (Package A launch prep) kickoff
+- v0.3 = production ready milestone announcement
