@@ -206,3 +206,75 @@ Package A now has:
 - Phase 3 retrospective (Weeks 9-12)
 - Phase 4 (Package A launch prep) kickoff
 - v0.3 = production ready milestone announcement
+
+## Day 5 (Fri 21 ส.ค.) — Phase 3 Close + Phase 4 Kickoff
+
+### Fresh rebuild verification
+docker compose down + up = client onboarding simulation
+- All 3 services healthy in ~30s
+- /api/health OK, /api/ready 4/4 checks pass
+- Real query streamed successfully
+- Analytics logged: $0.058 first call (cache write)
+- Total time from start to working query: ~1 min (README claim <10 min proven)
+
+### Phase 3 Retrospective (Weeks 9-12)
+
+Shipped 4 weeks:
+- Week 9: Eval Framework (LLM-as-judge + v2 dataset + judge bug caught/fixed)
+- Week 10: Guardrails (PII + injection + 5 portfolio screenshots)
+- Week 11: Cost Optimization (Cache 85% savings + routing A/B validated)
+- Week 12: Production Deployment (Docker + monitoring + full docs)
+
+Key wins:
+1. Empirical > opinion methodology compounded across all weeks
+2. Transparency about bugs = strongest possible trust signal
+3. Compression handling: skipped days absorbed without quality loss
+4. Reuse from Phase 1-2: golden dataset, Voyage contract, SSE patterns
+5. Conservative shipping (safety > aggressive optimization)
+
+Tech debt logged (deferred to v0.4/Phase 5):
+- Semantic chunker Thai splitter
+- chunk_index metadata
+- pg_bigm for Thai FTS
+- Output PII scan
+- Rate limiting infrastructure
+- Multi-turn state
+- Semantic-aware cache key
+
+Business assets accumulated:
+- Product: v0.3 feature-complete + safety-hardened + monitored + documented
+- Docs: README + 3 operational docs
+- Portfolio: 11 screenshots + architecture doc
+- Economics: $0.038/query measured, 41% cache hit, 29% cost reduction
+- Pricing: Package A tiers drafted ($99/$299/$999)
+
+### 12-Week Curriculum Overall
+
+Started: Mon 25 May 2026
+Ended: Fri 21 Aug 2026
+Duration: 12 weeks + 4 days (93% on-time delivery)
+
+Phase 1 (1-4): Foundations
+Phase 2 (5-8): RAG Deep Dive → Depot RTB Assistant v0.1
+Phase 3 (9-12): Production Concerns → v0.3 client-deployable
+
+Original 12-month business goal: 2-3 clients + recurring revenue by April 2027
+Current status: Curriculum complete with 7+ months buffer for business execution
+
+### Phase 4 Plan (Weeks 13-16, 24 Aug - 18 Sep)
+
+Week 13: Landing page + positioning
+Week 14: Case study + content marketing prep
+Week 15: Sales outreach first wave (20-30 prospects)
+Week 16: Demos + first pilot proposal
+
+Critical success factors:
+1. Positioning clarity: "RAG for Thai vet clinic warehouse management"
+2. Proof over promises: real metrics not hypothetical
+3. Niche depth > breadth (vet clinics first)
+4. Support model realistic (runbook = self-service)
+5. Cash flow: watch margins
+
+### Phase 4 Immediate Next Steps
+Weekend (optional): draft hero paragraph + brainstorm 5 target clinic types
+Mon 24 Aug: landing page copy outline (no coding)
