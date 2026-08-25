@@ -65,3 +65,37 @@ Package A economics:
 - $2,500 upfront × 3 clients Year 1 = $7,500 setup revenue
 - + $500-1500/mo retainers = $18-54K/yr recurring potential
 - + Year 2 vertical productization option (Depot RTB SaaS later)
+
+## Day 2 (Tue 25 ส.ค.) — Design + Deploy — SHIPPED
+
+### Landing page LIVE
+- URL: https://depot-assistant.pages.dev
+- Hosted: Cloudflare Pages (free tier)
+- Source: github.com/dogiejoy/depot-assistant
+- Auto-deploys on git push to master
+
+### Mid-day pivots
+1. Fast path chosen (Depot Assistant name, .pages.dev subdomain, Gmail forward)
+   - Rationale: momentum > perfection, first landing page ≠ forever
+2. Product-first rebrand (B2): "Depot Assistant" as product name
+   - Case study reframed: Depot RTB = first production deployment
+   - Pricing unchanged: $2,500 install fee
+   - Delivery framing: "we install our product for you"
+
+### Cloudflare gotchas caught
+- Workers vs Pages confusion (2026 UI defaults to Workers create flow)
+- Correct path: create app → "Looking to deploy Pages? Get started" (bottom)
+- Then: Import Git repository (not drag-drop for future updates)
+
+### Deferred (Wed-Fri)
+- Custom domain purchase (depotassistant.com or similar)
+- Screenshots polish for proof section (currently text-only metrics)
+- Demo video (screencast of assistant.html)
+- Case study deeper writeup (dedicated case-study.md)
+- Email forwarding actual setup (Gmail alias)
+
+### Time
+- Block 1 (decisions): 15 min (fast path)
+- Block 2 (HTML/CSS build): 75 min
+- Block 3 (deploy + rebrand mid-session): 60 min
+- Total Day 2: 2.5 hours

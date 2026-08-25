@@ -176,14 +176,14 @@ A: I built Depot RTB Assistant in 12 weeks — every metric measured, every bug 
 ## ABOUT SECTION
 
 ### Section header
-About [Suaptra Dinwong]
+About [Depot Assistant]
 
 ### Body copy
-Solo developer, Bangkok. Building Laravel apps since [2026]. Depot RTB is my product — warehouse management for veterinary clinics.
+Built by a solo developer in Bangkok. First deployed at Depot RTB (veterinary clinic warehouse platform). Every feature measured, every bug transparent.
 
-12 weeks ago I couldn't ship production RAG. Now I can — because I spent every day measuring what works and what doesn't. The result: Depot RTB Assistant v0.3, and this offering.
+12 weeks of focused development produced v0.3 — production-ready RAG that ships with monitoring, safety guardrails, and cost transparency built in.
 
-Package A is what I wish existed when I started: an AI integration you can trust because someone else already proved it worked.
+Depot Assistant is what should have existed when I started: a RAG platform you can trust because it already runs in production.
 
 ---
 
