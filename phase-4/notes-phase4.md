@@ -99,3 +99,47 @@ Package A economics:
 - Block 2 (HTML/CSS build): 75 min
 - Block 3 (deploy + rebrand mid-session): 60 min
 - Total Day 2: 2.5 hours
+
+## Day 3 (Wed 26 ส.ค.) — Screenshots + Case Study
+
+### Shipped
+1. Screenshots section on landing page:
+   - 4 real product shots (dosage, cold chain, refusal, API)
+   - Uniform 240px height + object-fit contain (readable + consistent)
+   - Selected from Week 8 portfolio (Week 10 safety shots missing — deferred)
+2. Case study page (case-study.html):
+   - "Depot RTB Assistant — First Deployment" story
+   - Structure: Problem → Alternatives → Approach → Results → Bugs → What ships → Next
+   - Real metrics table with "how measured" column
+   - "What broke" section: 4 bugs (judge, SDK positional, cache camelCase, ContextBuilder regression)
+   - ~1000 words, 5-min read
+3. Landing page CTA card linking to case study
+4. Auto-deployed via Cloudflare Pages
+
+### Design decision — case study over demo video
+- Case study = scannable, shareable, SEO-friendly, dual-use (landing + outreach emails)
+- Demo video = requires 60+ min recording + editing + hosting
+- Written content = higher ROI for solo dev launch phase
+- Video deferred to Phase 5 if prospects request it
+
+### Business framing
+Landing page now has:
+- Real screenshots (proof at glance)
+- Case study (deep dive for serious prospects)
+- Metrics table (both landing + case study)
+- Transparency signal ("bugs caught + fixed" section)
+
+Case study serves triple duty:
+1. Landing page proof for skeptical prospects
+2. Standalone URL to paste in outreach emails
+3. Content marketing (LinkedIn, forums)
+
+### For Thu (Day 4)
+Options:
+- Custom domain purchase + setup (depotassistant.com)
+- Screenshot polish (annotations, better crops)
+- Email address setup (Gmail forwarding for hello@depotassistant.com)
+- Case study CSS polish (remove gray background)
+
+### For Fri (Day 5)
+Week 13 retrospective + Week 14 (case study extension + blog) planning
