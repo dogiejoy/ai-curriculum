@@ -143,3 +143,53 @@ Options:
 
 ### For Fri (Day 5)
 Week 13 retrospective + Week 14 (case study extension + blog) planning
+
+## Day 4 (Thu 27 ส.ค.) — Week 14 Prep (planning only)
+
+### Delivered (planning artifacts)
+1. Week 14 revised plan:
+   - Case study already shipped Day 3 → Week 14 shifts to blog + outreach prep
+   - Mon: Technical blog post
+   - Tue: LinkedIn case study version + Thai vet forum research
+   - Wed: Prospect list build (20-30 targets)
+   - Thu: Outreach templates refinement
+   - Fri: Retrospective + Week 15 outreach sprint kickoff
+
+2. Ideal Customer Profile (ICP) defined:
+   - Must: Laravel-based product, 5-50 devs, Bangkok/SEA, English or Thai
+   - Nice: B2B SaaS, existing knowledge base, founder-accessible
+   - Avoid: agencies (channel conflict), enterprises (slow), solo devs (no budget)
+
+3. Prospect source channels (3 tiers):
+   - Tier 1: LinkedIn Thai tech, Laravel Thailand FB, Blognone Jobs, Product Hunt TH
+   - Tier 2: GitHub Thai devs, Twitter #laravel #thailand, meetup organizers
+   - Tier 3: Cold email to SaaS company addresses
+
+4. Outreach templates drafted (~/ai-sp/ai-curriculum/phase-4/outreach/templates.md):
+   - Template A: SaaS product company
+   - Template B: Laravel agency
+   - Template C: Post-launch startup
+   - Template D: LinkedIn DM (shorter)
+   - Follow-up sequence (Day 5 + Day 12)
+   - Anti-patterns list
+
+5. Realistic expectations set:
+   - 20-30 outreach → 2-4 replies → 1-2 calls → 0-1 pilot
+   - First real pilot conversation by mid-Sept realistic
+
+### Decisions for Fri or weekend
+- Domain: recommend depotassistant.com via Cloudflare Registrar
+- Email: Cloudflare Email Routing (free) → forward to Gmail
+- Setup time: ~30 min post-domain-purchase
+
+### Time
+Total: 2 hours (light day)
+- Block 1 (Week 14 planning): 45 min
+- Block 2 (outreach templates): 45 min
+- Block 3 (domain/email decisions): 20 min
+- Wrap: 10 min
+
+### Business note
+Case study on landing page = business asset live in market since Wed.
+Can start informal outreach any time now — no need to wait for domain.
+Formal outreach begins Week 15 with metrics tracking.
