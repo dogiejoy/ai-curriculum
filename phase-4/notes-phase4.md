@@ -193,3 +193,53 @@ Total: 2 hours (light day)
 Case study on landing page = business asset live in market since Wed.
 Can start informal outreach any time now — no need to wait for domain.
 Formal outreach begins Week 15 with metrics tracking.
+
+## Day 5 (Fri 28 ส.ค.) — Week 13 Retrospective + Week 14 Kickoff
+
+### Week 13 Summary
+Shipped in 4 days (compressed from 5 planned):
+- Landing page LIVE (Tue)
+- Rebrand mid-session (Tue)  
+- Screenshots + case study + auto-deploy (Wed)
+- Outreach templates + Week 14 plan (Thu)
+- Retrospective + Week 14 Mon plan (Fri, today)
+
+### Wins
+1. Fast path decision (.pages.dev + Gmail forward) → 3-day ship vs 3-week wait
+2. Product-first pivot caught pre-deploy
+3. Case study over demo video (higher ROI, dual-use)
+4. Transparency section in case study (differentiator)
+5. Planning day rhythm (Thu low-hands, Fri light) → no burnout
+
+### Misses
+1. Week 10 safety screenshots assumed but not real (verify assets before planning)
+2. Copy has placeholder email (fix Week 14 with domain)
+3. No custom domain yet (planned Week 14)
+4. Cloudflare UI confusion (Workers vs Pages — documented)
+5. Zero real prospect feedback (Week 15 validates)
+
+### Key Learning
+"Landing page ≠ perfect copy. Landing page = live URL that generates
+conversations." Feedback loop starts Week 15, not Week 13.
+
+### Week 14 Mon Plan (technical blog post)
+Title: "Building a production RAG assistant in 12 weeks — what worked,
+what didn't"
+Word target: 1500-2500
+Structure: starting point → foundations → RAG deep dive → 
+production concerns → bugs → metrics → what I'd do differently
+Publish: /blog/building-thai-rag.html
+Cross-post: Medium + Dev.to (canonical to own URL)
+
+### Weekend Optional
+- Verify + purchase depotassistant.com if available
+- Brainstorm 3 bugs to highlight in blog (reuse case study material)
+- Note 5-10 initial prospects (LinkedIn scan)
+
+### Week 13 Time Total
+Mon: 3 hrs (copy)
+Tue: 3 hrs (design + deploy)
+Wed: 3 hrs (screenshots + case study)
+Thu: 2 hrs (planning)
+Fri: 1.5 hrs (retro + Week 14 plan)
+Total: 12.5 hrs (below 13-hr weekly target, healthy pace)
