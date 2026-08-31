@@ -138,7 +138,7 @@ Case study serves triple duty:
 Options:
 - Custom domain purchase + setup (depotassistant.com)
 - Screenshot polish (annotations, better crops)
-- Email address setup (Gmail forwarding for hello@depotassistant.com)
+- Email address setup (Gmail forwarding for depot-ai@potissolution.com)
 - Case study CSS polish (remove gray background)
 
 ### For Fri (Day 5)
@@ -243,3 +243,48 @@ Wed: 3 hrs (screenshots + case study)
 Thu: 2 hrs (planning)
 Fri: 1.5 hrs (retro + Week 14 plan)
 Total: 12.5 hrs (below 13-hr weekly target, healthy pace)
+
+## Week 14 Day 1 (Mon 31 ส.ค.) — Infrastructure Instead of Blog
+
+### Original plan
+Technical blog post ("Building a Thai RAG in 12 weeks", 1500-2500 words)
+
+### Actual pivot
+Domain + email infrastructure setup (higher ROI for Week 15 outreach)
+
+### Shipped
+1. DNS migration: Internet.bs → Cloudflare nameservers
+   - potissolution.com fully managed by Cloudflare
+   - Existing website preserved (159.223.39.198) via Cloudflare CDN
+   - Zero downtime during nameserver swap
+2. Custom subdomain live: depot-ai.potissolution.com
+   - CNAME → depot-assistant.pages.dev
+   - SSL auto-provisioned by Cloudflare
+   - Bangkok edge (BKK) datacenter serves locally
+3. Cloudflare Email Routing enabled
+   - MX + SPF records auto-configured
+   - depot-ai@potissolution.com → potissolution@gmail.com
+   - End-to-end tested and verified
+4. Landing page updated:
+   - All hello@depotassistant.com placeholders → depot-ai@potissolution.com
+   - Live at depot-ai.potissolution.com
+   - Auto-deployed via Cloudflare Pages
+
+### Total time
+~2 hours (from decision to production infrastructure)
+
+### Total cost
+$0 (leveraged existing potissolution.com + free Cloudflare services)
+
+### Business signal
+Before: shareable .pages.dev URL (hobby feel)
+After: professional subdomain + functional email (business feel)
+
+Ready for Week 15 outreach with:
+- Professional landing URL for email signatures
+- Functional inbox for prospect replies
+- Consistent branding across all touchpoints
+
+### Blog post: deferred to Tue (Day 2) or Wed (Day 3)
+- Structure already planned Fri Day 5 (Week 13)
+- Can now include real depot-ai.potissolution.com URL in blog canonical
