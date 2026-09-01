@@ -288,3 +288,45 @@ Ready for Week 15 outreach with:
 ### Blog post: deferred to Tue (Day 2) or Wed (Day 3)
 - Structure already planned Fri Day 5 (Week 13)
 - Can now include real depot-ai.potissolution.com URL in blog canonical
+
+## Week 14 Day 2 (Tue 1 ก.ย.) — Technical Blog Post SHIPPED
+
+### Shipped
+1. blog/building-thai-rag.html — 174 lines, ~2000 words
+   - Title: "Building a production RAG assistant in 12 weeks — what worked, what didn't"
+   - 8 sections: starting point → foundations → RAG deep dive → production concerns → bugs → metrics → retrospective → product summary
+   - Canonical URL: depot-ai.potissolution.com/blog/building-thai-rag.html
+   
+2. Landing page 2nd CTA card added (blog post below case study)
+3. Auto-deployed via Cloudflare Pages
+
+### 3 URLs in market now
+- https://depot-ai.potissolution.com (landing)
+- https://depot-ai.potissolution.com/case-study.html (product proof)
+- https://depot-ai.potissolution.com/blog/building-thai-rag.html (engineering story)
+
+### Content asset triple-purpose
+1. SEO discoverability (Thai devs searching "Laravel RAG" / "production RAG")
+2. LinkedIn/Twitter shareable (dev-focused audience)
+3. Cold outreach credibility ("here's how I built it, not just the pitch")
+
+### Trade-offs made
+- Included "What ships as Depot Assistant" section (product mention)
+- Chose transparency framing ("what didn't work") over hype
+- 3 bugs vs all 4 (skipped cache camelCase — weakest lesson)
+- Personal voice ("I", not "we") — solo founder authenticity
+
+### Time
+- Block 1 (outline confirmation): 15 min
+- Block 2 (draft): 75 min (faster than planned 90)
+- Block 3 (cross-link + deploy): 20 min
+- Wrap: 15 min
+- Total: ~2 hrs (below 3-hr budget, healthy)
+
+### For Day 3 (Wed 2 ก.ย.)
+Original plan: LinkedIn version of case study + Thai vet forum research
+Better option: Prospect list build (Wed original goal)
+- 20-30 target Laravel teams
+- LinkedIn scan + FB Laravel Thailand group
+- Metrics tracking spreadsheet
+- Justification: content assets done, need prospects to send them to
