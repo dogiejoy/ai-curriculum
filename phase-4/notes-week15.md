@@ -41,3 +41,43 @@ Fri 11 ก.ย.: E2E testing (10 scenarios) + docs + tag v0.3.1
 
 ### Time
 2 hours (Block 1 requirements 45min, Block 2 design 45min, wrap 30min)
+
+## Day 3 (Wed 9 ก.ย.) — Sanctum + Token CLI
+
+### Shipped
+1. Laravel Sanctum installed (composer require laravel/sanctum)
+2. HasApiTokens trait added to User model
+3. Org user created (single-tenant pattern): "Depot RTB" id=1
+4. Three artisan commands built:
+   - depot:token:create --name= --abilities= --user=
+   - depot:token:list (table: ID, Name, Abilities, Last used, Created)
+   - depot:token:revoke {id} (with confirmation prompt)
+5. Two production tokens seeded:
+   - warehouse-app (chat:query)
+   - ops-dashboard (admin:stats)
+
+### Surprises during install
+- personal_access_tokens table already existed (Laravel 11+ ships it by default)
+  → deleted the duplicate migration Sanctum published
+- Original migration already marked "Ran" (2026_06_24_085529)
+
+### Bug caught + fixed
+config/depot.php was missing the opening <?php tag.
+Symptom: every artisan command printed the config array as raw text before
+its real output. Would have corrupted JSON/SSE responses in production.
+Fix: added <?php as line 1.
+
+### Verified in tinker
+- Abilities isolation: chat token cannot do admin:stats, and vice versa
+- findToken() resolves plaintext → token model → owner
+- Revoked tokens are hard-deleted (not soft-deleted)
+
+### For Thu (Day 4)
+Wire middleware to routes:
+- auth:sanctum + ability:chat:query + throttle:chat on /api/assistant/chat
+- auth:sanctum + ability:admin:stats + throttle:admin on /api/admin/cost-stats
+- Named rate limiters in AppServiceProvider (chat 60/hr, admin 120/hr, anon 10/hr)
+- Keep /api/health and /api/ready open
+
+### Time
+3 hours (Block 1 install 45min, Block 2 CLI 60min, Block 3 verification 50min, wrap 15min)
