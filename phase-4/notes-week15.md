@@ -81,3 +81,61 @@ Wire middleware to routes:
 
 ### Time
 3 hours (Block 1 install 45min, Block 2 CLI 60min, Block 3 verification 50min, wrap 15min)
+
+## Day 4 (Thu 10 ก.ย.) — Middleware Wiring + Rate Limiters
+
+### Shipped
+1. routes/api.php cleaned + protected:
+   - Removed duplicate unprotected /admin/cost-stats (Week 12 leftover
+     was overriding the protected version — Laravel uses last registration)
+   - Removed all commented-out legacy routes
+   - Protected /search and /chat-stream with chat:query (they cost money too;
+     flagged for removal review in Week 17)
+2. Sanctum ability middleware aliases registered in bootstrap/app.php
+3. Named rate limiters in AppServiceProvider::configureRateLimiting():
+   - chat: 60/hr per token, 10/hr per IP for anonymous
+   - admin: 120/hr per token
+   - Keys prefixed token:/ip: to avoid collisions
+4. Rate limit env vars added to .env.docker.example
+
+### Bugs caught + fixed
+Bug 1: 500 instead of 401 on unauthenticated request
+- Cause: Laravel tried route('login') redirect for non-JSON requests;
+  API-only app has no login route → RouteNotFoundException
+- Fix: shouldRenderJsonWhen() in bootstrap/app.php forces JSON for api/*
+- Lesson: server shouldn't depend on client sending Accept header correctly
+
+Bug 2: HTTP 200 with correct 401 body
+- Cause: `use Throwable;` import emitted a PHP warning (global namespace);
+  warning echoed before headers → status stuck at 200
+- Fix: removed the unnecessary import
+- Lesson: any output before headers breaks status codes silently
+
+### Smoke test — 6/6 passed
+| Test | Result |
+|---|---|
+| No token → chat | 401 ✓ |
+| Admin token → chat | 403 ✓ |
+| Chat token → chat | 200 + full stream ✓ |
+| Health/ready without token | 200 ✓ |
+| Admin token → admin | 200 + stats ✓ |
+| Chat token → admin | 403 ✓ |
+
+Abilities isolation verified in both directions.
+
+### Not yet tested
+- Rate limiting 429 (needs 61 requests) — deferred to Fri
+- APP_DEBUG=true still exposes full stack traces in error responses;
+  production config review needed Fri
+
+### For Fri (Day 5)
+- Rate limit test (script 61 requests, expect 429 with retry_after)
+- Anonymous rate limit test (11 requests without token)
+- Revoked token test (401)
+- APP_DEBUG production setting review
+- Update README + runbook with auth section
+- Write docs/authentication.md (client-facing guide)
+- Tag v0.3.1
+
+### Time
+3 hours (Block 1 routes 60min, Block 2 limiters 60min, Block 3 smoke test 35min, wrap 15min)
