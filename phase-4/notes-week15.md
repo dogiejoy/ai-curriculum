@@ -139,3 +139,85 @@ Abilities isolation verified in both directions.
 
 ### Time
 3 hours (Block 1 routes 60min, Block 2 limiters 60min, Block 3 smoke test 35min, wrap 15min)
+
+## Day 5 (Fri 11 ก.ย.) — Rate Limits, Docs, v0.3.1 Tagged
+
+### Architecture change — per-IP throttle moved to nginx
+
+Design doc specified `throttle:anon` in the Laravel middleware chain.
+Testing revealed this cannot work: Laravel's middleware priority list forces
+`Authenticate` ahead of `ThrottleRequests` regardless of route-level ordering.
+Twelve unauthenticated requests all returned 401 — the throttle never ran.
+
+Options considered:
+- B1: override middleware priority — breaks throttle:chat, which needs user()
+- B2: subclass ThrottleRequests as a separate class — works, but fragile and
+  confusing for whoever maintains this next
+- C: move per-IP limits to nginx — chosen
+
+nginx was already in the stack, rejects floods without booting a PHP worker,
+and per-IP flood protection at the reverse proxy is standard practice.
+Laravel keeps per-token business limits, which is the layer that actually
+needs application context.
+
+Config added to docker/nginx/depot-rtb.conf:
+    limit_req_zone $binary_remote_addr zone=api_limit:10m rate=100r/m;
+    limit_req zone=api_limit burst=20 nodelay;
+
+### Production leak found and fixed
+
+APP_DEBUG was not set in .env.docker at all. Laravel defaults it to true, so
+despite APP_ENV=production, every error response carried a full stack trace —
+file paths, vendor structure, framework internals. Visible in yesterday's 403
+test output.
+
+Fix: APP_DEBUG=false in .env.docker and .env.docker.example.
+Verified: 403 response is now a single-line JSON message.
+
+Lesson: APP_ENV=production does not imply APP_DEBUG=false. Set both explicitly.
+
+### Tests run
+
+| Test | Result |
+|---|---|
+| nginx flood (30 rapid requests) | 21x401, then 9x429 ✓ |
+| Per-token rate limit headers | Limit 120, Remaining 119 ✓ |
+| Revoked token | 403 before revoke, 401 after ✓ |
+| Stack trace exposure after APP_DEBUG fix | gone ✓ |
+
+### Documentation shipped
+
+- docs/authentication.md (262 lines) — client-facing: quick start, abilities,
+  both rate limit layers, token rotation procedure, error reference,
+  security notes, architecture notes for maintainers
+- README — auth step in quickstart, auth column in endpoints table,
+  rate limit vars in config table
+- docs/runbook.md — token management section (create, audit, rotate,
+  emergency revoke, adjust limits) plus two new monitoring alert thresholds
+
+### Tagged v0.3.1
+
+First of the pilot-readiness gaps closed. Remaining for v0.4:
+- Client corpus indexing pipeline (Week 16)
+- HTTPS/TLS setup docs (Week 16)
+- Backup and restore automation (Week 17)
+- Update and upgrade path (Week 17)
+
+### Week 15 summary
+
+Mon: rest
+Tue: auth architecture design (2h)
+Wed: Sanctum install + token CLI (3h)
+Thu: middleware wiring + smoke tests (3h)
+Fri: rate limit testing + docs + tag (3h)
+
+Total: 11 hours across 4 working days.
+
+Bugs caught this week: 4
+- config/depot.php missing <?php tag (raw output pollution)
+- duplicate unprotected admin route overriding the protected one
+- 500 instead of 401 (login redirect on API route)
+- 200 status with 401 body (PHP warning before headers)
+- APP_DEBUG unset, leaking stack traces
+
+That is five, actually. All would have shipped without end-to-end testing.
