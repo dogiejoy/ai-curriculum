@@ -101,3 +101,79 @@ Error paths, 5/5:
 
 ### Time
 3 hours (Block 1 migration 45min, Block 2 DTOs+loader 75min, Block 3 testing 45min, wrap 15min)
+
+## Day 3 (Wed 16 ก.ย.) — Chunker, Batcher, Indexer, CLI
+
+### Shipped
+1. FixedChunker — ported from week-06/chunkers/basic.py
+2. EmbeddingBatcher — wraps VoyageService with batching and outer retry
+3. CorpusIndexer — orchestration with transaction safety
+4. corpus:index CLI command with dry-run and progress bar
+
+### Reading the Python source changed the port
+The design doc's chunking loop was wrong. The Python original has an explicit
+early break:
+
+    if end >= len(text):
+        break
+    start = end - overlap
+
+My design doc used `position += chunkSize - overlap` and looped on the
+condition alone. For a document whose length is an exact multiple of the
+stride, that produces a trailing chunk of `overlap` characters — garbage
+chunks on short documents, and a different retrieval surface.
+
+Also found: chunk_index, char_start, char_end existed as fields on the Python
+Chunk object but were never written to the database — only `chunk.metadata`
+was inserted. That is the Week 6 tech debt, now closed by putting them in
+metadata.
+
+Lesson: port from the source, not from a description of the source.
+
+### Parity verified against Python
+| Metric | Python | PHP |
+|---|---|---|
+| Total chunks | 103 | 103 |
+| min/avg/max | 104/378/400 | 104/378/400 |
+| chunk 0 span | 0-400 | 0-400 |
+| chunk 1 span | 350-750 | 350-750 |
+| chunk 2 span | 700-1100 | 700-1100 |
+
+mb_substr matches Python's code-point slicing on Thai text.
+
+### EmbeddingBatcher
+VoyageService already retries twice at 500ms, which covers transient network
+failures. Added an outer retry with exponential backoff (2s, 4s) — that is
+what a 429 actually needs. The Python indexer had neither and died mid-run
+on a timeout.
+
+Also added a count assertion: if the API returns fewer vectors than texts
+sent, the run aborts rather than silently misaligning chunks to embeddings.
+
+### Dry-run estimate is approximate
+Estimate uses 2.5 chars per token for Thai. Measured against a real 3-chunk
+embed: 608 actual tokens vs the estimator's implied ~490 — roughly 25% low.
+
+Left as-is and labelled "(approximate)" in the output. Under-estimating is
+the safer direction for a cost preview, and the real number appears after
+an actual run.
+
+### Transaction safety
+Delete and insert are wrapped together. Rows insert in batches of 500.
+A failure at any point rolls back and leaves the previous corpus intact.
+
+### Verified
+Dry run against the real Depot RTB corpus:
+- 13 documents, 34,515 chars
+- 103 chunks, min/avg/max 104/378/400
+- Estimate 15,606 tokens, $0.0028
+- No API call, no database writes
+
+### For Thu (Day 4)
+HTTPS/TLS setup documentation — the other Priority 1 gap for this week.
+
+Real indexing run and retrieval verification is Friday, so any chunking
+regression shows up against the 100% hit@1 baseline.
+
+### Time
+3 hours (Block 1 chunker 45min, Block 2 batcher 60min, Block 3 indexer+CLI 60min, wrap 15min)
