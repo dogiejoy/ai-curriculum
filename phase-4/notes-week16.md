@@ -177,3 +177,86 @@ regression shows up against the 100% hit@1 baseline.
 
 ### Time
 3 hours (Block 1 chunker 45min, Block 2 batcher 60min, Block 3 indexer+CLI 60min, wrap 15min)
+
+## Day 4 (Thu 17 ก.ย.) — HTTPS/TLS
+
+### Approach chosen: Caddy in front of nginx
+Internet → Caddy :443 (TLS) → nginx :80 (SSE + rate limit) → php-fpm
+
+Rejected alternatives:
+- Caddy replacing nginx: would mean rewriting the rate limiting done in
+  Week 15 (Caddy needs a plugin for it), and discarding the SSE tuning
+  already verified
+- certbot + nginx: renewal needs a cron job the client can forget. Expired
+  certificates at 3am on a Saturday is the common failure mode.
+
+Caddy handles certificates only. Everything application-level stays in nginx,
+which means the Week 15 work stands untouched and a client with their own
+load balancer can drop Caddy entirely.
+
+### Shipped
+1. docker/caddy/Caddyfile — production, Let's Encrypt via DEPOT_DOMAIN
+2. docker/caddy/Caddyfile.local — `tls internal` for local testing
+3. docker-compose.yml — caddy service + caddy_data/caddy_config volumes
+4. docker-compose.tls-local.yml — port and Caddyfile override for testing
+5. docs/https-setup.md — setup, renewal, CDN/load-balancer guidance,
+   troubleshooting, security headers
+6. .env.docker.example — DEPOT_DOMAIN, DEPOT_TLS_EMAIL
+
+caddy_data must persist. Losing it forces a fresh certificate request, and
+Let's Encrypt allows 5 per domain per week.
+
+### Port 80 already taken on the dev machine
+Local testing uses 8000/8443 via the override file. Compose merges `ports`
+arrays rather than replacing them, so the override needs `!override` or the
+container tries to bind both sets and fails again.
+
+### Testing the wrong thing first
+Initial SSE test piped curl into grep, which buffers at 4KB. Events appeared
+to arrive all at once — a property of the pipeline, not the server.
+
+Second attempt used `grep --line-buffered` with timestamps. That showed bursts
+of roughly 64 events every 3 seconds. Suspicious, but running the same test
+against nginx directly (bypassing Caddy) produced the same pattern: 57, 63,
+63, 63, 62. Identical shape means Caddy adds no buffering — `flush_interval -1`
+works.
+
+The remaining burst pattern is the bash pipeline, not the server.
+
+Browser confirmed it: text renders progressively over the full 20 seconds.
+
+Lesson: when measuring streaming, the measuring tool is part of the system
+under test.
+
+### Gap found that wasn't on the list
+assistant.html broke when authentication shipped in Week 15. Every request
+returned 401, and the frontend's error handler — written in Week 10 when the
+only failure mode was a safety block — reported it as "Guardrail: blocked".
+
+Two bugs in one: no token, and an error handler that misattributes any
+failure to guardrails.
+
+Fixed the token side: prompt on first load, store in localStorage, send as
+Bearer header. The misleading error message is still there — worth fixing
+before a client sees it.
+
+Also hit a subtlety putting the token code in: it was initially placed inside
+`<script src="...marked.min.js">`. A script tag with a src attribute ignores
+its inline content entirely, so the code never ran and apiToken stayed
+undefined.
+
+### Verified
+- Caddy obtains a local certificate on start
+- HTTPS reaches php-fpm: response carries `via: 1.1 Caddy`, `server: nginx`,
+  `x-powered-by: PHP/8.3.33`
+- Auth, prompt caching, and markdown rendering all work over TLS
+- SSE streams progressively in the browser
+
+### For Fri (Day 5)
+- Run corpus:index for real, verify eval-retrieval still reports 100% hit@1
+- Fix the frontend error handler to distinguish 401/403/429 from guardrails
+- Update README with the HTTPS section
+- Tag v0.3.2
+
+### Time
+3 hours
