@@ -260,3 +260,99 @@ undefined.
 
 ### Time
 3 hours
+
+## Day 5 (Fri 18 ก.ย.) — Verification and v0.3.2
+
+### The verification that mattered
+
+Indexed the Depot RTB corpus through the Laravel pipeline into a new source
+(`depot-v2`), leaving the Python-indexed `week6_fixed` untouched for comparison.
+
+Run: 13 documents, 103 chunks, 19,769 tokens, $0.0036, 3.7 seconds.
+
+Database comparison:
+
+| | week6_fixed (Python) | depot-v2 (PHP) |
+|---|---|---|
+| chunks | 103 | 103 |
+| docs | 0 (doc_id was NULL) | 13 |
+| avg chars | 379 | 379 |
+
+chunk_index and char_start/char_end present in metadata — the Week 6 tech
+debt is closed. First three chunks of prod_001: spans 0-400, 350-750,
+700-1100, matching the Python output exactly.
+
+Retrieval eval on depot-v2:
+- hit@1: 100% (15/15)
+- recall@5: 100%
+- MRR: 1.000
+- avg latency: 418ms (Python baseline was 445ms)
+- easy/medium/hard: 100/100/100
+
+Every question returned rr=1.00. The PHP pipeline produces retrieval quality
+identical to the Python one that has been in use for ten weeks.
+
+### Frontend error handling
+
+401, 403, and 429 now render distinct messages instead of "Guardrail:
+blocked". Added a double-click on the header to change the stored token
+without clearing site data.
+
+### Forty minutes lost to a stale token
+
+After testing the 401 path with a deliberately wrong token, `9|wrongtoken`
+stayed in localStorage. Subsequent questions returned 500 and I went looking
+for a backend bug that did not exist.
+
+What made it confusing: nginx logged a genuine `500 44`, and curl with the
+same invalid token returned 401. Backend tests confirmed 401 for all three
+invalid-token shapes (wrong id, wrong hash, malformed). So the 500 is real
+and browser-specific, but not caused by what I assumed.
+
+Logged as a known issue for Week 17. Impact is limited to mistyped tokens,
+but a client hitting it would be as lost as I was.
+
+The lesson is about test hygiene: a test that writes state needs to clean up
+after itself, or the next observation is contaminated.
+
+### Documentation
+
+README: corpus indexing step in the quickstart, HTTPS note above the endpoint
+table, DEPOT_DOMAIN and DEPOT_TLS_EMAIL in config, full doc index.
+
+Runbook: corpus management — re-index, inspect what is loaded, verify
+retrieval after changes, estimate cost before a large run.
+
+### Tagged v0.3.2
+
+### Week 16 summary
+
+Mon: indexing architecture design (2h)
+Tue: migration, DTOs, CorpusLoader (3h)
+Wed: chunker, batcher, indexer, CLI (3h)
+Thu: HTTPS via Caddy (3h)
+Fri: verification, docs, tag (3h)
+
+Total: 14 hours.
+
+Bugs and surprises this week:
+- Corpus uses `id` not `doc_id`, has no title field, contains 13 documents
+  rather than the 6 I assumed from retrieval output
+- Postgres silently ignores `->after()` in migrations
+- The design doc's chunking loop was wrong; reading the Python source caught it
+- Python's chunk_index existed but was never persisted
+- Testing SSE through a grep pipeline measured the pipeline, not the server
+- assistant.html had been broken since Week 15 auth shipped, reporting 401 as
+  a guardrail block
+- A script tag with src ignores its inline content
+- Compose merges `ports` arrays rather than replacing them
+- Stale localStorage token cost 40 minutes of misdirected debugging
+
+Priority 1 gaps: 4/4 closed.
+
+### For Week 17
+- Backup and restore automation
+- Update and upgrade path
+- Investigate the 401-becomes-500 browser discrepancy
+- Full end-to-end rehearsal: fresh install simulating a client deployment
+- Tag v0.4 — pilot ready
