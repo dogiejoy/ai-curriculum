@@ -117,3 +117,65 @@ committing live API keys. Fixed.
 
 ### Time
 3 hours
+
+## Day 5 (Fri 25 ก.ย.) — Fixing what the rehearsal found
+
+### Fixed
+B1, B2, B3, B5, B6 plus four README errors. B4 and B7 were handled
+yesterday during the incident response.
+
+### The volume migration used the backup tooling for real
+Switching pgdata from `external: week-05_pgdata` to a project-scoped
+named volume meant starting with an empty database.
+
+depot:backup before, migrate on the new volume, depot:restore after.
+All 577 chunks across five sources came back.
+
+The safety backup taken mid-restore was 25 KB — the new database held
+only schema at that point. That number is a good sanity check that the
+tooling captures what actually exists rather than what you expect.
+
+First time backup and restore solved a real problem instead of a drill.
+
+### README had accumulated contradictions
+Beyond the four errors logged yesterday, editing it across several weeks
+had left a duplicated feature bullet and, after moving the HTTPS section,
+production guidance sitting above the prerequisites.
+
+Rewriting the whole Quick Start rather than patching it was the right
+call. Seven steps now, in the order a new operator would need them:
+configure, start, migrate and seed, index, create a token, try the UI,
+check cost.
+
+### Architecture diagram was two services out of date
+It still showed three services. Caddy arrived in Week 16, the scheduler
+on Tuesday. Nobody reading the README would have known either existed.
+
+### Still open
+- 401→500 browser discrepancy (Week 18)
+- Revoked keys remain in git history
+- week-05_pgdata kept as a safety net; delete once the new volume has
+  proven itself
+
+### Time
+3 hours
+
+## Week 17 summary
+
+Mon: rest
+Tue: backup and restore, tested destructively (3.25h)
+Wed: upgrade path, CHANGELOG, version fix (3h)
+Thu: fresh install rehearsal, API key incident (3h)
+Fri: fixing the blockers it found (3h)
+
+Total: 12.25 hours
+
+Both Priority 2 gaps closed. Seven install blockers found and six fixed.
+One security incident found, contained, and documented.
+
+The week's most valuable three hours were Thursday's — reading the
+repository as a stranger. Eight weeks of working inside it had surfaced
+none of what that found.
+
+v0.4 tag moves to Monday, after a second fresh-install rehearsal confirms
+the fixes work from a clean clone.
