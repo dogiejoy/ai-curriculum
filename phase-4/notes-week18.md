@@ -84,3 +84,53 @@ Three rounds, three sets of blockers. Tagging now would be a guess.
 
 ### Time
 3 hours
+
+## Day 2 (Tue 29 ก.ย.) — Round four
+
+### Install itself ran clean
+`make install-nohttps` completed every step from a clean clone: composer
+install, APP_KEY generated into `.env.docker`, services up, migrations,
+org user seeded from `DEPOT_ORG_NAME`. No 502. B12, B13, B14 all hold.
+
+First install sequence to run without intervention.
+
+### B11 came back
+Readiness still reported `source: week6_fixed`. Yesterday's fix went into
+the throwaway test clone, not the repository. A clean clone brought the
+original straight back.
+
+The fix existed for a day in a directory that gets deleted every round.
+
+### B16 — retrieval pinned to a research label
+`RetrievalService::DEFAULT_SOURCE = 'week6_fixed'`, from the Week 6
+chunking experiments.
+
+A client indexes their corpus under any other name and retrieval returns
+nothing. Readiness says ready. The corpus has rows. Every question comes
+back with no relevant documents.
+
+The most damaging blocker in five rounds, because everything looks correct
+until the first question. Install succeeds, health checks pass, corpus
+indexes, token works — and the assistant answers nothing.
+
+Same class of bug as B11: a label from our own research baked into a path
+a client depends on. B11 was in the health check, visible immediately.
+B16 was in the retrieval path, visible only when someone asks something.
+
+Source now comes from `config('depot.corpus.source')` via
+`DEPOT_CORPUS_SOURCE`.
+
+### Round four verdict
+Install sequence: clean.
+Application logic: two blockers, one a regression from fixing in the wrong
+place.
+
+Verified after the fix: retrieval_start, sources, routing,
+generation_start, text — the full chain from a clean install.
+
+But the verification ran on a clone that was `git pull`ed, not cloned
+fresh. That is the same shortcut that let B11 survive a day. Round five
+starts from nothing.
+
+### Time
+3 hours
