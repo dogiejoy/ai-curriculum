@@ -134,3 +134,73 @@ starts from nothing.
 
 ### Time
 3 hours
+
+## Day 3 (Wed 30 ก.ย.) — Round five, clean, v0.4.0 tagged
+
+### Round five found nothing
+
+Clean clone, no prior state. Every step passed on the first attempt:
+
+- `make install-nohttps` — composer install, APP_KEY into `.env.docker`,
+  services up, migrations, org user seeded
+- `/api/health` — 200, correct version
+- `corpus:index` — 13 documents, 103 chunks, $0.0036
+- `/api/ready` — ready, `sources: ["sample"]`
+- `depot:token:create` — token issued, owner correct
+- Chat — retrieval, routing, generation, streaming text
+
+Yesterday's fixes are in the repository, not just in a test clone that
+gets deleted.
+
+### Five rounds
+
+| Round | Blockers |
+|---|---|
+| 1 | 7 |
+| 2 | 3 |
+| 3 | 3 |
+| 4 | 2 |
+| 5 | 0 |
+
+Fifteen total. Three categories:
+
+**Developer machine state a client would not have.** A stray Laravel `.env`
+supplying `DB_PASSWORD`. A `vendor/` directory present since Week 3. A
+Docker volume named for a Week 5 experiment. Each made something work here
+that would fail everywhere else.
+
+**Research labels in client-facing paths.** `week6_fixed` hardcoded in the
+readiness check and in retrieval. The retrieval one was the worst blocker
+of the five rounds: install succeeds, health checks pass, corpus indexes,
+token works, and every question returns nothing.
+
+**Bugs created by fixing earlier bugs.** A Makefile that bypassed the
+port-conflict fallback documented three days before. Key generation writing
+to a file this deployment does not use. nginx holding a stale upstream IP
+after a container recreate.
+
+The third category is the one worth remembering. Writing a fix and
+verifying a fix are different activities, and skipping the second created
+three blockers in a single afternoon.
+
+### v0.4.0 tagged
+
+First version verified the way a client would install it.
+
+### What Path B bought
+
+Chosen 7 September: build the gaps before selling.
+
+Twenty-three days: auth, rate limiting, corpus indexing, HTTPS, backups,
+upgrade tooling — and fifteen install blockers plus one security incident
+that only surfaced because we installed it as a stranger would.
+
+Under Path A the first client would have met all fifteen. B16 alone would
+have had them looking at a system that installed cleanly, passed every
+health check, and answered nothing.
+
+### For Day 4
+Outreach restart. Product is pilot-ready.
+
+### Time
+2.5 hours
