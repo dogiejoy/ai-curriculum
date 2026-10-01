@@ -204,3 +204,50 @@ Outreach restart. Product is pilot-ready.
 
 ### Time
 2.5 hours
+
+## Day 4 (Thu 1 ต.ค.) — Content updated with the verification story
+
+### What the content was missing
+The case study stopped at v0.3 and the twelve-week build. It said nothing
+about the three weeks spent installing the product from a clean clone until
+a round found nothing.
+
+That omission mattered because it is the part a buyer cannot check before
+paying. Anyone can demo a system on their own laptop. What a client is
+actually buying is that it installs on theirs, that the backups restore,
+and that upgrading does not lose data.
+
+### New case study section: "Installing it the way you would"
+- The method: clone from GitHub into an empty directory, follow the README
+  line by line, treat anything it fails to mention as a defect
+- Five rounds, fifteen blockers, round five found none
+- The three categories: machine state a client would not have, research
+  labels baked into client-facing paths, bugs created by fixing other bugs
+- The retrieval blocker explained concretely — install succeeds, health
+  checks pass, corpus loads with a cost receipt, token issues, and every
+  question returns nothing
+- The destructive backup test and why rollback restores a snapshot rather
+  than reverting migrations
+
+Closing line: fifteen blockers had to be found by someone, and it was going
+to be me or the first client.
+
+### Landing page
+- Two features added: backups that restore, upgrade tooling
+- Metrics table gained a fresh-install verification row
+- Case study CTA now says what is inside rather than "how we built it in
+  12 weeks"
+
+### Decision: the API key incident stays out of the sales page
+It is in the CHANGELOG, which is public, and there is an incident note in
+the curriculum repo. But it does not belong in a section arguing for
+trustworthiness.
+
+Transparency about bugs we caught and fixed demonstrates rigour.
+Volunteering that we once leaked credentials touches the one thing a client
+has to trust without being able to verify — where their API keys end up.
+
+If asked directly, answer plainly. Not a selling point.
+
+### Time
+2.5 hours
